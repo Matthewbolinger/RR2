@@ -2,6 +2,7 @@ import { cp, mkdir, rm, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { business } from "../src/data.mjs";
+import { legacyRedirects } from "../src/legacy-routes.mjs";
 import { buildManifest, pages } from "../src/pages.mjs";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
@@ -151,9 +152,12 @@ await writeFile(
 
 await writeFile(
   join(dist, "_redirects"),
-  `/contact-us-3/ /contact/ 301
-/contact-us/ /contact/ 301
-/services/roofing/ /services/ 301
+  `${legacyRedirects
+    .map(
+      ({ source, destination, status }) =>
+        `${source} ${destination} ${status}`
+    )
+    .join("\n")}
 `,
   "utf8"
 );

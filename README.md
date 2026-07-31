@@ -26,6 +26,7 @@ npm run dev
 ```text
 src/
   data.mjs       Central business facts, navigation, services, FAQs, and claims
+  legacy-routes.mjs  Legacy redirects and retired WordPress URL policy
   resources.mjs  Original roofing guides and article metadata
   templates.mjs  Shared layout, navigation, schema, forms, and components
   pages.mjs      Route content and page composition
@@ -60,10 +61,12 @@ Full instructions for adding projects, reviews, services, locations, team member
 Copy `.env.example` values into the deployment environment. This repository intentionally contains no production secrets.
 
 - `FORM_ENDPOINT`: public HTTPS lead-intake route or serverless proxy that accepts multipart quote-form POSTs
-- `GA_MEASUREMENT_ID`: optional Google Analytics configuration
-- `GTM_CONTAINER_ID`: optional Google Tag Manager container
-- `META_PIXEL_ID`: optional Meta Pixel configuration
+- `GA_MEASUREMENT_ID`, `GTM_CONTAINER_ID`, and `META_PIXEL_ID`: reserved decision fields; the current templates do not read them, so setting them does not activate tracking
 - `SITE_URL`: production canonical origin
+
+The client-supplied IDPixel loader is centralized in `src/templates.mjs` and included once on every generated page. Its provider-account destination, production behavior, consent requirements, retention, and opt-out handling must be verified before public launch.
+
+The live WordPress site currently exposes Meta Pixel `1583403939041768` with a CAPI integration signal. The new build intentionally does not copy that implementation until the business approves a preserve, replace, or retire decision and the consent/deduplication architecture is defined.
 
 The full three-step form remains visible without `FORM_ENDPOINT`, but it does not pretend to deliver. A completed local submission states that the information was not sent and offers a phone handoff. With an endpoint configured, the browser waits for a successful server response before recording `form_submit_success` or opening the thank-you page.
 
@@ -71,14 +74,16 @@ The full three-step form remains visible without `FORM_ENDPOINT`, but it does no
 
 ## Deployment
 
-The generated `dist/` folder can be deployed to a static host that supports:
+The generated `dist/` folder can be deployed to a static host. It currently emits:
 
 - `404.html`
 - `_headers`
 - `_redirects`
 
-Run `npm test` immediately before deployment. The repository is not pushed or deployed by this task because the governing brief explicitly withheld remote push authorization and no hosting target was supplied.
+Platform-specific deployment adapters must reproduce those behaviors rather than silently dropping them. Run `npm test` immediately before deployment. Source is tracked in [Matthewbolinger/RR2](https://github.com/Matthewbolinger/RR2); no production hosting target has been configured.
+
+The recommended Vercel migration is intentionally still in preparation. No Vercel project, production deployment, DNS, WordPress, or email setting has been changed. Start with [hosting migration readiness](docs/hosting-migration-readiness.md), complete the [owner-input worksheet](docs/migration-owner-inputs.md), preserve the [DNS baseline](docs/dns-baseline-2026-07-31.md), execute the [WordPress backup and rollback runbook](docs/wordpress-backup-and-rollback-runbook.md), and then follow the [Vercel cutover runbook](docs/vercel-cutover-runbook.md).
 
 ## Current launch blockers
 
-The build is complete and testable, with client-supplied responsive PNG logo lockups, a real-work Projects portfolio, a Greater Chicago service-area hub, and four original roofing guides implemented. Production launch is still blocked by supporting brand/people approvals, publication releases and verified metadata for the supplied project archive, verified warranty and financing details, certificate-of-insurance review, the exact Google Business Profile city/ZIP list, production form delivery, analytics IDs, and final legal approval. See [launch checklist](docs/launch-checklist.md), [Greater Chicago SEO plan](docs/greater-chicago-seo-plan.md), and [unverified business information](docs/unverified-business-information.md).
+The build is complete and testable, with client-supplied responsive PNG logo lockups, a real-work Projects portfolio, a Greater Chicago service-area hub, and four original roofing guides implemented. Production launch is still blocked by supporting brand/people approvals, publication releases and verified metadata for the supplied project archive, verified warranty and financing details, certificate-of-insurance review, the exact Google Business Profile city/ZIP list, production form delivery, tracking-continuity and consent decisions, authenticated backup/DNS exports, and final legal approval. See [launch checklist](docs/launch-checklist.md), [Greater Chicago SEO plan](docs/greater-chicago-seo-plan.md), and [unverified business information](docs/unverified-business-information.md).

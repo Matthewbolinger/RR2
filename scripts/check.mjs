@@ -1,0 +1,241 @@
+import { access, readFile, readdir, stat } from "node:fs/promises";
+import { extname, join, relative } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const root = fileURLToPath(new URL("..", import.meta.url));
+const dist = join(root, "dist");
+const htmlFiles = [];
+const failures = [];
+const warnings = [];
+const titleOwners = new Map();
+const descriptionOwners = new Map();
+const routeRecords = [];
+const inboundRoutes = new Map();
+
+async function walk(directory) {
+  for (const entry of await readdir(directory)) {
+    const path = join(directory, entry);
+    const info = await stat(path);
+    if (info.isDirectory()) await walk(path);
+    else if (extname(path) === ".html") htmlFiles.push(path);
+  }
+}
+
+await walk(dist);
+
+function targetFor(href) {
+  const clean = href.split("#")[0].split("?")[0];
+  if (!clean || clean.startsWith("http") || clean.startsWith("mailto:") || clean.startsWith("tel:")) {
+    return null;
+  }
+  if (clean.startsWith("/assets/")) return join(dist, clean);
+  if (clean === "/") return join(dist, "index.html");
+  if (clean.endsWith(".html")) return join(dist, clean);
+  return join(dist, clean, "index.html");
+}
+
+for (const file of htmlFiles) {
+  const html = await readFile(file, "utf8");
+  const label = relative(dist, file);
+  const route =
+    label === "index.html"
+      ? "/"
+      : label === "404.html"
+        ? "/404.html"
+        : `/${label.replace(/\/index\.html$/, "/")}`;
+  const noindex = /<meta name="robots" content="[^"]*noindex/i.test(html);
+  const titles = [...html.matchAll(/<title>(.*?)<\/title>/g)];
+  const descriptions = [
+    ...html.matchAll(/<meta name="description" content="([^"]+)"/g)
+  ];
+  const canonicals = [...html.matchAll(/<link rel="canonical" href="([^"]+)"/g)];
+  const h1s = [...html.matchAll(/<h1[\s>]/g)];
+  const imagesWithoutDimensions = [
+    ...html.matchAll(/<img\b(?![^>]*\bwidth=)(?![^>]*\bheight=)[^>]*>/g)
+  ];
+  const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]);
+  const duplicateIds = [...new Set(ids.filter((id, index) => ids.indexOf(id) !== index))];
+  const main = html.match(/<main[^>]*>([\s\S]*?)<\/main>/)?.[1] || "";
+  const mainText = main
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&[a-z#0-9]+;/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  const wordCount = mainText ? mainText.split(" ").length : 0;
+  routeRecords.push({ route, label, noindex, wordCount });
+
+  if (titles.length !== 1) failures.push(`${label}: expected exactly one title`);
+  if (descriptions.length !== 1)
+    failures.push(`${label}: expected exactly one meta description`);
+  if (canonicals.length !== 1)
+    failures.push(`${label}: expected exactly one canonical URL`);
+  if (h1s.length !== 1) failures.push(`${label}: expected exactly one h1, found ${h1s.length}`);
+  if (!html.includes('href="#main"'))
+    failures.push(`${label}: missing skip link`);
+  if (!html.includes('type="application/ld+json"'))
+    failures.push(`${label}: missing structured data`);
+  if (imagesWithoutDimensions.length)
+    failures.push(`${label}: image missing explicit dimensions`);
+  if (duplicateIds.length)
+    failures.push(`${label}: duplicate id values ${duplicateIds.join(", ")}`);
+  if (/\[(VERIFICATION REQUIRED|PLACEHOLDER|TODO)\]/i.test(html))
+    failures.push(`${label}: public placeholder token found`);
+  if (/Strong Roofs\. Safe Homes\. Done Right\./i.test(html))
+    failures.push(`${label}: legacy primary slogan found`);
+  if (/class="breadcrumbs"[\s\S]{0,600}&lt;br/i.test(html))
+    failures.push(`${label}: escaped line-break markup found in breadcrumb`);
+  if (
+    /(production operator|final legal review recommended|this new site|being configured|generated editorial imagery|owner-supplied fleet)/i.test(
+      mainText
+    )
+  )
+    failures.push(`${label}: internal production language found in public copy`);
+
+  if (titles.length === 1) {
+    const title = titles[0][1];
+    const owner = titleOwners.get(title);
+    if (owner) failures.push(`${label}: duplicate title also used by ${owner}`);
+    titleOwners.set(title, label);
+    if (title.length < 25 || title.length > 65)
+      warnings.push(`${label}: title length is ${title.length} characters`);
+  }
+
+  if (descriptions.length === 1) {
+    const description = descriptions[0][1];
+    const owner = descriptionOwners.get(description);
+    if (owner)
+      failures.push(`${label}: duplicate meta description also used by ${owner}`);
+    descriptionOwners.set(description, label);
+    if (!noindex && (description.length < 60 || description.length > 170))
+      warnings.push(
+        `${label}: meta description length is ${description.length} characters`
+      );
+  }
+
+  if (!noindex && wordCount < 100)
+    warnings.push(`${label}: indexable main content has only ${wordCount} words`);
+  if (route === "/" && wordCount > 650)
+    failures.push(`${label}: homepage copy exceeds the 650-word density budget`);
+  if (route.startsWith("/services/") && route !== "/services/" && wordCount > 380)
+    failures.push(`${label}: service-page copy exceeds the 380-word density budget`);
+  if (route === "/contact/") {
+    const requiredLeadFields = [
+      "first_name",
+      "last_name",
+      "phone",
+      "email",
+      "street_address",
+      "city",
+      "postal_code",
+      "property_type",
+      "service",
+      "project_timing",
+      "consent"
+    ];
+    if (!html.includes('data-form-type="quote_request"'))
+      failures.push(`${label}: structured quote form is missing`);
+    if (html.includes("data-form-fallback"))
+      failures.push(`${label}: quote form was replaced by a contact-only fallback`);
+    for (const name of requiredLeadFields) {
+      if (!html.includes(`name="${name}"`))
+        failures.push(`${label}: quote form is missing ${name}`);
+    }
+  }
+
+  const labelledByRefs = [
+    ...html.matchAll(/\saria-labelledby="([^"]+)"/g)
+  ].flatMap((match) => match[1].split(/\s+/));
+  for (const id of labelledByRefs) {
+    if (!ids.includes(id))
+      failures.push(`${label}: aria-labelledby references missing id ${id}`);
+  }
+
+  const jsonLdBlocks = [
+    ...html.matchAll(
+      /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g
+    )
+  ];
+  let schemaTypes = [];
+  for (const block of jsonLdBlocks) {
+    try {
+      const schema = JSON.parse(block[1]);
+      schemaTypes = (schema["@graph"] || []).map((item) => item["@type"]);
+    } catch {
+      failures.push(`${label}: invalid JSON-LD`);
+    }
+  }
+  if (route !== "/" && route !== "/404.html" && !schemaTypes.includes("BreadcrumbList"))
+    failures.push(`${label}: missing BreadcrumbList schema`);
+  if (html.includes('class="faq-list"') && !schemaTypes.includes("FAQPage"))
+    failures.push(`${label}: visible FAQ content is missing FAQPage schema`);
+
+  const refs = [
+    ...html.matchAll(/(?:href|src)="([^"]+)"/g)
+  ].map((match) => match[1]);
+  for (const href of refs) {
+    const cleanHref = href.split("#")[0].split("?")[0];
+    if (cleanHref.startsWith("/")) {
+      const normalizedRoute =
+        cleanHref === "/" ||
+        cleanHref.endsWith(".html") ||
+        cleanHref.startsWith("/assets/")
+          ? cleanHref
+          : cleanHref.endsWith("/")
+            ? cleanHref
+            : `${cleanHref}/`;
+      inboundRoutes.set(
+        normalizedRoute,
+        (inboundRoutes.get(normalizedRoute) || 0) + 1
+      );
+    }
+    const target = targetFor(href);
+    if (!target) continue;
+    try {
+      await access(target);
+    } catch {
+      failures.push(`${label}: broken internal reference ${href}`);
+    }
+  }
+
+  if (html.includes("5-star") || html.includes("500+"))
+    warnings.push(`${label}: review proof language requires verification`);
+}
+
+for (const record of routeRecords) {
+  if (
+    !record.noindex &&
+    record.route !== "/" &&
+    !inboundRoutes.has(record.route)
+  ) {
+    failures.push(`${record.label}: indexable page has no inbound internal link`);
+  }
+}
+
+for (const required of [
+  "sitemap.xml",
+  "robots.txt",
+  "_headers",
+  "_redirects",
+  "404.html",
+  "assets/styles.css",
+  "assets/main.js"
+]) {
+  try {
+    await access(join(dist, required));
+  } catch {
+    failures.push(`Missing build artifact: ${required}`);
+  }
+}
+
+if (warnings.length) {
+  console.warn(`Warnings:\n${warnings.map((item) => `- ${item}`).join("\n")}`);
+}
+
+if (failures.length) {
+  console.error(`Checks failed:\n${failures.map((item) => `- ${item}`).join("\n")}`);
+  process.exit(1);
+}
+
+console.log(
+  `Checked ${htmlFiles.length} HTML files: metadata, headings, structured data, dimensions, claims, and internal references passed.`
+);

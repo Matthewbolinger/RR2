@@ -1,0 +1,7 @@
+dist/
+.DS_Store
+.env
+*.log
+screenshots/
+tmp/
+public/assets/images/*-source.png

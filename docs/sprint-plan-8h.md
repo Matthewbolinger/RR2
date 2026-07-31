@@ -119,6 +119,37 @@ Full `npm test && npm run audit`; fix regressions only (no new features past 7:0
 re-score against the review rubric; update `launch-checklist.md` with what changed and
 what still blocks launch; final commit and push; before/after artifact refresh.
 
+## Mobile contract (binding on every wave)
+
+Mobile (390 px) is the primary surface — it carries the emergency traffic and already
+holds the site's best score (8.5). Nothing merges that lowers it.
+
+- **Every gate is dual-viewport by construction**: frame capture, overflow audit, and
+  vitals all run at 1440 *and* 390; the vitals budget is measured on throttled 4G —
+  i.e., the mobile case is the budget.
+- **Wave 1A**: the trust band stacks (marks row first, quotes after, max two visible);
+  the 3-project strip becomes a CSS scroll-snap row — no JS carousel; new sections
+  reserve bottom padding for the sticky call bar and never occlude it.
+- **Wave 1B is a mobile fix in disguise**: the clipped "BUILT ABOVE STANDAR" first
+  paint only occurs at phone widths — size-adjust fallbacks + the lower clamp floor
+  close a mobile-only failure state.
+- **Wave 1C**: `srcset` + portrait mobile crops (the existing 800×1000 editorial-v2
+  pattern) mean phones stop downloading desktop-sized images — the single biggest
+  mobile LCP lever in the sprint.
+- **Wave 2**: hover-dependent effects (magnetic CTA, card hovers, nav underline slide)
+  gate behind `@media (hover: hover) and (pointer: fine)`; touch gets tap/active
+  states instead. All scroll-linked motion is compositor-only (transform/opacity).
+  The hero reveal shortens to ~0.9 s on mobile — phone users scroll immediately.
+  Motion cannot merge if it moves the throttled-mobile LCP/CLS numbers.
+- **Wave 3**: replacement service-card images ship with art-directed portrait crops via
+  `<picture>` media queries, keeping subjects centered at full-bleed card widths.
+- **Wave 4**: the stacked mobile flow is the *default* layout of the case-study
+  template; the desktop sticky rail is the enhancement. No scroll-jacking on touch,
+  ever.
+- **Wave 5**: the re-score explicitly re-walks the full mobile frame set (hero → nav →
+  triage → trust → CTA → footer) against the 8.5 baseline; a mobile regression is a
+  ship blocker even if desktop improved.
+
 ## Definition of done
 
 - `npm test` green including the two new gates (payload budget, vitals smoke).

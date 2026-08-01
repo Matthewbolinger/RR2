@@ -12,7 +12,7 @@
 | Service card image | 140 KB target | 67–127 KB |
 | Primary logo lockup | 100 KB target | 65 KB transparent PNG |
 | Footer brand textile | 160 KB target | 146 KB JPEG |
-| Fonts | 160 KB total | Google Fonts external; self-host recommended |
+| Fonts | 160 KB total | Self-hosted WOFF2 (52 KB total: Bebas 13.8 KB + Montserrat variable 38 KB), preloaded, size-adjusted fallbacks |
 | Third-party scripts | 50 KB initial | 0 KB |
 | Layout shift | CLS < 0.1 | Explicit image dimensions and stable components |
 | Interaction | INP < 200 ms | Small event surface and no framework runtime |
@@ -35,7 +35,7 @@
 ## Known exceptions
 
 - Roof replacement and warranty desktop hero fallbacks are slightly above the 300 KB target. Add art-directed AVIF/WebP sources after the final photography is approved.
-- Google Fonts adds a third-party request. Self-host licensed Bebas Neue and Montserrat WOFF2 subsets to remove that dependency.
+- Fonts are self-hosted WOFF2 subsets (no third-party requests); size-adjusted local fallbacks prevent layout shift and viewport overflow during font load.
 - CSS, JavaScript, and image filenames are not content-hashed, so production should not use immutable caching until fingerprinting is added.
 - Final Core Web Vitals, cache behavior, and font timing require tests on the production host and representative devices.
 

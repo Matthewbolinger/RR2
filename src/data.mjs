@@ -45,15 +45,19 @@ export const services = [
     imageMobile:
       "/assets/editorial-v2/roof-replacement-premium-service-card-640.jpg",
     cardImage:
-      "/assets/editorial-v2/roof-replacement-premium-service-card-1280.jpg",
+      "/assets/editorial-v3/roof-replacement-completed-aerial-1280.webp",
     cardSrcset:
-      "/assets/editorial-v2/roof-replacement-premium-service-card-640.jpg 640w, /assets/editorial-v2/roof-replacement-premium-service-card-1280.jpg 1280w",
+      "/assets/editorial-v3/roof-replacement-completed-aerial-640.webp 640w, /assets/editorial-v3/roof-replacement-completed-aerial-1280.webp 1280w",
     cardSizes:
       "(max-width: 800px) calc(100vw - 32px), (max-width: 1100px) 50vw, 25vw",
     cardImageAlt:
-      "Completed upscale residence with a newly installed dark charcoal architectural-shingle roof in overcast evening light",
+      "Drone view of a brick residence and its detached garage with dark architectural-shingle roofs, a copper-clad dormer, and a paver driveway between them",
     cardImageWidth: 1280,
     cardImageHeight: 720,
+    cardImageMobile:
+      "/assets/editorial-v3/roof-replacement-completed-aerial-mobile-800x1000.webp",
+    cardImageMobileWidth: 800,
+    cardImageMobileHeight: 1000,
     imageAlt:
       "Upscale stone residence with a dark charcoal architectural-shingle roof, warm interior lighting, and rain-darkened pavement",
     imageWidth: 1280,
@@ -90,9 +94,15 @@ export const services = [
       "Targeted repair for active leaks, damaged roof details, and localized failures—without assuming replacement.",
     short: "Find the source before choosing the fix.",
     image: "/assets/images/roofer-inspection.jpg",
-    cardImage: "/assets/images/roof-repair-inspection-card-640.jpg",
+    cardImage: "/assets/editorial-v3/roof-repair-dormer-detail-640.webp",
+    cardImageAlt:
+      "Close aerial view of a steep dark patterned roof with two dormers, a brick chimney, and a flat-roof transition",
     cardImageWidth: 640,
-    cardImageHeight: 426,
+    cardImageHeight: 360,
+    cardImageMobile:
+      "/assets/editorial-v3/roof-repair-dormer-detail-mobile-800x1000.webp",
+    cardImageMobileWidth: 800,
+    cardImageMobileHeight: 1000,
     imageAlt:
       "Roofing professional inspecting dark architectural shingles",
     imageWidth: 1200,
@@ -132,15 +142,19 @@ export const services = [
     imageMobile:
       "/assets/editorial-v2/storm-assessment-web-mobile-800.jpg",
     cardImage:
-      "/assets/editorial-v2/storm-restoration-assessment-service-card-v2-1280.jpg",
+      "/assets/editorial-v3/storm-restoration-material-delivery-1020.webp",
     cardSrcset:
-      "/assets/editorial-v2/storm-restoration-assessment-service-card-v2-640.jpg 640w, /assets/editorial-v2/storm-restoration-assessment-service-card-v2-1280.jpg 1280w",
+      "/assets/editorial-v3/storm-restoration-material-delivery-640.webp 640w, /assets/editorial-v3/storm-restoration-material-delivery-1020.webp 1020w",
     cardSizes:
       "(max-width: 800px) calc(100vw - 32px), (max-width: 1100px) 50vw, 25vw",
     cardImageAlt:
-      "Roofing professional documenting localized storm damage on a residential architectural-shingle roof after rainfall",
-    cardImageWidth: 1280,
-    cardImageHeight: 720,
+      "Crane lifting packaged roofing materials to the top of a multi-story brick commercial building under an overcast sky",
+    cardImageWidth: 1020,
+    cardImageHeight: 574,
+    cardImageMobile:
+      "/assets/editorial-v3/storm-restoration-material-delivery-mobile-800x1000.webp",
+    cardImageMobileWidth: 800,
+    cardImageMobileHeight: 1000,
     imageAlt:
       "Professional photographing a residential roof after rainfall",
     imageWidth: 1280,
@@ -180,15 +194,19 @@ export const services = [
     imageMobile:
       "/assets/editorial-v2/gutters-system-web-mobile-800.jpg",
     cardImage:
-      "/assets/editorial-v2/gutters-exteriors-installation-service-card-v2-1280.jpg",
+      "/assets/editorial-v3/gutters-exteriors-tudor-exterior-1280.webp",
     cardSrcset:
-      "/assets/editorial-v2/gutters-exteriors-installation-service-card-v2-640.jpg 640w, /assets/editorial-v2/gutters-exteriors-installation-service-card-v2-1280.jpg 1280w",
+      "/assets/editorial-v3/gutters-exteriors-tudor-exterior-640.webp 640w, /assets/editorial-v3/gutters-exteriors-tudor-exterior-1280.webp 1280w",
     cardSizes:
       "(max-width: 800px) calc(100vw - 32px), (max-width: 1100px) 50vw, 25vw",
     cardImageAlt:
-      "Exterior professional aligning a matte-charcoal seamless gutter on a stone residence",
+      "Exterior of a large Tudor-style residence with dark roof planes, black-and-white half-timbered gables, copper bay-window roofs, and a round stone turret",
     cardImageWidth: 1280,
     cardImageHeight: 720,
+    cardImageMobile:
+      "/assets/editorial-v3/gutters-exteriors-tudor-exterior-mobile-800x1000.webp",
+    cardImageMobileWidth: 800,
+    cardImageMobileHeight: 1000,
     imageAlt:
       "Matte charcoal gutter and soffit detail on a stone home",
     imageWidth: 1280,

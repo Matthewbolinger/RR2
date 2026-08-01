@@ -63,6 +63,43 @@ The four files named `ChatGPT Image Jul 30, 2026, 11_41_*.png` require explicit 
 
 The existing before/after composites were not copied into this library because they include baked typography and insufficient clean source separation. The soft ridge-detail image was also excluded.
 
+## Editorial V3 — real-archive service-card derivatives (August 1, 2026)
+
+Scope: `public/assets/editorial-v3/`. These derivatives replace the four
+generated/editorial service-card images (homepage services grid and
+/services/ grid) with client project photography already held in
+`public/assets/projects/`. Every output is produced by
+`scripts/grade-images.mjs` (deterministic headless-Chromium canvas pipeline):
+cover-crop, resize, and one shared color grade only — no generative fill,
+object removal, compositing, upscaling, or content alteration of any kind.
+
+Treatment "editorial-v3 grade" (identical constants for every output):
+saturate 0.86, contrast 1.06, brightness 0.97; warm gold wash `#c7a24a` at
+alpha 0.07 composited with `soft-light`; cool shadow floor `#1d2a38` at
+alpha 0.30 composited with `lighten`. Landscape crops keep the service-card
+16:9 intrinsic aspect; the `*-mobile-800x1000` crops follow the site's 4:5
+mobile art-direction convention. Square sources cap their large landscape
+derivative at 1020 px wide (the honest source width — no upscaling).
+
+| Source path | Source SHA-256 | Source dimensions | Derivatives | Treatment | Role |
+| --- | --- | ---: | --- | --- | --- |
+| `public/assets/projects/project-residential-completed-roof-aerial-1920.webp` | `4bc8965d4383227b07020ee4b9778db781d1cdef8e2dafad7bf1d2756920fc70` | 1920×1080 | `roof-replacement-completed-aerial-1280.webp` (1280×720), `-640.webp` (640×360), `-mobile-800x1000.webp` (800×1000) | editorial-v3 grade; crop zoom 1.35 focal 0.42/0.72 (landscape), focal 0.62/0.5 (portrait) | Roof Replacement service card |
+| `public/assets/projects/project-roof-detail-dormers-1020.jpg` | `4462a6eeb6375167fc70e165d35bcdbbd26885702664d4ad18da838c5c142f15` | 1020×1020 | `roof-repair-dormer-detail-1020.webp` (1020×574), `-640.webp` (640×360), `-mobile-800x1000.webp` (800×1000) | editorial-v3 grade; focal 0.5/0.3 (landscape), 0.42/0.55 (portrait) | Roof Repair service card (640 wired; 1020 held for wider slots) |
+| `public/assets/projects/project-material-delivery-clear-v2-1020.jpg` | `5674febb1da80e9e6e066ba03f8bcf9d2d07f3e7ba6d0081f627f11df580d475` | 1020×1020 | `storm-restoration-material-delivery-1020.webp` (1020×574), `-640.webp` (640×360), `-mobile-800x1000.webp` (800×1000) | editorial-v3 grade; focal 0.5/0.28 (landscape), 0.5/0.45 (portrait) | Storm Damage Restoration service card |
+| `public/assets/projects/project-tudor-residence-exterior-1920.webp` | `db82884e2c35914b76997a6bb46d2577babdb8c8c57c99576abf73d6f23299bd` | 1920×1080 | `gutters-exteriors-tudor-exterior-1280.webp` (1280×720), `-640.webp` (640×360), `-mobile-800x1000.webp` (800×1000) | editorial-v3 grade; crop zoom 1.2 focal 0.5/0.35 (landscape), focal 0.62/0.42 (portrait) | Gutters & Exteriors service card |
+
+Selection notes: the labeled before/after composite
+(`project-roof-before-after-aerial-*`) was considered for the storm card and
+rejected because of its baked BEFORE/AFTER typography (see hold list). The
+material-delivery field record was used instead, per plan. The Tudor
+derivative is cut from the untouched original exterior frame
+(`project-tudor-residence-exterior-*`), not from the `yard-*`/`landscape-
+finished` retouch series, and the alt text describes only what the original
+frame shows. All four sources are client-supplied project media from the
+supplied archive (`assets/projects/*`; see the asset-replacement manifest);
+alt text describes visible content only and makes no project, location, or
+storm-evidence claims. No on-image labels were added.
+
 ## Required acquisition list
 
 1. Roof repair: naturally sharp photo of an actual condition and a second frame showing the completed repair.

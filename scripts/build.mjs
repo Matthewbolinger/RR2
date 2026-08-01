@@ -27,6 +27,9 @@ await mkdir(join(dist, "assets", "projects"), { recursive: true });
 await mkdir(join(dist, "assets", "editorial-v2"), { recursive: true });
 await cp(join(root, "src", "styles.css"), join(dist, "assets", "styles.css"));
 await cp(join(root, "src", "main.js"), join(dist, "assets", "main.js"));
+await cp(join(root, "public", "assets", "fonts"), join(dist, "assets", "fonts"), {
+  recursive: true
+});
 
 const projectAssets = new Set(
   pages.flatMap((page) =>

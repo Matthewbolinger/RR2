@@ -88,6 +88,16 @@ derivative at 1020 px wide (the honest source width — no upscaling).
 | `public/assets/projects/project-material-delivery-clear-v2-1020.jpg` | `5674febb1da80e9e6e066ba03f8bcf9d2d07f3e7ba6d0081f627f11df580d475` | 1020×1020 | `storm-restoration-material-delivery-1020.webp` (1020×574), `-640.webp` (640×360), `-mobile-800x1000.webp` (800×1000) | editorial-v3 grade; focal 0.5/0.28 (landscape), 0.5/0.45 (portrait) | Storm Damage Restoration service card |
 | `public/assets/projects/project-tudor-residence-exterior-1920.webp` | `db82884e2c35914b76997a6bb46d2577babdb8c8c57c99576abf73d6f23299bd` | 1920×1080 | `gutters-exteriors-tudor-exterior-1280.webp` (1280×720), `-640.webp` (640×360), `-mobile-800x1000.webp` (800×1000) | editorial-v3 grade; crop zoom 1.2 focal 0.5/0.35 (landscape), focal 0.62/0.42 (portrait) | Gutters & Exteriors service card |
 
+Hero exploration (not shipped): `home-hero-dusk-candidate-1800x1013.webp`
+(1800×1013) is cut from the same untouched Tudor source
+(`project-tudor-residence-exterior-1920.webp`, SHA above; crop zoom 1,
+focal 0.5/0.42) with the heavier deterministic "dusk-hero" grade
+(saturate 0.8, contrast 1.08, brightness 0.7, gold `#c7a24a` @ 0.07
+soft-light, cool floor `#1b2836` @ 0.5 lighten) via
+`scripts/grade-images.mjs --set=hero`. No production reference points at
+it; `assets/images/hero-home.jpg` remains the live hero pending an owner
+decision.
+
 Selection notes: the labeled before/after composite
 (`project-roof-before-after-aerial-*`) was considered for the storm card and
 rejected because of its baked BEFORE/AFTER typography (see hold list). The

@@ -5,3 +5,4 @@ dist/
 screenshots/
 tmp/
 public/assets/images/*-source.png
+.claude/

@@ -14,11 +14,20 @@ const PORT = 9401;
 const SCAN = `(() => {
   const vw = document.documentElement.clientWidth;
   const bad = [];
+  const inScroller = (el) => {
+    for (let n = el.parentElement; n && n !== document.body; n = n.parentElement) {
+      const cs = getComputedStyle(n);
+      if ((cs.overflowX === "auto" || cs.overflowX === "scroll") && n.scrollWidth > n.clientWidth + 4) {
+        return true;
+      }
+    }
+    return false;
+  };
   for (const el of document.querySelectorAll("h1,h2,h3,p,a,button,li,figcaption")) {
     const rect = el.getBoundingClientRect();
     if (rect.width === 0) continue;
     const over = Math.round(Math.max(rect.right - vw, -rect.left));
-    if (over > 8) {
+    if (over > 8 && !inScroller(el)) {
       const text = (el.textContent || "").trim().slice(0, 50);
       if (text) bad.push({ tag: el.tagName, over, text });
     }

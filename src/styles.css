@@ -5981,3 +5981,18 @@ html:not(.js) .inspection-form [data-disabled-until-enhanced] {
 }
 
 /* === end Wave 1A === */
+
+/* === Wave 1 integration ===
+   Grid children default to min-width:auto, which lets one item's min-content
+   widen a 1fr track past its container (seen: variable-font metrics pushed the
+   storm evidence panel to 389px in a 362px shell on mobile). Zero it so
+   content wraps instead of blowing out the track. */
+.two-column > *,
+.proof-layout > *,
+.storm-panel > *,
+.faq-layout > *,
+.content-grid > *,
+.contact-grid > * {
+  min-width: 0;
+}
+/* === end Wave 1 integration === */

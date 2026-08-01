@@ -211,6 +211,57 @@ for (const record of routeRecords) {
   }
 }
 
+// Homepage image payload budget: sum every unique image file referenced by
+// dist/index.html markup. When a WebP twin of a JPEG/PNG is also referenced
+// (via <source type="image/webp">), modern browsers download the WebP, so the
+// WebP size is counted and the JPEG/PNG it replaces is skipped.
+const homepageImageBudgetBytes = 900 * 1024;
+const homeHtml = await readFile(join(dist, "index.html"), "utf8");
+const homeImageUrls = new Set();
+for (const match of homeHtml.matchAll(
+  /(?<![-\w])(?:src|srcset)\s*=\s*"([^"]*)"/g
+)) {
+  for (const candidate of match[1].split(",")) {
+    const url = candidate.trim().split(/\s+/)[0];
+    if (/^\/assets\/\S+\.(?:avif|gif|jpe?g|png|webp)$/i.test(url)) {
+      homeImageUrls.add(url);
+    }
+  }
+}
+const countedHomeImages = [...homeImageUrls].filter((url) => {
+  const webpTwin = url.replace(/\.(?:jpe?g|png)$/i, ".webp");
+  return webpTwin === url || !homeImageUrls.has(webpTwin);
+});
+const homepageImageRows = [];
+let homepageImageBytes = 0;
+for (const url of countedHomeImages) {
+  try {
+    const info = await stat(join(dist, url));
+    homepageImageBytes += info.size;
+    homepageImageRows.push({ url, bytes: info.size });
+  } catch {
+    failures.push(
+      `index.html: homepage-referenced image missing from dist: ${url}`
+    );
+  }
+}
+homepageImageRows.sort((a, b) => b.bytes - a.bytes);
+console.log(
+  `Homepage image payload: ${(homepageImageBytes / 1024).toFixed(1)} KiB across ${
+    homepageImageRows.length
+  } file(s), budget ${(homepageImageBudgetBytes / 1024).toFixed(0)} KiB. Top 5:`
+);
+for (const row of homepageImageRows.slice(0, 5)) {
+  console.log(`  ${(row.bytes / 1024).toFixed(1).padStart(7)} KiB  ${row.url}`);
+}
+if (homepageImageBytes > homepageImageBudgetBytes) {
+  failures.push(
+    `index.html: homepage image payload ${(homepageImageBytes / 1024).toFixed(1)} KiB exceeds the ${(
+      homepageImageBudgetBytes / 1024
+    ).toFixed(0)} KiB budget`
+  );
+}
+
 for (const required of [
   "sitemap.xml",
   "robots.txt",

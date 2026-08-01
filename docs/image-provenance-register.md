@@ -110,6 +110,56 @@ supplied archive (`assets/projects/*`; see the asset-replacement manifest);
 alt text describes visible content only and makes no project, location, or
 storm-evidence claims. No on-image labels were added.
 
+## Wave 4 — case-study page usage (August 1, 2026)
+
+Scope: the two scroll-narrative case-study routes
+`/projects/tudor-exterior-transformation/` and
+`/projects/commercial-flat-roof/`. Both pages use only assets already
+recorded in this register or already published on `/projects/`; no new
+imagery was created and no new treatment was applied. All captions, chips,
+and alt text describe visible content only, and every factual sentence on
+the two pages traces to this register, the claims registry, or copy already
+published on the site.
+
+### /projects/tudor-exterior-transformation/
+
+| Asset | Register basis | Role on page |
+| --- | --- | --- |
+| `projects/project-tudor-residence-exterior-1280.jpg` + `-640.jpg` (WebP twins auto-encoded by `scripts/encode-images.mjs` at build: `-1280.webp` 156,230 B, `-640.webp` 41,974 B; deterministic re-encode only) | Editorial V3 section identifies the `project-tudor-residence-exterior-*` family as the untouched original exterior frame (source SHA `db82884e…`); client-supplied archive media | Sections 01 (condition), 03 (documentation, "the record" side), 04 (outcome); chip-labeled "Archive frame · Unretouched" |
+| `editorial-v3/gutters-exteriors-tudor-exterior-1280/640/mobile-800x1000.webp` | Editorial V3 derivative record (deterministic grade, cover-crop only; no content alteration) | Page hero and section 03 "presentation cut" side; chip-labeled "Editorial grade" with copy stating the grade changes tone and crop only |
+
+Exclusions: the `project-tudor-residence-exterior-yard-clean-v3/v4`,
+`yard-restored-v5`, and `landscape-finished-v6` variants are a digital
+retouch series (lawn/hedge regions of an edited frame composited over the
+original — see `scripts/composite-project-hero-yard.mjs` and the Editorial
+V3 selection notes). They are excluded from the case study, and the page
+makes **no before/after landscaping claim**: the Tudor narrative is framed
+as a single-frame record ("condition documented, treatments labeled"), and
+its copy states that where the archive cannot support a comparison, none is
+invented. The `reviews-finished-tudor-project-*` derivatives (same
+photograph family, "Candidate — owner verification required") were also
+not used: they add no distinct moment, and their register caveat ties them
+to verified review pairing.
+
+### /projects/commercial-flat-roof/
+
+| Asset | Register basis | Role on page |
+| --- | --- | --- |
+| `projects/project-low-slope-roof-aerial-enhanced-v3-1280/640.webp` (+ `-1280.jpg` as the page's social-preview image) | Client archive frame already published on `/projects/` with the same alt text | Page hero and section 04 (outcome), chip-labeled "Field record" |
+| `projects/project-material-delivery-clear-v2-1020/640.webp` | Editorial V3 source record (SHA `5674febb…`, client-supplied field record); published on `/projects/` as a supporting field record | Section 01, chip-labeled "Supporting field record · Material staging" |
+| `projects/project-low-slope-installation-crew-enhanced-v3-1280/640.webp` | Client archive frame already published on `/projects/` | Section 03, "Surface installation" |
+| `projects/project-low-slope-installation-topdown-enhanced-v3-1280/640.webp` | Client archive frame already published on `/projects/` | Section 03, "Overhead verification" |
+
+Copy notes: the page's single-installation framing ("One low-slope roof
+installation documented from crew level to full-building aerial view") is
+reused verbatim from the published `/projects/` commercial chapter. No
+dates, addresses, durations, or timeline-continuity claims were added, and
+the outcome section describes the aerial as documented "while the work is
+live," matching its published alt text.
+
+Both pages' protocol sections quote the published five process steps from
+`src/data.mjs` verbatim; no new protocol claims were written.
+
 ## Required acquisition list
 
 1. Roof repair: naturally sharp photo of an actual condition and a second frame showing the completed repair.

@@ -1,4 +1,4 @@
-import { cp, mkdir, rm, writeFile } from "node:fs/promises";
+import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { business } from "../src/data.mjs";
@@ -143,7 +143,17 @@ for (const page of outputPages) {
 await mkdir(join(dist, "assets", "images"), { recursive: true });
 await mkdir(join(dist, "assets", "projects"), { recursive: true });
 await mkdir(join(dist, "assets", "editorial-v2"), { recursive: true });
-await cp(join(root, "src", "styles.css"), join(dist, "assets", "styles.css"));
+// The emitted stylesheet is the base stylesheet plus the case-study module
+// (src/case-studies.css), concatenated in order so cs-* rules can rely on the
+// base tokens and utility classes without duplicating them.
+await writeFile(
+  join(dist, "assets", "styles.css"),
+  [
+    await readFile(join(root, "src", "styles.css"), "utf8"),
+    await readFile(join(root, "src", "case-studies.css"), "utf8")
+  ].join("\n"),
+  "utf8"
+);
 await cp(join(root, "src", "main.js"), join(dist, "assets", "main.js"));
 await cp(join(root, "public", "assets", "fonts"), join(dist, "assets", "fonts"), {
   recursive: true

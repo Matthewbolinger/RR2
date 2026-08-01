@@ -8,6 +8,10 @@ import {
 } from "./data.mjs";
 import { resourceArticles } from "./resources.mjs";
 import {
+  caseStudyCrossLinks,
+  caseStudyPages
+} from "./case-study-templates.mjs";
+import {
   aboveStandardGrid,
   assuranceBand,
   breadcrumbs,
@@ -660,6 +664,7 @@ const projects = {
           </figure>
         </div>
       </section>
+      ${caseStudyCrossLinks()}
       ${finalCta({
         eyebrow: "Planning your next project?",
         title: "Put your property in the next chapter.",
@@ -1569,6 +1574,7 @@ export const pages = [
   serviceIndex,
   ...servicePages,
   projects,
+  ...caseStudyPages,
   reviews,
   about,
   process,

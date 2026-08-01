@@ -203,6 +203,8 @@ export const ROUTES = [
   "/services/storm-damage-restoration/",
   "/services/gutters-exteriors/",
   "/projects/",
+  "/projects/tudor-exterior-transformation/",
+  "/projects/commercial-flat-roof/",
   "/about/",
   "/process/",
   "/reviews/",

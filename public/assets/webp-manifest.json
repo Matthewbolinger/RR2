@@ -53,32 +53,6 @@
         "height": 720
       }
     },
-    "/assets/editorial-v2/gutters-exteriors-installation-service-card-v2-1280.jpg": {
-      "hash": "7ac32a478718630b2b3c6a5a9864565ddd31c5c38495fb66fcb685c62a22a3fd",
-      "sourceBytes": 352290,
-      "quality": 0.72,
-      "capWidth": null,
-      "status": "encoded",
-      "webp": {
-        "file": "/assets/editorial-v2/gutters-exteriors-installation-service-card-v2-1280.webp",
-        "bytes": 109092,
-        "width": 1280,
-        "height": 720
-      }
-    },
-    "/assets/editorial-v2/gutters-exteriors-installation-service-card-v2-640.jpg": {
-      "hash": "11f90d428b4fc0c1f6f3faea0c6b9f661a961b986c93576e28b6298e271e549d",
-      "sourceBytes": 108415,
-      "quality": 0.72,
-      "capWidth": null,
-      "status": "encoded",
-      "webp": {
-        "file": "/assets/editorial-v2/gutters-exteriors-installation-service-card-v2-640.webp",
-        "bytes": 38262,
-        "width": 640,
-        "height": 360
-      }
-    },
     "/assets/editorial-v2/gutters-system-web-1280.jpg": {
       "hash": "072a35751ea4039c6b6f261a06228e22a6a3a0d14bf2f51bc7744b4ec165088d",
       "sourceBytes": 155040,
@@ -116,32 +90,6 @@
         "bytes": 41362,
         "width": 800,
         "height": 1000
-      }
-    },
-    "/assets/editorial-v2/home-selected-installation-1280.jpg": {
-      "hash": "92154cf30e852988d2497b1a27cade8dedc0ffd9e036db755c5bfa412038145d",
-      "sourceBytes": 287781,
-      "quality": 0.72,
-      "capWidth": null,
-      "status": "encoded",
-      "webp": {
-        "file": "/assets/editorial-v2/home-selected-installation-1280.webp",
-        "bytes": 186346,
-        "width": 1280,
-        "height": 720
-      }
-    },
-    "/assets/editorial-v2/home-selected-installation-800.jpg": {
-      "hash": "d18949578d17c0609469dea7efb72d5351d3d4753d03161dd8ebf5c8f94a9726",
-      "sourceBytes": 187744,
-      "quality": 0.72,
-      "capWidth": null,
-      "status": "encoded",
-      "webp": {
-        "file": "/assets/editorial-v2/home-selected-installation-800.webp",
-        "bytes": 82944,
-        "width": 800,
-        "height": 450
       }
     },
     "/assets/editorial-v2/roof-replacement-premium-service-card-1280.jpg": {
@@ -222,32 +170,6 @@
         "height": 1000
       }
     },
-    "/assets/editorial-v2/storm-restoration-assessment-service-card-v2-1280.jpg": {
-      "hash": "351a9ecf0908e6c4132edad4a02ee763fd0fa7516332f74041fbcaba498dc000",
-      "sourceBytes": 337118,
-      "quality": 0.72,
-      "capWidth": null,
-      "status": "encoded",
-      "webp": {
-        "file": "/assets/editorial-v2/storm-restoration-assessment-service-card-v2-1280.webp",
-        "bytes": 91212,
-        "width": 1280,
-        "height": 720
-      }
-    },
-    "/assets/editorial-v2/storm-restoration-assessment-service-card-v2-640.jpg": {
-      "hash": "8347b4157148d5cdcd131aceea91b0d7adfd6d35df7d2a7030b29172ddb175be",
-      "sourceBytes": 110114,
-      "quality": 0.72,
-      "capWidth": null,
-      "status": "encoded",
-      "webp": {
-        "file": "/assets/editorial-v2/storm-restoration-assessment-service-card-v2-640.webp",
-        "bytes": 36122,
-        "width": 640,
-        "height": 360
-      }
-    },
     "/assets/editorial-v2/warranty-finished-roof-web-1280.jpg": {
       "hash": "b72cf52fe6bb37e51ca0d90ac0c9d620c335f26071c65ca23e35389dc4114419",
       "sourceBytes": 322238,
@@ -285,19 +207,6 @@
         "bytes": 71806,
         "width": 1800,
         "height": 1013
-      }
-    },
-    "/assets/images/roof-repair-inspection-card-640.jpg": {
-      "hash": "8009157d16e758a65780530a54921376807da046b9c6d59007e051841708f87d",
-      "sourceBytes": 82923,
-      "quality": 0.72,
-      "capWidth": null,
-      "status": "encoded",
-      "webp": {
-        "file": "/assets/images/roof-repair-inspection-card-640.webp",
-        "bytes": 27948,
-        "width": 640,
-        "height": 426
       }
     },
     "/assets/images/roofer-inspection.jpg": {
@@ -571,6 +480,32 @@
         "bytes": 121896,
         "width": 640,
         "height": 640
+      }
+    },
+    "/assets/projects/project-tudor-residence-exterior-1280.jpg": {
+      "hash": "286f493113d7e489a4bced3f232ffe02aab89580acc72c86368302e7f3e6016a",
+      "sourceBytes": 305270,
+      "quality": 0.72,
+      "capWidth": null,
+      "status": "encoded",
+      "webp": {
+        "file": "/assets/projects/project-tudor-residence-exterior-1280.webp",
+        "bytes": 156230,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    "/assets/projects/project-tudor-residence-exterior-640.jpg": {
+      "hash": "c7edae27f313dbf904451ebb610585b4e7fcfaba71c0c6d60960cff5321b7894",
+      "sourceBytes": 90994,
+      "quality": 0.72,
+      "capWidth": null,
+      "status": "encoded",
+      "webp": {
+        "file": "/assets/projects/project-tudor-residence-exterior-640.webp",
+        "bytes": 41974,
+        "width": 640,
+        "height": 360
       }
     },
     "/assets/raccoon-restoration-logo-horizontal-web-480.png": {

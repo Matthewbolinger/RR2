@@ -7,7 +7,14 @@ import { join } from "node:path";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 
-export const PREVIEW = process.env.PREVIEW_URL || "http://127.0.0.1:4173";
+// Unless PREVIEW_URL is set explicitly, every audit run spawns its OWN server
+// on a private port. Never reuse a found server: a leftover process may be
+// serving a stale or foreign build (e.g. another worktree's dist), which
+// silently invalidates every capture taken through it.
+const privatePort = 4700 + (process.pid % 250);
+export const PREVIEW =
+  process.env.PREVIEW_URL || `http://127.0.0.1:${privatePort}`;
+export const OWN_SERVER = !process.env.PREVIEW_URL;
 
 const CHROME_CANDIDATES = [
   process.env.CHROME_PATH,
@@ -41,13 +48,23 @@ async function serverUp(url) {
   }
 }
 
-// Ensures the preview server is running; spawns scripts/serve.mjs if not.
-// Returns a cleanup function.
+// Ensures a preview server is serving THIS checkout's dist. With no explicit
+// PREVIEW_URL we always spawn our own on the private port; an occupied private
+// port is treated as an error rather than reused.
 export async function ensureServer() {
-  if (await serverUp(PREVIEW)) return () => {};
+  if (!OWN_SERVER) {
+    if (await serverUp(PREVIEW)) return () => {};
+    throw new Error(`PREVIEW_URL ${PREVIEW} is not responding.`);
+  }
+  if (await serverUp(PREVIEW)) {
+    throw new Error(
+      `Port ${new URL(PREVIEW).port} is unexpectedly occupied; kill the stray server (pkill -f serve.mjs) and re-run.`
+    );
+  }
   const child = spawn(process.execPath, [join(root, "scripts/serve.mjs")], {
     stdio: "ignore",
     detached: false,
+    env: { ...process.env, PORT: String(new URL(PREVIEW).port) },
   });
   for (let i = 0; i < 40; i++) {
     if (await serverUp(PREVIEW)) break;

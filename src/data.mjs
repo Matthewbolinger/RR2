@@ -336,35 +336,32 @@ export const proof = {
 export const selectedWork = [
   {
     caption: "Residential · Aerial View",
-    image: "/assets/projects/project-modern-residence-roof-aerial-1280.jpg",
-    srcset:
-      "/assets/projects/project-modern-residence-roof-aerial-640.jpg 640w, /assets/projects/project-modern-residence-roof-aerial-960.jpg 960w, /assets/projects/project-modern-residence-roof-aerial-1280.jpg 1280w",
+    image: "/assets/projects/project-modern-residence-roof-aerial-640.jpg",
+    srcset: "/assets/projects/project-modern-residence-roof-aerial-640.jpg 640w",
     alt:
       "Top-down drone view of a large dark multi-plane roof over a modern white residence and attached garage, surrounded by lawn and trees",
-    width: 1280,
-    height: 720
+    width: 640,
+    height: 360
   },
   {
     caption: "Commercial Flat Roof Installation",
     image:
-      "/assets/projects/project-low-slope-roof-aerial-enhanced-v3-1280.jpg",
-    srcset:
-      "/assets/projects/project-low-slope-roof-aerial-enhanced-v3-640.jpg 640w, /assets/projects/project-low-slope-roof-aerial-enhanced-v3-1280.jpg 1280w",
+      "/assets/projects/project-low-slope-roof-aerial-enhanced-v3-640.jpg",
+    srcset: "/assets/projects/project-low-slope-roof-aerial-enhanced-v3-640.jpg 640w",
     alt:
       "Aerial view of a large commercial building during flat roof installation, with a bright white low-slope roofing system, rooftop equipment, and workers",
-    width: 1280,
-    height: 720
+    width: 640,
+    height: 360
   },
   {
     caption: "Tudor-Inspired Residence · Exterior",
     image:
-      "/assets/projects/project-tudor-residence-landscape-finished-v6-1280.webp",
-    srcset:
-      "/assets/projects/project-tudor-residence-landscape-finished-v6-640.webp 640w, /assets/projects/project-tudor-residence-landscape-finished-v6-1280.webp 1280w",
+      "/assets/projects/project-tudor-residence-landscape-finished-v6-640.webp",
+    srcset: "/assets/projects/project-tudor-residence-landscape-finished-v6-640.webp 640w",
     alt:
       "Exterior view of a large Tudor-inspired home with dark roof planes, a round stone tower, black-and-white trim, sculpted hedges, dark mulch beds, and a manicured front lawn",
-    width: 1280,
-    height: 720
+    width: 640,
+    height: 360
   }
 ];
 

@@ -2,6 +2,10 @@
 // slow-4G network emulation and 4x CPU throttling. Budgets: LCP <= 2000 ms,
 // CLS <= 0.05. Run with BASELINE=1 to record numbers without failing.
 //
+// Each route is measured RUNS times and judged on the MEDIAN: single throttled
+// runs vary by hundreds of ms, and a budget gate must not flake on variance.
+// Concurrent load on the box still skews results — measure on a quiet machine.
+//
 // External font hosts are remapped to localhost so runs are deterministic in
 // offline sandboxes: the measurement models the fonts-unreachable worst case.
 // Once fonts are self-hosted this remap is a no-op.
@@ -17,6 +21,11 @@ const PORT = 9403;
 const BASELINE = process.env.BASELINE === "1";
 const BUDGET = { lcpMs: 2000, cls: 0.05 };
 const PAGES = ["/", "/services/roof-replacement/", "/contact/"];
+const RUNS = Number(process.env.VITALS_RUNS || 3);
+const median = (values) => {
+  const sorted = [...values].sort((a, b) => a - b);
+  return sorted[Math.floor(sorted.length / 2)];
+};
 
 const OBSERVER_BOOT = `
   window.__lcp = [];
@@ -39,7 +48,7 @@ const chrome = await launchBrowser(PORT, [
 const results = [];
 let failed = false;
 
-for (const route of PAGES) {
+async function measureOnce(route) {
   const tab = await openTab(PORT);
   try {
     await tab.cdp("Network.enable");
@@ -74,27 +83,42 @@ for (const route of PAGES) {
     const cls = (await tab.evaluate("window.__cls")) ?? -1;
     const lcpMs = lcpEntries.length ? Math.round(lcpEntries.at(-1)) : -1;
 
-    const entry = {
-      route,
+    return {
       lcpMs,
       cls: Number(cls.toFixed ? cls.toFixed(4) : cls),
       imageKB: Math.round(imageBytes / 1024),
       totalKB: Math.round(totalBytes / 1024),
-      throttle: "slow-4G, 4x CPU, mobile 390x844, font hosts blocked",
     };
-    results.push(entry);
-
-    const lcpOk = lcpMs >= 0 && lcpMs <= BUDGET.lcpMs;
-    const clsOk = cls >= 0 && cls <= BUDGET.cls;
-    if (!lcpOk || !clsOk) failed = true;
-    console.log(
-      `${route}  LCP ${lcpMs}ms (${lcpOk ? "ok" : "OVER"})  CLS ${entry.cls} (${
-        clsOk ? "ok" : "OVER"
-      })  images ${entry.imageKB}KB  total ${entry.totalKB}KB`
-    );
   } finally {
     await tab.close(PORT);
   }
+}
+
+for (const route of PAGES) {
+  const runs = [];
+  for (let i = 0; i < RUNS; i++) runs.push(await measureOnce(route));
+  const lcpMs = median(runs.map((r) => r.lcpMs));
+  const cls = median(runs.map((r) => r.cls));
+  const last = runs[runs.length - 1];
+  const entry = {
+    route,
+    lcpMs,
+    cls,
+    lcpRuns: runs.map((r) => r.lcpMs),
+    imageKB: last.imageKB,
+    totalKB: last.totalKB,
+    throttle: `slow-4G, 4x CPU, mobile 390x844, font hosts blocked, median of ${RUNS}`,
+  };
+  results.push(entry);
+
+  const lcpOk = lcpMs >= 0 && lcpMs <= BUDGET.lcpMs;
+  const clsOk = cls >= 0 && cls <= BUDGET.cls;
+  if (!lcpOk || !clsOk) failed = true;
+  console.log(
+    `${route}  LCP median ${lcpMs}ms of [${entry.lcpRuns.join(", ")}] (${
+      lcpOk ? "ok" : "OVER"
+    })  CLS ${cls} (${clsOk ? "ok" : "OVER"})  images ${entry.imageKB}KB  total ${entry.totalKB}KB`
+  );
 }
 
 chrome.kill();

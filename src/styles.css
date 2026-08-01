@@ -715,12 +715,12 @@ h3 {
   height: 100%;
 }
 
+/* Wave 2 edit: the base image is untransformed so no-JS visitors see the
+   final framing; the first-run scale(1.04) ease lives in the Wave 2 block. */
 .home-hero__image {
   object-fit: cover;
   object-position: center;
   filter: brightness(1.13) saturate(1.04) contrast(1.02);
-  transform: scale(1.025);
-  transition: transform 1800ms var(--ease-premium);
 }
 
 .home-hero__scrim {
@@ -743,18 +743,13 @@ h3 {
   width: min(720px, 58%);
 }
 
-.page-ready .home-hero__image {
-  transform: scale(1);
-}
-
+/* Wave 2 edit: the h1 no longer animates as a block — its words rise
+   individually via the once-per-session hero signature (Wave 2 block). */
 .home-hero h1 {
   margin-bottom: 24px;
   font-size: clamp(3.4rem, 10vw, 9rem);
   line-height: 0.84;
   text-transform: uppercase;
-  transition:
-    opacity 700ms var(--ease-premium) 120ms,
-    transform 900ms var(--ease-premium) 120ms;
 }
 
 .home-hero h1 span {
@@ -765,15 +760,14 @@ h3 {
   display: none;
 }
 
+/* Wave 2 edit: hero copy is static by default; the hero-first-run and
+   hero-replay states (Wave 2 block) own the hide/reveal transitions. */
 .home-hero__lead {
   max-width: 620px;
   margin-bottom: 18px;
   font-size: clamp(1.1rem, 2vw, 1.4rem);
   font-weight: 600;
   line-height: 1.45;
-  transition:
-    opacity 650ms var(--ease-premium) 260ms,
-    transform 800ms var(--ease-premium) 260ms;
 }
 
 .home-hero__support {
@@ -781,35 +775,6 @@ h3 {
   margin-bottom: 34px;
   color: rgb(255 255 255 / 74%);
   font-size: 0.96rem;
-  transition:
-    opacity 650ms var(--ease-premium) 340ms,
-    transform 800ms var(--ease-premium) 340ms;
-}
-
-.home-hero__copy .button-row {
-  transition:
-    opacity 650ms var(--ease-premium) 420ms,
-    transform 800ms var(--ease-premium) 420ms;
-}
-
-.hero-motion-ready .home-hero h1 {
-  transform: translateY(18px);
-  opacity: 0;
-}
-
-.hero-motion-ready .home-hero__lead,
-.hero-motion-ready .home-hero__support,
-.hero-motion-ready .home-hero__copy .button-row {
-  transform: translateY(14px);
-  opacity: 0;
-}
-
-.page-ready .home-hero h1,
-.page-ready .home-hero__lead,
-.page-ready .home-hero__support,
-.page-ready .home-hero__copy .button-row {
-  transform: translateY(0);
-  opacity: 1;
 }
 
 .hero-scroll {
@@ -5501,19 +5466,34 @@ html:not(.js) .inspection-form [data-disabled-until-enhanced] {
     transition-duration: 0.01ms !important;
   }
 
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
+  /* Wave 2 edit: cover every view-transition group, not just the root. */
+  ::view-transition-group(*),
+  ::view-transition-image-pair(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
     animation: none !important;
   }
 
-  .home-hero h1,
-  .home-hero__lead,
-  .home-hero__support,
-  .home-hero__copy .button-row,
-  .motion-ready .reveal {
+  /* Wave 2 edit: the JS motion paths already bail out under reduced motion;
+     these overrides also cover a preference flip mid-session. */
+  .home-hero__image,
+  .home-hero__copy > *,
+  .home-hero h1 .hero-word,
+  .home-hero h1 .hero-word--gold,
+  .motion-ready .reveal,
+  .motion-ready .section-divider .section-heading .eyebrow,
+  .motion-ready .section-divider .intent-grid > a > span,
+  .motion-ready .section-divider .standard-grid article > span {
     transform: none !important;
     translate: none !important;
     opacity: 1 !important;
+  }
+
+  /* The gold flourishes exist only as motion; static parity means absent. */
+  .home-hero h1 .hero-word--gold::after,
+  .section-rule,
+  .nav-underline {
+    display: none !important;
   }
 }
 
@@ -6006,3 +5986,371 @@ html:not(.js) .inspection-form [data-disabled-until-enhanced] {
   }
 }
 /* === end Wave 1 integration === */
+
+/* === Wave 2: motion identity === */
+/*
+ * One kinetic signature — "the gold line draws the work" — in exactly three
+ * placements: (1) once-per-session hero reveal ending with a 2px gold rule
+ * drawing under "Standard.", (2) section top rules drawing in gold on entry,
+ * (3) gold CTAs leaning toward a fine pointer. All animation is
+ * transform/translate + opacity only. Every hidden state hangs off a
+ * JS-added class (hero-first-run, hero-replay, motion-ready, is-drawn,
+ * nav-slide), so no-JS and reduced-motion visitors get the full static page.
+ */
+
+/* --- 1: hero reveal (~1.4s desktop, ~0.9s mobile) --- */
+
+/* JS-wrapped headline words stay white; <span>Standard.</span> keeps gold. */
+.home-hero h1 .hero-word {
+  color: inherit;
+}
+
+/* inline-block in the base rule: the rule's ::after needs a block containing
+   box in the replay path too, where words are not wrapped. */
+.home-hero h1 .hero-word--gold {
+  position: relative;
+  display: inline-block;
+}
+
+/* The signature stroke under "Standard." (exists only once JS runs). */
+.home-hero h1 .hero-word--gold::after {
+  position: absolute;
+  right: 0.04em;
+  bottom: -0.085em;
+  left: 0.02em;
+  height: 2px;
+  content: "";
+  background: var(--gold);
+  transform-origin: left center;
+}
+
+/* The photo holds at 1.04 and settles only once its data has painted
+   (hero-photo-go, set on image load) — the LCP frame is never mid-flight. */
+.hero-first-run .home-hero__image {
+  transform: scale(1.04);
+}
+
+.hero-first-run.hero-photo-go .home-hero__image {
+  transform: scale(1);
+  transition: transform 1400ms var(--ease-premium);
+}
+
+/* Hidden states are instant (no transition), so elements that were already
+   rendered drop out cleanly before the choreography. All transitions live on
+   the .page-ready reveal states — the after-change style decides whether a
+   transition runs, so only the reveal animates. */
+.hero-first-run .home-hero h1 .hero-word,
+.hero-first-run .home-hero h1 .hero-word--gold {
+  display: inline-block;
+  opacity: 0;
+  translate: 0 0.42em;
+}
+
+.hero-first-run .home-hero h1 .hero-word--gold::after {
+  transform: scaleX(0);
+}
+
+.hero-first-run .home-hero__lead,
+.hero-first-run .home-hero__support,
+.hero-first-run .home-hero__copy .button-row {
+  opacity: 0;
+  translate: 0 14px;
+}
+
+.hero-first-run .page-ready .home-hero h1 .hero-word,
+.hero-first-run .page-ready .home-hero h1 .hero-word--gold {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity 460ms var(--ease-premium),
+    translate 620ms var(--ease-premium);
+  transition-delay: calc(120ms + var(--word-index, 0) * 140ms);
+}
+
+.hero-first-run .page-ready .home-hero h1 .hero-word--gold::after {
+  transform: scaleX(1);
+  transition: transform 520ms var(--ease-premium) 880ms;
+}
+
+.hero-first-run .page-ready .home-hero__lead,
+.hero-first-run .page-ready .home-hero__support,
+.hero-first-run .page-ready .home-hero__copy .button-row {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity 480ms var(--ease-premium),
+    translate 600ms var(--ease-premium);
+  transition-delay: 500ms;
+}
+
+.hero-first-run .page-ready .home-hero__support {
+  transition-delay: 580ms;
+}
+
+.hero-first-run .page-ready .home-hero__copy .button-row {
+  transition-delay: 660ms;
+}
+
+/* Same-session repeat visits: one quiet 300ms fade, rule already drawn. */
+.hero-replay .home-hero__copy > * {
+  opacity: 0;
+}
+
+.hero-replay .page-ready .home-hero__copy > * {
+  opacity: 1;
+  transition: opacity 300ms ease;
+}
+
+/* Mobile compresses the same sequence to ~0.9s. */
+@media (max-width: 640px) {
+  .hero-first-run.hero-photo-go .home-hero__image {
+    transition-duration: 900ms;
+  }
+
+  .hero-first-run .page-ready .home-hero h1 .hero-word,
+  .hero-first-run .page-ready .home-hero h1 .hero-word--gold {
+    transition-duration: 360ms, 440ms;
+    transition-delay: calc(60ms + var(--word-index, 0) * 90ms);
+  }
+
+  .hero-first-run .page-ready .home-hero h1 .hero-word--gold::after {
+    transition-duration: 380ms;
+    transition-delay: 500ms;
+  }
+
+  .hero-first-run .page-ready .home-hero__lead,
+  .hero-first-run .page-ready .home-hero__support,
+  .hero-first-run .page-ready .home-hero__copy .button-row {
+    transition-duration: 360ms, 460ms;
+    transition-delay: 320ms;
+  }
+
+  .hero-first-run .page-ready .home-hero__support {
+    transition-delay: 400ms;
+  }
+
+  .hero-first-run .page-ready .home-hero__copy .button-row {
+    transition-delay: 480ms;
+  }
+}
+
+/* --- 2: section dividers --- */
+
+/* JS drops an absolute rule span at each major section's top edge. The line
+   draws left-to-right at 40% gold, then settles into the section's own
+   border color (opacity back to 0 over the real border). */
+.section-divider {
+  position: relative;
+}
+
+.section-rule {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.4;
+  pointer-events: none;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.section-divider.is-drawn .section-rule {
+  opacity: 0;
+  transform: scaleX(1);
+  transition:
+    transform 600ms var(--ease-premium),
+    opacity 500ms ease 700ms;
+}
+
+/* The section's eyebrow follows the line in (a beat behind its heading).
+   Hidden states stay transition-free; the is-drawn state carries the
+   transition so entering hiding is instant and only the reveal animates. */
+.motion-ready .section-divider .section-heading .eyebrow {
+  opacity: 0;
+  translate: 0 10px;
+}
+
+.motion-ready .section-divider.is-drawn .section-heading .eyebrow {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity 450ms var(--ease-premium) 240ms,
+    translate 540ms var(--ease-premium) 240ms;
+}
+
+/* Gold numerals on the 01–05 blocks rise staggered — they never count. */
+.motion-ready .section-divider .intent-grid > a > span,
+.motion-ready .section-divider .standard-grid article > span {
+  opacity: 0;
+  translate: 0 0.55em;
+}
+
+.section-divider .intent-grid > a:nth-child(2),
+.section-divider .standard-grid article:nth-child(2) {
+  --numeral-index: 1;
+}
+
+.section-divider .intent-grid > a:nth-child(3),
+.section-divider .standard-grid article:nth-child(3) {
+  --numeral-index: 2;
+}
+
+.section-divider .intent-grid > a:nth-child(4),
+.section-divider .standard-grid article:nth-child(4) {
+  --numeral-index: 3;
+}
+
+.section-divider .intent-grid > a:nth-child(5),
+.section-divider .standard-grid article:nth-child(5) {
+  --numeral-index: 4;
+}
+
+.motion-ready .section-divider.is-drawn .intent-grid > a > span,
+.motion-ready .section-divider.is-drawn .standard-grid article > span {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity 420ms var(--ease-premium)
+      calc(160ms + var(--numeral-index, 0) * 70ms),
+    translate 520ms var(--ease-premium)
+      calc(160ms + var(--numeral-index, 0) * 70ms);
+}
+
+/* --- 3: CTA magnetism --- */
+
+.button--primary .icon {
+  transition: transform 180ms var(--ease-premium);
+}
+
+/* While magnetized JS owns the transform; drop its transition so the
+   pointer-follow stays crisp. */
+.button.is-magnetic {
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.button--primary.is-magnetic .icon {
+  transform: translateX(4px);
+}
+
+/* Touch devices get a 120ms press settle instead of magnetism. */
+@media (hover: none), (pointer: coarse) {
+  .button:active {
+    transform: scale(0.98);
+    transition: transform 120ms ease;
+  }
+}
+
+/* --- Quiet utility motion (<= 200ms) --- */
+
+/* Shared nav underline that slides between desktop items (JS-placed). */
+.desktop-nav {
+  position: relative;
+}
+
+.nav-underline {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: left top;
+  transition:
+    transform 200ms var(--ease-premium),
+    opacity 150ms ease;
+}
+
+.nav-underline--jump {
+  transition: none;
+}
+
+/* With the shared underline live, per-link hover underlines stand down;
+   the static is-active underline stays as the resting marker. */
+.nav-slide .desktop-nav > a:not(.is-active):hover::after,
+.nav-slide .nav-dropdown > summary:not(.is-active):hover::after {
+  transform: scaleX(0);
+}
+
+/* Accordion: marker + content entry share one 200ms curve (opacity and
+   translate only — the details box never animates layout). */
+.faq-item summary > span:last-child {
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item[open] > div {
+  animation: wave2-accordion-in 200ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes wave2-accordion-in {
+  from {
+    opacity: 0;
+    translate: 0 -6px;
+  }
+}
+
+/* Card hover: the caption chip rises with the existing image zoom. */
+@media (hover: hover) and (pointer: fine) {
+  .work-strip__caption {
+    transition: translate 200ms var(--ease-premium);
+  }
+
+  .work-strip__item:hover .work-strip__caption,
+  .work-strip__item:focus-visible .work-strip__caption {
+    translate: 0 -3px;
+  }
+}
+
+/* --- Cross-document view transitions (progressive enhancement) --- */
+
+/* The @view-transition opt-in sits at the top of this sheet. Unsupported
+   browsers skip this whole block and navigate normally. 250ms fade through
+   brand black; the header logo carries its own name so it stays anchored. */
+@supports (view-transition-name: root) {
+  .site-header .brand-logo {
+    view-transition-name: brand-logo;
+  }
+
+  ::view-transition {
+    background: #0d0d0d;
+  }
+
+  ::view-transition-old(root) {
+    animation: wave2-vt-out 110ms ease-in both;
+  }
+
+  ::view-transition-new(root) {
+    animation: wave2-vt-in 140ms ease-out 110ms both;
+  }
+
+  ::view-transition-group(brand-logo) {
+    animation-duration: 250ms;
+    animation-timing-function: var(--ease-premium);
+  }
+
+  ::view-transition-old(brand-logo),
+  ::view-transition-new(brand-logo) {
+    animation-duration: 250ms;
+  }
+}
+
+@keyframes wave2-vt-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes wave2-vt-in {
+  from {
+    opacity: 0;
+  }
+}
+/* === end Wave 2 === */

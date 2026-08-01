@@ -5995,4 +5995,14 @@ html:not(.js) .inspection-form [data-disabled-until-enhanced] {
 .contact-grid > * {
   min-width: 0;
 }
+
+/* Buttons keep single-line labels except at phone widths, where a long
+   label (e.g. "Ask About Storm Damage Restoration") must wrap rather than
+   escape the shell. */
+@media (max-width: 480px) {
+  .button {
+    white-space: normal;
+    text-align: center;
+  }
+}
 /* === end Wave 1 integration === */

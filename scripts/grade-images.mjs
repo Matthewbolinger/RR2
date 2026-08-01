@@ -65,9 +65,9 @@ const CARD_JOBS = [
     out: "roof-replacement-completed-aerial-1280.webp",
     width: 1280,
     height: 720,
-    focalX: 0.42,
-    focalY: 0.72,
-    zoom: 1.35,
+    focalX: 0.6,
+    focalY: 0.42,
+    zoom: 1.5,
     quality: 0.7
   },
   {
@@ -75,9 +75,9 @@ const CARD_JOBS = [
     out: "roof-replacement-completed-aerial-640.webp",
     width: 640,
     height: 360,
-    focalX: 0.42,
-    focalY: 0.72,
-    zoom: 1.35,
+    focalX: 0.6,
+    focalY: 0.42,
+    zoom: 1.5,
     quality: 0.7
   },
   {
@@ -111,7 +111,9 @@ const CARD_JOBS = [
     height: 1000,
     focalX: 0.42,
     focalY: 0.55,
-    quality: 0.7
+    // Slate texture is entropy-heavy: at q0.70 this crop alone was 199 KiB,
+    // the single largest asset a phone downloads on the homepage.
+    quality: 0.58
   },
   {
     source: "assets/projects/project-material-delivery-clear-v2-1020.jpg",

@@ -531,16 +531,19 @@ export const servicesGrid = () => `
         (service, index) => `
         <article class="service-card">
           <a class="service-card__image" href="/services/${service.slug}/" data-event="service_card_click" data-service="${service.slug}">
-            <img
-              src="${service.cardImage || service.image}"
-              ${service.cardSrcset ? `srcset="${service.cardSrcset}"` : ""}
-              ${service.cardSizes ? `sizes="${service.cardSizes}"` : ""}
-              alt="${escapeHtml(service.cardImageAlt || service.imageAlt)}"
-              width="${service.cardImageWidth || service.imageWidth || 1200}"
-              height="${service.cardImageHeight || service.imageHeight || 800}"
-              loading="lazy"
-              decoding="async"
-            >
+            <picture>
+              ${service.cardImageMobile ? `<source media="(max-width: 800px)" srcset="${service.cardImageMobile}" width="${service.cardImageMobileWidth || 800}" height="${service.cardImageMobileHeight || 1000}">` : ""}
+              <img
+                src="${service.cardImage || service.image}"
+                ${service.cardSrcset ? `srcset="${service.cardSrcset}"` : ""}
+                ${service.cardSizes ? `sizes="${service.cardSizes}"` : ""}
+                alt="${escapeHtml(service.cardImageAlt || service.imageAlt)}"
+                width="${service.cardImageWidth || service.imageWidth || 1200}"
+                height="${service.cardImageHeight || service.imageHeight || 800}"
+                loading="lazy"
+                decoding="async"
+              >
+            </picture>
           </a>
           <div class="service-card__content">
             <span class="service-card__number">0${index + 1}</span>

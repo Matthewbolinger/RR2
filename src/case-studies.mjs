@@ -44,7 +44,7 @@ export const caseStudies = [
       width: 1280,
       height: 720,
       alt: "Exterior of a large Tudor-style residence with dark roof planes, black-and-white half-timbered gables, copper bay-window roofs, and a round stone turret",
-      chip: "Editorial grade · Cut from the original frame"
+      chip: "Completed project"
     },
     condition: {
       heading: "The record begins with one frame.",
@@ -92,7 +92,7 @@ export const caseStudies = [
           width: 1280,
           height: 720,
           alt: "Color-graded presentation cut of the same Tudor-style residence exterior frame, with tighter cropping and a warmer tone",
-          chip: "Editorial grade · Color and crop only",
+          chip: "Completed project",
           title: "The presentation cut"
         }
       ]

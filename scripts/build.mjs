@@ -3,9 +3,127 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { business } from "../src/data.mjs";
 import { buildManifest, pages } from "../src/pages.mjs";
+import {
+  ensureWebpDerivatives,
+  loadWebpManifest,
+  webpAvailability
+} from "./encode-images.mjs";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const dist = join(root, "dist");
+
+// Refresh WebP derivatives before page generation. This is a cheap
+// content-hash comparison when nothing changed; stale sources are re-encoded
+// through headless Chromium (see scripts/encode-images.mjs).
+const encodeSummary = await ensureWebpDerivatives({
+  documents: pages.map((page) => page.html)
+});
+if (encodeSummary.skippedNoChromium || encodeSummary.failed) {
+  console.warn(
+    "build: WebP derivatives are incomplete; pages fall back to JPEG/PNG where derivatives are missing."
+  );
+}
+
+const webpAssets = webpAvailability(await loadWebpManifest());
+
+function attributeOf(tag, name) {
+  const match = tag.match(
+    new RegExp(`(?<![-\\w])${name}\\s*=\\s*"([^"]*)"`, "i")
+  );
+  return match ? match[1] : null;
+}
+
+// Translate a JPEG/PNG srcset into its WebP twin. Returns null unless every
+// candidate has a derivative, so a picture never mixes half-covered sets.
+function webpSrcsetFor(srcset) {
+  const candidates = srcset
+    .split(",")
+    .map((candidate) => candidate.trim())
+    .filter(Boolean);
+  const out = [];
+  for (const candidate of candidates) {
+    const [url, ...descriptorParts] = candidate.split(/\s+/);
+    const available = webpAssets.get(url);
+    if (!available) return null;
+    let descriptor = descriptorParts.join(" ");
+    if (/^\d+w$/.test(descriptor) && available.width) {
+      descriptor = `${available.width}w`;
+    }
+    out.push(descriptor ? `${available.webpUrl} ${descriptor}` : available.webpUrl);
+  }
+  return out.join(", ");
+}
+
+function webpSourceForImg(imgTag) {
+  const srcset = attributeOf(imgTag, "srcset");
+  const sizes = attributeOf(imgTag, "sizes");
+  const src = attributeOf(imgTag, "src");
+  let webpSet = srcset ? webpSrcsetFor(srcset) : null;
+  const withSizes = webpSet && sizes && /\d+w/.test(webpSet) ? sizes : null;
+  if (!webpSet && src) {
+    const available = webpAssets.get(src);
+    if (available) webpSet = available.webpUrl;
+  }
+  if (!webpSet) return null;
+  return `<source type="image/webp" srcset="${webpSet}"${withSizes ? ` sizes="${withSizes}"` : ""}>`;
+}
+
+// Add a parallel WebP <source> ahead of every JPEG/PNG source and the <img>
+// fallback inside an existing <picture>. Idempotent: pictures that already
+// declare a WebP source are left untouched.
+function enrichPicture(block) {
+  if (block.includes('type="image/webp"')) return block;
+  return block.replace(/<source\b[^>]*>|<img\b[^>]*>/g, (tag) => {
+    if (tag.startsWith("<source")) {
+      const srcset = attributeOf(tag, "srcset");
+      const webpSet = srcset ? webpSrcsetFor(srcset) : null;
+      if (!webpSet) return tag;
+      const media = attributeOf(tag, "media");
+      const sizes = attributeOf(tag, "sizes");
+      return `<source${media ? ` media="${media}"` : ""} type="image/webp" srcset="${webpSet}"${sizes ? ` sizes="${sizes}"` : ""}>${tag}`;
+    }
+    const webpSource = webpSourceForImg(tag);
+    return webpSource ? `${webpSource}${tag}` : tag;
+  });
+}
+
+// Wrap a bare <img> in a layout-inert <picture> carrying the WebP source.
+// display:contents keeps the img's containing block unchanged so existing
+// width/height:100% and aspect-ratio styling behaves exactly as before.
+function wrapBareImage(imgTag) {
+  const webpSource = webpSourceForImg(imgTag);
+  if (!webpSource) return imgTag;
+  return `<picture style="display:contents">${webpSource}${imgTag}</picture>`;
+}
+
+function transformImageMarkup(html) {
+  return html.replace(
+    /<picture\b[^>]*>[\s\S]*?<\/picture>|<img\b[^>]*>/g,
+    (token) =>
+      token.startsWith("<picture") ? enrichPicture(token) : wrapBareImage(token)
+  );
+}
+
+// The homepage hero is the LCP element: make its fetch priority explicit.
+function prioritizeHomeHero(html) {
+  return html.replace(/<img\b[^>]*class="home-hero__image"[^>]*>/, (tag) => {
+    let out = tag;
+    if (!/(?<![-\w])fetchpriority\s*=/i.test(out)) {
+      out = out.replace(/^<img/, '<img fetchpriority="high"');
+    }
+    if (!/(?<![-\w])loading\s*=/i.test(out)) {
+      out = out.replace(/^<img/, '<img loading="eager"');
+    }
+    return out;
+  });
+}
+
+const outputPages = pages.map((page) => ({
+  ...page,
+  html: transformImageMarkup(
+    page.path === "/" ? prioritizeHomeHero(page.html) : page.html
+  )
+}));
 
 await rm(dist, { recursive: true, force: true });
 await mkdir(dist, { recursive: true });
@@ -16,7 +134,7 @@ function outputPath(page) {
   return join(dist, page.path.replace(/^\/|\/$/g, ""), "index.html");
 }
 
-for (const page of pages) {
+for (const page of outputPages) {
   const target = outputPath(page);
   await mkdir(dirname(target), { recursive: true });
   await writeFile(target, page.html, "utf8");
@@ -32,7 +150,7 @@ await cp(join(root, "public", "assets", "fonts"), join(dist, "assets", "fonts"),
 });
 
 const projectAssets = new Set(
-  pages.flatMap((page) =>
+  outputPages.flatMap((page) =>
     [...page.html.matchAll(/\/assets\/projects\/([^"'?\s]+)/g)].map(
       (match) => match[1]
     )
@@ -47,7 +165,7 @@ for (const name of projectAssets) {
 }
 
 const editorialAssets = new Set(
-  pages.flatMap((page) =>
+  outputPages.flatMap((page) =>
     [...page.html.matchAll(/\/assets\/editorial-v2\/([^"'?\s]+)/g)].map(
       (match) => match[1]
     )
@@ -95,7 +213,7 @@ await cp(
 );
 
 const imageAssets = new Set(
-  pages.flatMap((page) =>
+  outputPages.flatMap((page) =>
     [...page.html.matchAll(/\/assets\/images\/([^"'?\s]+)/g)].map(
       (match) => match[1]
     )
@@ -109,7 +227,23 @@ for (const name of imageAssets) {
   );
 }
 
-const sitemapPages = pages.filter(
+// Copy every referenced WebP derivative, including root-level /assets/ files
+// (e.g. the logo) that the directory-scoped loops above do not cover.
+const webpAssetPaths = new Set(
+  outputPages.flatMap((page) =>
+    [...page.html.matchAll(/\/assets\/([^"'?\s]+\.webp)/g)].map(
+      (match) => match[1]
+    )
+  )
+);
+
+for (const name of webpAssetPaths) {
+  const target = join(dist, "assets", name);
+  await mkdir(dirname(target), { recursive: true });
+  await cp(join(root, "public", "assets", name), target);
+}
+
+const sitemapPages = outputPages.filter(
   (page) => !page.noSitemap && !page.html.includes('name="robots" content="noindex')
 );
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

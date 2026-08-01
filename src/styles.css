@@ -5985,6 +5985,41 @@ html:not(.js) .inspection-form [data-disabled-until-enhanced] {
     text-align: center;
   }
 }
+
+/* === Wave 5 polish ===
+   1. The standard-grid numeral sat 70px above its title, reading as a gap
+      rather than a pairing. Tightened, with the card floor holding the
+      row rhythm.
+   2. The intent cards and the working-standard columns are both 01-05
+      sets on one page. Outlining the second set's numerals differentiates
+      them as rhythm rather than a repeated template.
+   3. The section-divider draw was near-subliminal on bright screens. */
+.standard-grid h3 {
+  margin-block: 42px 16px;
+}
+
+.standard-grid span {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--gold);
+  font-size: 1.45rem;
+}
+
+.standard-section .standard-grid span {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--gold-ink);
+}
+
+/* Fallback for engines without text-stroke support: keep the numerals solid. */
+@supports not (-webkit-text-stroke: 1px currentcolor) {
+  .standard-grid span {
+    color: var(--gold);
+  }
+
+  .standard-section .standard-grid span {
+    color: var(--gold-ink);
+  }
+}
+/* === end Wave 5 polish === */
 /* === end Wave 1 integration === */
 
 /* === Wave 2: motion identity === */
@@ -6151,7 +6186,7 @@ html:not(.js) .inspection-form [data-disabled-until-enhanced] {
   width: 100%;
   height: 1px;
   background: var(--gold);
-  opacity: 0.4;
+  opacity: 0.55;
   pointer-events: none;
   transform: scaleX(0);
   transform-origin: left center;

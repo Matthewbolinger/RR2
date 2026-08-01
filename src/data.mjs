@@ -315,7 +315,7 @@ export const proof = {
   eyebrow: "Local accountability",
   title: "Trust is easier to verify.",
   microcopy:
-    "Verify current business details and customer feedback at the original source.",
+    "Don't take our word for it \u2014 check the sources yourself.",
   marks: [
     {
       id: "bbb",

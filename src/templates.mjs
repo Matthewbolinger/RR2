@@ -597,7 +597,7 @@ export const faqList = (items = faqs) => `
 export const finalCta = ({
   eyebrow = "Expect more from your contractor",
   title = "Ready to build above standard?",
-  text = "Tell us what you see. We will help define the next step."
+  text = "Tell us what you see. We'll tell you what it means \u2014 and what it doesn't need."
 } = {}) => `
   <section class="final-cta pattern">
     <div class="shell final-cta__inner">

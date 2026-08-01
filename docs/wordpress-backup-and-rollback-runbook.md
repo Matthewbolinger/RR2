@@ -1,6 +1,6 @@
 # WordPress Backup and Rollback Runbook
 
-**Status:** Prepared, not executed
+**Status:** WordPress backup executed and locally verified; managed-host root-file capture remains open
 
 **Rule:** Do not delete WordPress, cancel Name.com hosting, change name servers, or overwrite the live site during preparation.
 
@@ -48,14 +48,35 @@ Collect all of the following:
 
 Treat configuration files and database exports as confidential. Do not commit them to GitHub.
 
+## Execution record — July 31, 2026
+
+The authenticated Name.com product is managed WordPress hosting rather than a cPanel account. The product page did not expose cPanel, a file manager, or a full-account-backup control.
+
+UpdraftPlus 1.26.6 was installed from the official WordPress directory and completed a backup at 16:35:04 UTC containing:
+
+| Component | Downloaded size |
+| --- | ---: |
+| Database | 2.4 MB |
+| Plugins | 145 MB |
+| Themes | 13 MB |
+| Uploads | 195 MB |
+| Other `wp-content` files | 397 KB |
+
+All five components were downloaded outside the hosting account. The database passed `gzip -t`; every ZIP passed `unzip -t` with no compressed-data errors. A native WordPress XML export and the authenticated Name.com DNS CSV were also downloaded.
+
+The UpdraftPlus set is a restorable WordPress backup, but it is not a full server image. It does not replace a separate capture of root-level `wp-config.php`, `.htaccess`, or the complete `public_html` tree if Name.com support or SFTP access can provide those items.
+
+The seven downloaded artifacts were copied into a dated private package in the operator's Downloads folder. A SHA-256 manifest was generated and immediately rechecked; every artifact returned `OK`.
+
 ## Verify the backup
 
-- [ ] The SQL export is non-empty and contains WordPress tables
+- [x] The compressed database export is non-empty and passes integrity testing
 - [ ] `public_html` contains the live `wp-admin`, `wp-content`, and `wp-includes` directories
-- [ ] The uploads archive contains current images
+- [x] The uploads archive contains current images and passes integrity testing
 - [ ] `wp-config.php` and `.htaccess` are present in the private backup
-- [ ] The full backup can be downloaded to a second location
-- [ ] A checksum manifest is created
+- [x] The complete WordPress backup set is downloaded outside the hosting account
+- [ ] The full backup is copied to a second independent location
+- [x] A checksum manifest is created and verified in the private backup package
 - [ ] At least two people know where the backup is stored
 - [ ] The recovery credentials are available independently of the website
 

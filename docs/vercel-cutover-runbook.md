@@ -17,7 +17,7 @@
 
 ## Phase 2 — Platform adapter
 
-Create and review `vercel.json` during the migration phase. It must reproduce:
+`vercel.json` is now generated and locally reviewed. It reproduces:
 
 - The routes in `src/legacy-routes.mjs`
 - Security headers currently emitted in `dist/_headers`
@@ -26,6 +26,8 @@ Create and review `vercel.json` during the migration phase. It must reproduce:
 - Canonical `www` behavior
 
 The source route list remains authoritative. Do not maintain an unrelated manual redirect list.
+
+The build check compares the committed adapter with the source-generated configuration and fails on drift. The adapter still requires validation on an actual Vercel preview before this phase is accepted for production.
 
 ## Phase 3 — Preview acceptance
 

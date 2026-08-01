@@ -33,15 +33,22 @@ The first Vercel action is intentionally deferred until the preflight gates are 
 - [x] Preserved current Search Console verification in the DNS record inventory
 - [x] Identified the live Meta Pixel ID and the current WordPress CAPI signal
 - [x] Documented backup, rollback, cutover, and validation procedures
+- [x] Completed an UpdraftPlus WordPress backup containing the database, plugins, themes, uploads, and other `wp-content` files
+- [x] Downloaded all five backup components outside the hosting account and verified every archive
+- [x] Created and revalidated a SHA-256 manifest for the private migration package
+- [x] Exported the authenticated Name.com DNS zone and reconciled it with the public baseline
+- [x] Added a source-generated Vercel adapter for exact legacy 301 redirects, canonical host routing, security headers, cache headers, trailing slashes, and the `dist` output
+- [x] Added a quality check that fails if `vercel.json` drifts from the authoritative route and header configuration
 
 ## Owner/account gates before Vercel setup
 
 These require authenticated account access or a business decision and cannot be safely inferred from public records.
 
-- [ ] Generate and download a full Name.com/cPanel account backup
-- [ ] Export the WordPress database separately
-- [ ] Download `public_html`, `wp-content/uploads`, and the current `.htaccess`
-- [ ] Export the complete Name.com DNS zone; compare it with the public baseline
+- [x] Generate and download a restorable WordPress backup outside the hosting account
+- [x] Export the WordPress database separately
+- [x] Download and verify `wp-content/uploads`
+- [ ] Obtain a full managed-hosting account backup or separately capture `public_html`, `wp-config.php`, and the current `.htaccess` if Name.com exposes an authenticated file/SFTP route
+- [x] Export the complete Name.com DNS zone; compare it with the public baseline
 - [ ] Confirm where `info@raccoonrestoration.com` and every other mailbox are actually hosted
 - [ ] Confirm why Google MX records coexist with a Titan SPF include before changing any mail record
 - [ ] Confirm the Vercel owner/team and billing account
@@ -109,8 +116,16 @@ Do not change Name.com A/CNAME records until all of the following are true:
 - Tracking continuity has an explicit owner-approved decision.
 - The rollback operator has the old IP and access to Name.com.
 
+## Backup execution record
+
+On July 31, 2026, UpdraftPlus 1.26.6 completed one backup set at 16:35 UTC. The database, plugins, themes, uploads, and other files were downloaded to the operator's local machine. `gzip -t` and `unzip -t` completed without errors for every component.
+
+This satisfies the off-host, restorable WordPress backup gate. It is not represented as a cPanel full-account image: the Name.com managed WordPress product page did not expose cPanel, a file manager, or a full-account-backup control. Root-level `wp-config.php`, `.htaccess`, and the complete `public_html` tree remain a separate evidence item if Name.com support or an authenticated SFTP route makes them available.
+
 ## Next phase
 
 Once the account gates are checked, begin Vercel migration in a preview-only state. Do not attach the production domain or change DNS during initial project creation.
 
 Use `migration-owner-inputs.md` to collect the remaining decisions without storing passwords or secrets in GitHub.
+
+The current decision packet is summarized in `pre-vercel-go-no-go-2026-07-31.md`.

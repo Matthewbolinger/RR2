@@ -6,6 +6,7 @@
 - [x] Internal-link, metadata, heading, schema, image-dimension, and claim checks pass
 - [x] Sitemap, robots, 404, security headers, and redirects generated
 - [x] Legacy redirects and retired WordPress URLs centralized and build-checked
+- [x] Source-generated Vercel adapter added and drift-checked
 - [x] Mobile conversion actions implemented
 - [ ] Approved hosting target configured
 - [ ] Production domain, DNS, SSL, www/apex, and legacy redirects tested
@@ -17,9 +18,11 @@
 - [x] Current WordPress Meta Pixel ID and CAPI signal recorded
 - [x] Local redirect and retired-route response smoke test passed
 - [x] Backup, rollback, Vercel preview, cutover, and acceptance runbooks prepared
-- [ ] Full Name.com/cPanel account backup downloaded outside the hosting account
-- [ ] WordPress database, `public_html`, uploads, configuration, and `.htaccess` backed up
-- [ ] Complete Name.com DNS zone exported and reconciled with the public baseline
+- [x] Complete UpdraftPlus WordPress backup downloaded outside the hosting account and archive integrity verified
+- [x] Private migration package organized with a verified SHA-256 manifest
+- [x] WordPress database and uploads backed up and verified
+- [ ] Full managed-hosting account or `public_html`, `wp-config.php`, and `.htaccess` captured if Name.com exposes file/SFTP access
+- [x] Complete Name.com DNS zone exported and reconciled with the public baseline
 - [ ] Active mailbox provider and Google-MX/Titan-SPF combination confirmed
 - [ ] Vercel owner/team, billing, and RR2 GitHub access confirmed
 - [ ] Preview deployment passes the full acceptance runbook

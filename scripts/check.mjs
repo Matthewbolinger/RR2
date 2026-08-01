@@ -5,6 +5,7 @@ import {
   legacyRedirects,
   legacyRetirements
 } from "../src/legacy-routes.mjs";
+import { createVercelConfig } from "../src/platform-config.mjs";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const dist = join(root, "dist");
@@ -242,6 +243,23 @@ for (const required of [
 
 const generatedRoutes = new Set(routeRecords.map(({ route }) => route));
 const redirectFile = await readFile(join(dist, "_redirects"), "utf8");
+const vercelConfigPath = join(root, "vercel.json");
+
+try {
+  const actualVercelConfig = JSON.parse(
+    await readFile(vercelConfigPath, "utf8")
+  );
+  const expectedVercelConfig = createVercelConfig();
+  if (
+    JSON.stringify(actualVercelConfig) !== JSON.stringify(expectedVercelConfig)
+  ) {
+    failures.push(
+      "vercel.json is out of sync with the authoritative route and header configuration"
+    );
+  }
+} catch (error) {
+  failures.push(`Invalid or missing vercel.json: ${error.message}`);
+}
 
 for (const { source, destination, status } of legacyRedirects) {
   const expectedRule = `${source} ${destination} ${status}`;

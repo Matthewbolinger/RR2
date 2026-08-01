@@ -8,6 +8,20 @@
 
 This is a public snapshot, not a substitute for the full Name.com zone export. Records not publicly discoverable, delegated subdomains, provider UI metadata, and account-only values may still exist.
 
+## Authenticated zone reconciliation
+
+An authenticated Name.com CSV export was downloaded on July 31, 2026 and compared with this baseline.
+
+- The apex A record matches `169.60.159.40` with TTL 300.
+- Name.com contains a wildcard A record for `*.raccoonrestoration.com` pointing to `169.60.159.40` with TTL 300.
+- The authenticated zone did not show a separate `www` A record; the wildcard currently supplies the public `www` answer.
+- The five Google Workspace MX records match the public baseline.
+- The authenticated zone includes a `default._domainkey` TXT record consistent with Google Workspace configuration.
+- Search Console verification remains present.
+- The apex Titan SPF include remains present and unexplained.
+
+The private CSV export is backup evidence and must not be committed to GitHub. During cutover, preserve the wildcard and every mail, verification, and domain-key record. Only the minimum apex/`www` website routing records may change after preview acceptance.
+
 ## Web records
 
 | Host | Type | TTL | Value |

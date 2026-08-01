@@ -82,6 +82,8 @@ The generated `dist/` folder can be deployed to a static host. It currently emit
 
 Platform-specific deployment adapters must reproduce those behaviors rather than silently dropping them. Run `npm test` immediately before deployment. Source is tracked in [Matthewbolinger/RR2](https://github.com/Matthewbolinger/RR2); no production hosting target has been configured.
 
+`npm run build` also regenerates the committed `vercel.json` from the authoritative legacy-route and header configuration. The quality check fails if that adapter drifts from source.
+
 The recommended Vercel migration is intentionally still in preparation. No Vercel project, production deployment, DNS, WordPress, or email setting has been changed. Start with [hosting migration readiness](docs/hosting-migration-readiness.md), complete the [owner-input worksheet](docs/migration-owner-inputs.md), preserve the [DNS baseline](docs/dns-baseline-2026-07-31.md), execute the [WordPress backup and rollback runbook](docs/wordpress-backup-and-rollback-runbook.md), and then follow the [Vercel cutover runbook](docs/vercel-cutover-runbook.md).
 
 ## Current launch blockers

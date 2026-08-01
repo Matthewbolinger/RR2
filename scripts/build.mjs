@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { business } from "../src/data.mjs";
 import { legacyRedirects } from "../src/legacy-routes.mjs";
 import { buildManifest, pages } from "../src/pages.mjs";
+import { renderStaticHeaders } from "../src/platform-config.mjs";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const dist = join(root, "dist");
@@ -135,18 +136,7 @@ Sitemap: ${business.siteUrl}/sitemap.xml
 
 await writeFile(
   join(dist, "_headers"),
-  `/*
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
-  X-Frame-Options: SAMEORIGIN
-
-/assets/*
-  Cache-Control: public, max-age=3600, must-revalidate
-
-/*.html
-  Cache-Control: public, max-age=0, must-revalidate
-`,
+  renderStaticHeaders(),
   "utf8"
 );
 

@@ -31,14 +31,17 @@
 @font-face {
   font-family: "Bebas Neue Fallback";
   font-style: normal;
-  src: local("Arial Narrow"), local("Arial");
+  /* Liberation Sans is the metric-compatible Arial substitute shipped on most
+     Linux systems; without it those users skip the size-adjusted face entirely
+     and fall through to a much wider generic sans. */
+  src: local("Arial Narrow"), local("Arial"), local("Liberation Sans");
   size-adjust: 59.2%;
 }
 
 @font-face {
   font-family: "Montserrat Fallback";
   font-style: normal;
-  src: local("Arial");
+  src: local("Arial"), local("Liberation Sans");
   size-adjust: 114%;
 }
 

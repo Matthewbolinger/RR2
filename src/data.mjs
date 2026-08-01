@@ -41,9 +41,9 @@ export const services = [
       "A complete roof-system replacement planned around the home, the scope, and the details that protect it.",
     short: "Replace the full system with a clear plan.",
     image:
-      "/assets/editorial-v2/roof-replacement-premium-service-card-1280.jpg",
+      "/assets/editorial-v3/roof-replacement-completed-aerial-1280.webp",
     imageMobile:
-      "/assets/editorial-v2/roof-replacement-premium-service-card-640.jpg",
+      "/assets/editorial-v3/roof-replacement-completed-aerial-mobile-800x1000.webp",
     cardImage:
       "/assets/editorial-v3/roof-replacement-completed-aerial-1280.webp",
     cardSrcset:
@@ -59,10 +59,10 @@ export const services = [
     cardImageMobileWidth: 800,
     cardImageMobileHeight: 1000,
     imageAlt:
-      "Upscale stone residence with a dark charcoal architectural-shingle roof, warm interior lighting, and rain-darkened pavement",
+      "Drone view of a brick residence and its detached garage with dark architectural-shingle roofs, a copper-clad dormer, and a paver driveway between them",
     imageWidth: 1280,
     imageHeight: 720,
-    mediaCaption: "Residential roof replacement",
+    mediaCaption: "Completed residential roof · aerial record",
     signs: [
       "Widespread shingle wear or granule loss",
       "Repeated repairs in multiple roof areas",
@@ -93,7 +93,7 @@ export const services = [
     summary:
       "Targeted repair for active leaks, damaged roof details, and localized failures—without assuming replacement.",
     short: "Find the source before choosing the fix.",
-    image: "/assets/images/roofer-inspection.jpg",
+    image: "/assets/editorial-v3/roof-repair-dormer-detail-1020.webp",
     cardImage: "/assets/editorial-v3/roof-repair-dormer-detail-640.webp",
     cardImageAlt:
       "Close aerial view of a steep dark patterned roof with two dormers, a brick chimney, and a flat-roof transition",
@@ -104,10 +104,10 @@ export const services = [
     cardImageMobileWidth: 800,
     cardImageMobileHeight: 1000,
     imageAlt:
-      "Roofing professional inspecting dark architectural shingles",
-    imageWidth: 1200,
-    imageHeight: 800,
-    mediaCaption: "Illustrative inspection image",
+      "Close view of a dark shingle roof with twin dormers and a brick chimney, photographed during an exterior condition review",
+    imageWidth: 1020,
+    imageHeight: 574,
+    mediaCaption: "Roof detail · documented condition review",
     signs: [
       "Water stains or active interior dripping",
       "Missing, lifted, or damaged shingles",
@@ -138,7 +138,7 @@ export const services = [
     summary:
       "A documented wind or hail assessment, followed by a clear repair or restoration scope when work is warranted.",
     short: "Document the conditions. Plan the next step.",
-    image: "/assets/editorial-v2/storm-assessment-web-1280.jpg",
+    image: "/assets/editorial-v3/storm-restoration-material-delivery-1020.webp",
     imageMobile:
       "/assets/editorial-v2/storm-assessment-web-mobile-800.jpg",
     cardImage:
@@ -156,10 +156,10 @@ export const services = [
     cardImageMobileWidth: 800,
     cardImageMobileHeight: 1000,
     imageAlt:
-      "Professional photographing a residential roof after rainfall",
-    imageWidth: 1280,
-    imageHeight: 720,
-    mediaCaption: "Illustrative assessment image",
+      "Crane lifting roofing materials to the top of a brick commercial building under an overcast sky",
+    imageWidth: 1020,
+    imageHeight: 574,
+    mediaCaption: "Material delivery · commercial project",
     signs: [
       "Missing, creased, or displaced shingles",
       "Fresh damage to roof edges, vents, gutters, or siding",
@@ -190,7 +190,7 @@ export const services = [
     summary:
       "Gutter and exterior work coordinated as part of the home’s drainage and weather-protection system.",
     short: "Protect the roofline and drainage path.",
-    image: "/assets/editorial-v2/gutters-system-web-1280.jpg",
+    image: "/assets/editorial-v3/gutters-exteriors-tudor-exterior-1280.webp",
     imageMobile:
       "/assets/editorial-v2/gutters-system-web-mobile-800.jpg",
     cardImage:
@@ -208,10 +208,10 @@ export const services = [
     cardImageMobileWidth: 800,
     cardImageMobileHeight: 1000,
     imageAlt:
-      "Matte charcoal gutter and soffit detail on a stone home",
+      "Tudor-style residence with dark trim, steep roof planes, and a round stone tower, seen from the front lawn",
     imageWidth: 1280,
     imageHeight: 720,
-    mediaCaption: "Illustrative roofline image",
+    mediaCaption: "Tudor-inspired residence · exterior work",
     signs: [
       "Overflowing, sagging, or separated gutter sections",
       "Water concentrating near the foundation",

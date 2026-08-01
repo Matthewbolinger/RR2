@@ -293,6 +293,108 @@ export const faqs = [
   }
 ];
 
+export const proof = {
+  eyebrow: "Local accountability",
+  title: "Trust is easier to verify.",
+  microcopy:
+    "Verify current business details and customer feedback at the original source.",
+  marks: [
+    {
+      id: "bbb",
+      verified: true,
+      mark: "BBB",
+      title: "BBB Accredited · A+ rating",
+      href: "https://www.bbb.org/us/il/barrington/profile/roofing-consultants/raccoon-restoration-0654-90025835"
+    },
+    {
+      id: "il-roofing-license",
+      verified: true,
+      icon: "shield",
+      title: "Illinois Roofing License #104.020040"
+    }
+  ],
+  quotes: [
+    {
+      verified: true,
+      initial: "J",
+      quote:
+        "The job was completed in a timely manner, and communication throughout the entire process was smooth.",
+      name: "Julian K.",
+      context: "Commercial roofing review"
+    },
+    {
+      verified: true,
+      initial: "M",
+      quote: "The experience was excellent from start to finish.",
+      name: "Matthew B.",
+      context: "Roof replacement review"
+    }
+  ],
+  link: { href: "/reviews/", label: "View independent sources" }
+};
+
+export const selectedWork = [
+  {
+    caption: "Residential · Aerial View",
+    image: "/assets/projects/project-modern-residence-roof-aerial-1280.jpg",
+    srcset:
+      "/assets/projects/project-modern-residence-roof-aerial-640.jpg 640w, /assets/projects/project-modern-residence-roof-aerial-960.jpg 960w, /assets/projects/project-modern-residence-roof-aerial-1280.jpg 1280w",
+    alt:
+      "Top-down drone view of a large dark multi-plane roof over a modern white residence and attached garage, surrounded by lawn and trees",
+    width: 1280,
+    height: 720
+  },
+  {
+    caption: "Commercial Flat Roof Installation",
+    image:
+      "/assets/projects/project-low-slope-roof-aerial-enhanced-v3-1280.jpg",
+    srcset:
+      "/assets/projects/project-low-slope-roof-aerial-enhanced-v3-640.jpg 640w, /assets/projects/project-low-slope-roof-aerial-enhanced-v3-1280.jpg 1280w",
+    alt:
+      "Aerial view of a large commercial building during flat roof installation, with a bright white low-slope roofing system, rooftop equipment, and workers",
+    width: 1280,
+    height: 720
+  },
+  {
+    caption: "Tudor-Inspired Residence · Exterior",
+    image:
+      "/assets/projects/project-tudor-residence-landscape-finished-v6-1280.webp",
+    srcset:
+      "/assets/projects/project-tudor-residence-landscape-finished-v6-640.webp 640w, /assets/projects/project-tudor-residence-landscape-finished-v6-1280.webp 1280w",
+    alt:
+      "Exterior view of a large Tudor-inspired home with dark roof planes, a round stone tower, black-and-white trim, sculpted hedges, dark mulch beds, and a manicured front lawn",
+    width: 1280,
+    height: 720
+  }
+];
+
+export const assurancePaths = [
+  {
+    label: "Financing",
+    title: "Ask what fits this project.",
+    href: "/financing/"
+  },
+  {
+    label: "Warranty",
+    title: "Clear terms before the work begins.",
+    href: "/warranty/"
+  }
+];
+
+export const founder = {
+  // Stays hidden until every field is filled with client-approved values and
+  // a real released portrait. Never activate with stock or generated people.
+  verified: false,
+  eyebrow: "Leadership",
+  name: "",
+  role: "",
+  quote: "",
+  portrait: "",
+  portraitAlt: "",
+  portraitWidth: 0,
+  portraitHeight: 0
+};
+
 export const claimRegistry = [
   {
     claim: "Serves the Greater Chicago area",

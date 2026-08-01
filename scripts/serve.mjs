@@ -3,6 +3,7 @@ import { access, stat } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createServer } from "node:http";
+import { createGzip } from "node:zlib";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const publicRoot = join(root, "dist");
@@ -39,12 +40,22 @@ createServer(async (request, response) => {
     response.statusCode = 404;
   }
 
-  response.setHeader(
-    "Content-Type",
-    mime[extname(filePath)] || "application/octet-stream"
-  );
+  const type = mime[extname(filePath)] || "application/octet-stream";
+  response.setHeader("Content-Type", type);
   response.setHeader("X-Content-Type-Options", "nosniff");
-  createReadStream(filePath).pipe(response);
+
+  // Static hosts targeted by this build (see _headers/_redirects) compress
+  // text responses; the preview mirrors that so local measurements reflect
+  // production transport.
+  const compressible = /^(text\/|application\/(json|xml))/.test(type) || type === "image/svg+xml";
+  const acceptsGzip = /\bgzip\b/.test(request.headers["accept-encoding"] || "");
+  if (compressible && acceptsGzip) {
+    response.setHeader("Content-Encoding", "gzip");
+    response.setHeader("Vary", "Accept-Encoding");
+    createReadStream(filePath).pipe(createGzip({ level: 6 })).pipe(response);
+  } else {
+    createReadStream(filePath).pipe(response);
+  }
 }).listen(port, "127.0.0.1", () => {
   console.log(`Raccoon Restoration preview: http://127.0.0.1:${port}`);
 });

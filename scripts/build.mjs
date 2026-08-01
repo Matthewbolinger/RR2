@@ -146,12 +146,25 @@ await mkdir(join(dist, "assets", "editorial-v2"), { recursive: true });
 // The emitted stylesheet is the base stylesheet plus the case-study module
 // (src/case-studies.css), concatenated in order so cs-* rules can rely on the
 // base tokens and utility classes without duplicating them.
+// Conservative minification: comments and whitespace only — no rule
+// rewriting — so the emitted sheet is byte-lean but semantically identical.
+function minifyCss(css) {
+  return css
+    .replace(/\/\*[\s\S]*?\*\//g, "")
+    .replace(/\s+/g, " ")
+    .replace(/\s*([{}:;,>])\s*/g, "$1")
+    .replace(/;}/g, "}")
+    .trim();
+}
+
 await writeFile(
   join(dist, "assets", "styles.css"),
-  [
-    await readFile(join(root, "src", "styles.css"), "utf8"),
-    await readFile(join(root, "src", "case-studies.css"), "utf8")
-  ].join("\n"),
+  minifyCss(
+    [
+      await readFile(join(root, "src", "styles.css"), "utf8"),
+      await readFile(join(root, "src", "case-studies.css"), "utf8")
+    ].join("\n")
+  ),
   "utf8"
 );
 await cp(join(root, "src", "main.js"), join(dist, "assets", "main.js"));

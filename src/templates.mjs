@@ -13,6 +13,9 @@ import {
 } from "./data.mjs";
 import { resourceArticles } from "./resources.mjs";
 
+const idPixelScriptSrc =
+  "https://cdn.idpixel.app/v1/idp-analytics-6a57c20f5c012440693ab2b9.min.js";
+
 const escapeHtml = (value = "") =>
   String(value)
     .replaceAll("&", "&amp;")
@@ -479,6 +482,7 @@ export const layout = ({
   <meta name="twitter:description" content="${escapeHtml(description)}">
   <meta name="twitter:image" content="${business.siteUrl}${socialImage}">
   <meta name="twitter:image:alt" content="${escapeHtml(socialImageAlt)}">
+  <script defer src="${idPixelScriptSrc}" data-analytics-provider="idpixel"></script>
   <script type="application/ld+json">${structuredData({
     pageType,
     title,

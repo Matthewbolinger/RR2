@@ -2,7 +2,9 @@ import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { business } from "../src/data.mjs";
+import { legacyRedirects } from "../src/legacy-routes.mjs";
 import { buildManifest, pages } from "../src/pages.mjs";
+import { renderStaticHeaders } from "../src/platform-config.mjs";
 import {
   ensureWebpDerivatives,
   loadWebpManifest,
@@ -294,26 +296,18 @@ Sitemap: ${business.siteUrl}/sitemap.xml
 
 await writeFile(
   join(dist, "_headers"),
-  `/*
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
-  X-Frame-Options: SAMEORIGIN
-
-/assets/*
-  Cache-Control: public, max-age=3600, must-revalidate
-
-/*.html
-  Cache-Control: public, max-age=0, must-revalidate
-`,
+  renderStaticHeaders(),
   "utf8"
 );
 
 await writeFile(
   join(dist, "_redirects"),
-  `/contact-us-3/ /contact/ 301
-/contact-us/ /contact/ 301
-/services/roofing/ /services/ 301
+  `${legacyRedirects
+    .map(
+      ({ source, destination, status }) =>
+        `${source} ${destination} ${status}`
+    )
+    .join("\n")}
 `,
   "utf8"
 );

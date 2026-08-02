@@ -29,5 +29,13 @@
 
 ## Integrations
 
-- No production form, analytics, CRM, call-tracking, or advertising identifiers were available.
+- The client supplied a production IDPixel loader on July 30, 2026. It is installed once in the shared layout and therefore appears on every page. Provider-account ownership, data behavior, consent requirements, retention, opt-out handling, and production request validation still require owner and legal review. No production form, CRM, call-tracking, Google Analytics, or Google Tag Manager identifiers were supplied.
+- A read-only review of the live WordPress home page on July 31, 2026 found Meta Pixel ID `1583403939041768` and an `includeCapiIntegration: true` initialization signal. The new build does not yet reproduce that browser/server tracking. Preserving, replacing, or retiring it is an explicit pre-launch business and analytics decision rather than an assumption.
 - The structured three-step quote form always renders. Until a secure endpoint is configured, it validates the full request but clearly states that the information was not sent and offers a phone handoff; it never routes an undelivered request to the thank-you page. When `FORM_ENDPOINT` is supplied at build time, success is recorded only after the intake endpoint returns a successful response. Production delivery, spam protection, CRM mapping, consent review, routing, and real receipt testing remain required.
+
+## Hosting and DNS
+
+- The canonical production origin remains `https://www.raccoonrestoration.com`.
+- A public DNS snapshot captured July 31, 2026 shows the apex and `www` A records at `169.60.159.40` with a 300-second TTL and Name.com authoritative name servers.
+- Public MX records point to Google while the apex SPF record includes Titan. This is preserved as observed and must be confirmed by the account owner or mail administrator; it is not authorization to modify mail DNS.
+- Vercel is the recommended target for the static build, but no Vercel project, production deployment, DNS, WordPress, or email setting has been changed during preparation.

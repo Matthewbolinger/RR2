@@ -1474,8 +1474,9 @@ const privacy = {
       [
         ["Information you provide", "When you use the quote form, you may provide your name, phone number, email address, property address and type, service interest, project timing, storm or claim context, response preference, and a description of the concern."],
         ["How information is used", "Inquiry information is used to respond to your request, determine service availability, route the request to the appropriate team member, schedule next steps, and improve the customer experience. Personal details entered in inquiry fields are not included in analytics events."],
-        ["Website data", "When analytics is enabled, the site may collect device, page, campaign, and interaction information to improve performance and understand how visitors use the site."],
-        ["Service providers", "Hosting, form delivery, analytics, spam protection, scheduling, and customer-relationship providers may process information only as needed to operate the site and respond to requests."],
+        ["Website data", "The site uses IDPixel, a third-party analytics and advertising technology, on each page. Depending on provider configuration, it may receive browser, device, page, campaign, network, identifier, and interaction information used to understand website activity and support marketing measurement. Raccoon Restoration does not intentionally include personal details entered in quote-form fields in its own analytics events."],
+        ["Service providers", "Hosting, form delivery, analytics and advertising, spam protection, scheduling, and customer-relationship providers may process information as needed to operate the site, measure activity, and respond to requests."],
+        ["Tracking choices", "Browser privacy controls, content blockers, and applicable consent controls may limit website tracking. You may also contact Raccoon Restoration with privacy questions or requests."],
         ["Your choices", `You may request access, correction, or deletion of inquiry information by emailing ${business.email}. Legal, security, and recordkeeping obligations may limit some requests.`],
         ["Contact", `${business.name}, Barrington, Illinois · ${business.email} · ${business.phoneDisplay}`]
       ]

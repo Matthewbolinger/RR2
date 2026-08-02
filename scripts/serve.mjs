@@ -4,6 +4,7 @@ import { extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createServer } from "node:http";
 import { createGzip } from "node:zlib";
+import { legacyRedirects } from "../src/legacy-routes.mjs";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const publicRoot = join(root, "dist");
@@ -28,6 +29,17 @@ const mime = {
 createServer(async (request, response) => {
   const url = new URL(request.url || "/", `http://${request.headers.host}`);
   const pathname = decodeURIComponent(url.pathname);
+  const legacyRedirect = legacyRedirects.find(
+    ({ source }) => source === pathname
+  );
+
+  if (legacyRedirect) {
+    response.statusCode = legacyRedirect.status;
+    response.setHeader("Location", legacyRedirect.destination);
+    response.end();
+    return;
+  }
+
   const safePath = normalize(pathname).replace(/^(\.\.(\/|\\|$))+/, "");
   let filePath = join(publicRoot, safePath);
 

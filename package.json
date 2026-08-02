@@ -5,7 +5,8 @@
   "type": "module",
   "description": "Raccoon Restoration — Built Above Standard.",
   "scripts": {
-    "build": "node scripts/build.mjs",
+    "config:vercel": "node scripts/generate-vercel-config.mjs",
+    "build": "npm run config:vercel && node scripts/build.mjs",
     "dev": "node scripts/serve.mjs",
     "encode:images": "node scripts/encode-images.mjs",
     "check": "node scripts/check.mjs",

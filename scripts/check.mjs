@@ -1,6 +1,11 @@
 import { access, readFile, readdir, stat } from "node:fs/promises";
 import { extname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  legacyRedirects,
+  legacyRetirements
+} from "../src/legacy-routes.mjs";
+import { createVercelConfig } from "../src/platform-config.mjs";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const dist = join(root, "dist");
@@ -11,6 +16,8 @@ const titleOwners = new Map();
 const descriptionOwners = new Map();
 const routeRecords = [];
 const inboundRoutes = new Map();
+const idPixelScriptSrc =
+  "https://cdn.idpixel.app/v1/idp-analytics-6a57c20f5c012440693ab2b9.min.js";
 
 async function walk(directory) {
   for (const entry of await readdir(directory)) {
@@ -62,6 +69,7 @@ for (const file of htmlFiles) {
     .replace(/\s+/g, " ")
     .trim();
   const wordCount = mainText ? mainText.split(" ").length : 0;
+  const idPixelLoads = html.split(idPixelScriptSrc).length - 1;
   routeRecords.push({ route, label, noindex, wordCount });
 
   if (titles.length !== 1) failures.push(`${label}: expected exactly one title`);
@@ -74,6 +82,12 @@ for (const file of htmlFiles) {
     failures.push(`${label}: missing skip link`);
   if (!html.includes('type="application/ld+json"'))
     failures.push(`${label}: missing structured data`);
+  if (idPixelLoads !== 1)
+    failures.push(
+      `${label}: expected exactly one IDPixel loader, found ${idPixelLoads}`
+    );
+  if (!html.includes(`<script defer src="${idPixelScriptSrc}"`))
+    failures.push(`${label}: IDPixel loader must be deferred`);
   if (imagesWithoutDimensions.length)
     failures.push(`${label}: image missing explicit dimensions`);
   if (duplicateIds.length)
@@ -305,6 +319,41 @@ for (const required of [
   } catch {
     failures.push(`Missing build artifact: ${required}`);
   }
+}
+
+const generatedRoutes = new Set(routeRecords.map(({ route }) => route));
+const redirectFile = await readFile(join(dist, "_redirects"), "utf8");
+const vercelConfigPath = join(root, "vercel.json");
+
+try {
+  const actualVercelConfig = JSON.parse(
+    await readFile(vercelConfigPath, "utf8")
+  );
+  const expectedVercelConfig = createVercelConfig();
+  if (
+    JSON.stringify(actualVercelConfig) !== JSON.stringify(expectedVercelConfig)
+  ) {
+    failures.push(
+      "vercel.json is out of sync with the authoritative route and header configuration"
+    );
+  }
+} catch (error) {
+  failures.push(`Invalid or missing vercel.json: ${error.message}`);
+}
+
+for (const { source, destination, status } of legacyRedirects) {
+  const expectedRule = `${source} ${destination} ${status}`;
+  if (!redirectFile.split("\n").includes(expectedRule))
+    failures.push(`Missing legacy redirect rule: ${expectedRule}`);
+  if (generatedRoutes.has(source))
+    failures.push(`Legacy redirect source is also generated as a page: ${source}`);
+  if (!generatedRoutes.has(destination))
+    failures.push(`Legacy redirect destination is not generated: ${destination}`);
+}
+
+for (const { source } of legacyRetirements) {
+  if (generatedRoutes.has(source))
+    failures.push(`Retired WordPress route is still generated: ${source}`);
 }
 
 if (warnings.length) {

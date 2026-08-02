@@ -14,7 +14,7 @@ every merge behind the gate suite (`npm test` + overflow + vitals + visual revie
 | 1B | Self-hosted WOFF2 fonts (Bebas + variable Montserrat), preload, measured `size-adjust` fallbacks (59.2% / 114%), hero clamp fix — Google Fonts dependency and clipped-tagline first paint eliminated |
 | 1C | WebP pipeline (45 derivatives, content-hash manifest), build-time `<picture>` transform, 900 KiB homepage payload gate in `npm test` |
 | 2 | Motion identity — "the gold line draws the work": session-once hero reveal (LCP-protected), gold divider draws + numeral rises, magnetic primary CTA (hover-gated), quiet utility motion, cross-document View Transitions; reduced-motion and no-JS parity proven by capture |
-| 3 | All four service cards AND all four service detail heroes now graded real archive photography (one deterministic treatment); factual captions replace "illustrative" labels; provenance register updated |
+| 3 | Initial sprint shipped graded real-archive service imagery; a subsequent owner-directed continuity pass restored the cohesive service-card set and matched each linked detail hero to the same visual family, with explicit “service illustration” captions |
 | 4 | Two scroll-narrative case studies (`/projects/tudor-exterior-transformation/`, `/projects/commercial-flat-roof/`) built strictly from register-supported material; sticky media rail desktop, stacked mobile; the Tudor study's "record vs presentation cut" section turns provenance discipline into a visible trust feature |
 | 5 | CSS minification (131→102 KB) + gzip preview transport; final certification; this report |
 
@@ -33,7 +33,7 @@ Dropped by the clock rule: the exploded roof-system SVG diagram (stretch).
 | Horizontal overflow, 19 routes × 2 viewports | 0 | **0** |
 | Third-party requests | 1 render-critical (Google Fonts) | **0** |
 | Pages | 26 | 28 |
-| AI-generated images in conversion path | 6 | **1** (homepage hero — deliberate, pending real shoot; see launch checklist) |
+| AI-generated images in conversion path | 6 | **Owner-approved editorial set retained** for the homepage hero and four card-to-detail service families; replacement with verified production photography remains on the launch checklist |
 
 Baseline vitals reflect the fonts-blocked worst case (render-blocking third-party
 CSS); on unimpeded networks the baseline was faster than 13 s, but that failure

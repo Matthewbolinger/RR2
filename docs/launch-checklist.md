@@ -93,9 +93,9 @@ Shipped on `claude/webpage-design-review-s7pxzi` (see `sprint-plan-8h.md`,
       900 KiB budget enforced in `npm test`
 - [x] Homepage trust band rebuilt (BBB + IL license marks, two verified quotes,
       verified-slot system for future reviews)
-- [x] Real-archive graded imagery across all service cards AND service detail
-      heroes; zero AI-generated images in the conversion path (homepage hero is
-      the one deliberate exception, pending a real shoot)
+- [x] Owner-approved cohesive service illustrations restored across all service
+      cards and matched to their linked service-detail heroes; captions keep
+      editorial media separate from project proof
 - [x] Two scroll-narrative case studies from register-supported material only
 - [x] Audit harness in repo: `npm run audit` (frames / overflow / vitals gates)
 - [x] Zero horizontal overflow across 19 routes × 2 viewports; CLS 0; LCP under
@@ -106,13 +106,16 @@ Shipped on `claude/webpage-design-review-s7pxzi` (see `sprint-plan-8h.md`,
 - [ ] **Phone + tagline canon:** fleet wrap reads 224-500-4825 / "We don't follow
       industry standards, we set them"; site reads (224) 500-6825 / "Built above
       standard." Confirm tracking-number setup or correct one of them.
-- [ ] **Tudor lawn retouch disclosure:** the projects-page hero and homepage
-      strip use the digitally composited lawn variant (`landscape-finished-v6`;
-      the provenance register documents the retouch series, and
-      `scripts/composite-project-hero-yard.mjs` is the mechanism). The case
-      study deliberately uses only the unretouched frame with labeled
-      presentation cuts. Decide: swap remaining v5/v6 usages to the original
-      frame, add a treatment label, or accept as presentation imagery.
+- [x] **Tudor presentation treatment decided:** on August 1, 2026 the owner
+      explicitly requested a more polished completed-project image with
+      greener maintained grass, cleaner landscaping, a decluttered porch, and
+      higher photographic quality. The resulting OpenAI-assisted
+      `project-tudor-residence-exterior-polished-v7-*` family now replaces the
+      v6 presentation image across the Projects hero, portfolio gallery, and
+      Tudor case study. The case-study hero and completed frames are visibly
+      labeled “Presentation enhanced”; the copy does not attribute landscaping
+      to the contracted restoration scope, and the original client-archive
+      completion frame remains preserved.
 - [ ] **Homepage hero swap:** current hero is the last AI-generated image in the
       main flow. A graded real candidate exists
       (`editorial-v3/home-hero-dusk-candidate-1800x1013.webp`) but reads

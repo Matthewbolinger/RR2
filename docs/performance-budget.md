@@ -7,7 +7,7 @@
 | Application JavaScript | 20 KB compressed | 11.1 KB raw / 3.4 KB gzip |
 | CSS | 35 KB compressed | 94.4 KB raw / 15.3 KB gzip |
 | Homepage hero | 300 KB target | 275 KB desktop / 189 KB mobile |
-| Service hero | 300 KB target | 155–337 KB desktop / 135–250 KB mobile |
+| Service hero | 300 KB target | 82–109 KB WebP across the four matched service families |
 | Service-area hero | 300 KB target | 280 KB desktop / 166 KB mobile |
 | Service card image | 140 KB target | 67–127 KB |
 | Primary logo lockup | 100 KB target | 65 KB transparent PNG |
@@ -21,7 +21,7 @@
 ## Implemented
 
 - Static HTML generated at build time with no frontend framework runtime
-- Responsive desktop and mobile hero sources on the largest service pages
+- Matched card/detail hero families; service heroes use their sharper 1200–1280 pixel source on mobile until approved portrait crops exist
 - Dedicated 640-pixel service-card crops instead of full hero downloads
 - Recompressed art-directed service-area desktop and mobile hero sources
 - Optimized 480-pixel transparent header and footer logo
@@ -34,7 +34,7 @@
 
 ## Known exceptions
 
-- Roof replacement and warranty desktop hero fallbacks are slightly above the 300 KB target. Add art-directed AVIF/WebP sources after the final photography is approved.
+- Warranty desktop hero fallback is slightly above the 300 KB target. Add art-directed AVIF/WebP sources after the final photography is approved.
 - Fonts are self-hosted WOFF2 subsets (no third-party requests); size-adjusted local fallbacks prevent layout shift and viewport overflow during font load.
 - CSS, JavaScript, and image filenames are not content-hashed, so production should not use immutable caching until fingerprinting is added.
 - Final Core Web Vitals, cache behavior, and font timing require tests on the production host and representative devices.

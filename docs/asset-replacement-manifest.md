@@ -7,9 +7,10 @@
 | `favicon.svg` | Temporary browser mark | Yes | Approved small-format logo/monogram |
 | `brand-pattern.svg` | Temporary background pattern | Yes | Approved monogram/star/mascot pattern in SVG |
 | `hero-home.jpg` | Editorial hero | Yes | Real approved completed home with left copy-safe space |
-| `roofer-inspection.jpg` | Service/process media | Yes | Real team member, safe working practice, release recorded |
-| `storm-assessment.jpg` | Storm guidance media | Yes | Real ground assessment, non-sensational, release recorded |
-| `gutters-detail.jpg` | Exterior detail | Preferred | Real project detail with project metadata |
+| `editorial-v2/roof-replacement-premium-service-card-*` | Roof Replacement card + detail hero | Yes | One approved real completed-roof shoot with desktop/card/mobile crops and project metadata |
+| `images/roofer-inspection.jpg` + `roof-repair-inspection-card-640.jpg` | Roof Repair card + detail hero | Yes | Same real team member and property across crops, approved safety practice, release recorded |
+| `editorial-v2/storm-restoration-assessment-service-card-v2-*` | Storm Damage card + detail hero | Yes | Same real assessment scene across crops, visible condition only, non-sensational, release recorded |
+| `editorial-v2/gutters-exteriors-installation-service-card-v2-*` | Gutters & Exteriors card + detail hero | Preferred | Same real installation/detail scene across crops with project metadata and release |
 | `assets/projects/*` | Real-work project portfolio | No for current gallery | Client-supplied work; responsive derivatives, privacy-safe crops, release status, and project metadata recorded |
 | No mascot | Identity mnemonic | Yes, optional at launch | Approved transparent PNG/WebP and vector/source rights |
 | Social preview uses hero | Open Graph | Yes | Approved 1200×630 branded preview |
@@ -23,4 +24,4 @@ Generated source PNGs are ignored by Git. The project library includes neutral-n
 3. Release and metadata approval for the supplied project archive, followed by three detailed case studies
 4. Approved mascot cutout
 5. Pattern and social-sharing asset
-6. Additional service-specific real photography
+6. Replace the four matched service-illustration families with equivalent real photography while preserving card-to-detail continuity

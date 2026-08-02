@@ -402,7 +402,10 @@ const projects = {
     pageType: "projects",
     body: `
       <section class="project-hero">
-        <img class="project-hero__image" src="/assets/projects/project-tudor-residence-landscape-finished-v6-1600.webp" srcset="/assets/projects/project-tudor-residence-landscape-finished-v6-640.webp 640w, /assets/projects/project-tudor-residence-landscape-finished-v6-1280.webp 1280w, /assets/projects/project-tudor-residence-landscape-finished-v6-1600.webp 1600w, /assets/projects/project-tudor-residence-landscape-finished-v6-1920.webp 1920w" sizes="100vw" alt="Exterior view of a large Tudor-inspired home with dark roof planes, a round stone tower, black-and-white trim, sculpted hedges, dark mulch beds, and a manicured front lawn" width="1600" height="900" fetchpriority="high" decoding="async">
+        <picture>
+          <source media="(max-width: 640px)" srcset="/assets/projects/project-tudor-residence-exterior-polished-v7-mobile-800x1000.jpg">
+          <img class="project-hero__image" src="/assets/projects/project-tudor-residence-exterior-polished-v7-1600.jpg" srcset="/assets/projects/project-tudor-residence-exterior-polished-v7-640.jpg 640w, /assets/projects/project-tudor-residence-exterior-polished-v7-1280.jpg 1280w, /assets/projects/project-tudor-residence-exterior-polished-v7-1600.jpg 1600w" sizes="100vw" alt="Polished completed view of a large Tudor-inspired home with dark roof planes, a round stone tower, black-and-white trim, a clean entry, defined planting beds, and a manicured lawn" width="1600" height="900" fetchpriority="high" decoding="async">
+        </picture>
         <div class="project-hero__scrim"></div>
         <div class="shell project-hero__inner">
           ${breadcrumbs([{ label: "Projects", href: "#" }])}

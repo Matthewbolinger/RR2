@@ -7,60 +7,62 @@
 //   copy already published on the site. Where the archive cannot support a
 //   fact (dates, addresses, before-frames, homeowner words), the copy stays
 //   scope-honest instead of inventing one.
-// - The Tudor yard-restored/landscape-finished variants (v5/v6) are a digital
-//   retouch series (see scripts/composite-project-hero-yard.mjs and the
-//   register's editorial-v3 selection notes). They are therefore EXCLUDED
-//   from this documentary record: no before/after lawn claim is made
-//   anywhere on these pages. The Tudor study is framed as a single-frame
-//   record — "condition documented, treatments labeled" — not a comparison.
+// - The Tudor study includes a client-supplied pre-restoration photograph of
+//   the same residence. Its completed presentation uses the owner-approved v7
+//   derivative of the client-archive completion frame. That derivative applies
+//   AI-assisted lawn, planting-bed, entry-staging, and photographic finishing
+//   while preserving the building architecture. The page labels the treatment
+//   and makes no claim that landscaping was part of the contracted scope.
 
 export const caseStudies = [
   {
     slug: "tudor-exterior-transformation",
     pageTitle: "Tudor Residence Exterior Case Study",
     description:
-      "Scroll the Tudor residence exterior case study: one unretouched archive frame, the published five-step field protocol, and a fully labeled presentation grade.",
+      "Compare a client-supplied before photograph with a presentation-enhanced completed view of a Tudor residence exterior and Raccoon Restoration's documented field protocol.",
     eyebrow: "Case study · Residential exterior",
     titleHtml: "The Tudor<br><span>Residence.</span>",
     breadcrumbLabel: "Tudor Residence Exterior",
     summary:
-      "A Tudor-inspired exterior preserved in one unretouched archive frame — presented at full scale, with every treatment on the record.",
+      "One Tudor-inspired residence, documented before restoration and after the completed exterior transformation.",
     chips: [
       { label: "Class", value: "Residential exterior" },
       { label: "Record", value: "Client project archive" },
-      { label: "Frames", value: "Unretouched original" }
+      { label: "Frames", value: "Before + polished completion" }
     ],
-    socialImage: "/assets/projects/project-tudor-residence-exterior-1280.jpg",
+    socialImage:
+      "/assets/projects/project-tudor-residence-exterior-polished-v7-1280.jpg",
     socialImageAlt:
-      "Front elevation of a large Tudor-style residence with dark roof planes, black-and-white half-timbered gables, copper bay-window roofs, and a round stone turret",
+      "Polished completed view of a large Tudor-style residence with black-and-white half-timbered gables, copper bay-window roofs, a round stone turret, and a manicured lawn",
     socialImageWidth: 1280,
     socialImageHeight: 720,
     hero: {
-      src: "/assets/editorial-v3/gutters-exteriors-tudor-exterior-1280.webp",
+      src:
+        "/assets/projects/project-tudor-residence-exterior-polished-v7-1600.jpg",
       srcset:
-        "/assets/editorial-v3/gutters-exteriors-tudor-exterior-640.webp 640w, /assets/editorial-v3/gutters-exteriors-tudor-exterior-1280.webp 1280w",
+        "/assets/projects/project-tudor-residence-exterior-polished-v7-640.jpg 640w, /assets/projects/project-tudor-residence-exterior-polished-v7-1280.jpg 1280w, /assets/projects/project-tudor-residence-exterior-polished-v7-1600.jpg 1600w",
       mobileSrc:
-        "/assets/editorial-v3/gutters-exteriors-tudor-exterior-mobile-800x1000.webp",
-      width: 1280,
-      height: 720,
-      alt: "Exterior of a large Tudor-style residence with dark roof planes, black-and-white half-timbered gables, copper bay-window roofs, and a round stone turret",
+        "/assets/projects/project-tudor-residence-exterior-polished-v7-mobile-800x1000.jpg",
+      width: 1600,
+      height: 900,
+      alt: "Presentation-enhanced completed view of a large Tudor-style residence with black-and-white gables, a stone turret, a clean entry, and manicured landscaping",
       chip: "Completed project"
     },
     condition: {
-      heading: "The record begins with one frame.",
+      heading: "The original condition, documented.",
       paragraphs: [
-        "Straight on from the front walk: dark roof planes step down from the main gable to a conical turret roof, black-and-white half-timbering frames the upper walls, and copper bay-window roofs sit over dark brick. Stone lions flank the lawn. This is the untouched original exterior frame in the project archive.",
-        "The archive holds no earlier view of this elevation, so this page makes a narrower promise than a dramatic before-and-after: document exactly what the camera recorded, and label every treatment applied to it since."
+        "The client-supplied original photograph shows the residence before restoration: muted half-timbered trim, light upper walls, red brick at the lower elevation, and the distinctive round stone tower beneath its conical roof.",
+        "The tower, gables, bay-window roofs, and curved front approach make the property match clear even though the before and completed photographs were captured from slightly different positions."
       ],
       frame: {
-        src: "/assets/projects/project-tudor-residence-exterior-1280.jpg",
+        src: "/assets/projects/project-tudor-residence-before-1280.jpg",
         srcset:
-          "/assets/projects/project-tudor-residence-exterior-640.jpg 640w, /assets/projects/project-tudor-residence-exterior-1280.jpg 1280w",
+          "/assets/projects/project-tudor-residence-before-640.jpg 640w, /assets/projects/project-tudor-residence-before-1280.jpg 1280w",
         width: 1280,
         height: 720,
-        alt: "Front elevation of a large Tudor-style residence with dark roof planes, black-and-white half-timbered gables, copper bay-window roofs, a round stone turret, and stone lion statues on the front lawn",
-        chip: "Archive frame · Unretouched",
-        title: "Tudor Residence Exterior"
+        alt: "Tudor-style residence before restoration, with muted half-timbered trim, light upper walls, red brick, and a round stone tower",
+        chip: "Before restoration · Client-supplied original",
+        title: "The Original Exterior"
       }
     },
     protocol: {
@@ -68,63 +70,68 @@ export const caseStudies = [
         "The steps below are quoted from the published Raccoon Restoration process page. A case study should be held to the protocol — not to a prettier version of it."
     },
     documentation: {
-      heading: "Record and presentation, side by side.",
+      heading: "Before and completed work, side by side.",
       paragraphs: [
-        "The first frame is the record: unretouched, no labels, no upscaling. The second is the presentation cut used across the site's service imagery — a deterministic color grade and crop, with the content unchanged.",
-        "For this documentary record, the only differences permitted between the two are tone and crop. The content stays as shot."
+        "The first frame is the client-supplied pre-restoration photograph. The second is an owner-approved presentation derivative of the completed project photograph from the client archive.",
+        "Because the photographs were not captured from a locked camera position, the comparison is presented without a slider or pixel-perfect alignment. The architecture—not the framing—establishes the match."
       ],
-      note: "The grade uses identical constants across the site's service imagery and is logged, frame by frame, in the project's image provenance register.",
+      note: "The completed frame uses AI-assisted lawn, planting-bed, entry-staging, and photographic finishing. The architecture is preserved, and the treatment is not a claim that landscaping was part of the restoration scope.",
       frames: [
         {
-          src: "/assets/projects/project-tudor-residence-exterior-1280.jpg",
+          src: "/assets/projects/project-tudor-residence-before-1280.jpg",
           srcset:
-            "/assets/projects/project-tudor-residence-exterior-640.jpg 640w, /assets/projects/project-tudor-residence-exterior-1280.jpg 1280w",
+            "/assets/projects/project-tudor-residence-before-640.jpg 640w, /assets/projects/project-tudor-residence-before-1280.jpg 1280w",
           width: 1280,
           height: 720,
-          alt: "Unretouched archive frame of the Tudor-style residence exterior with dark roof planes, half-timbered gables, and a round stone turret",
-          chip: "Archive frame · Unretouched",
-          title: "The record"
+          alt: "Tudor-style residence before restoration, showing muted trim, light upper walls, red brick, and a round stone tower",
+          chip: "Before restoration · Original photograph",
+          title: "Before"
         },
         {
-          src: "/assets/editorial-v3/gutters-exteriors-tudor-exterior-1280.webp",
+          src:
+            "/assets/projects/project-tudor-residence-exterior-polished-v7-1280.jpg",
           srcset:
-            "/assets/editorial-v3/gutters-exteriors-tudor-exterior-640.webp 640w, /assets/editorial-v3/gutters-exteriors-tudor-exterior-1280.webp 1280w",
+            "/assets/projects/project-tudor-residence-exterior-polished-v7-640.jpg 640w, /assets/projects/project-tudor-residence-exterior-polished-v7-1280.jpg 1280w",
           width: 1280,
           height: 720,
-          alt: "Color-graded presentation cut of the same Tudor-style residence exterior frame, with tighter cropping and a warmer tone",
+          alt: "Presentation-enhanced completed Tudor-style residence exterior with black-and-white gables, dark brick, copper bay-window roofs, a stone tower, and manicured landscaping",
           chip: "Completed project",
-          title: "The presentation cut"
+          title: "After"
         }
       ]
     },
     outcome: {
-      heading: "Finished work should stand on its own.",
+      heading: "A transformed exterior, clearly documented.",
       paragraphs: [
-        "What stands here is the exterior the frame preserves: coordinated roof planes, trim, masonry, and copper detail across one residence — shown at full scale, with no baked labels and no artificial upscaling.",
-        "Where the archive cannot support a comparison, none is invented."
+        "The completed view presents a coordinated dark-and-light Tudor palette across the gables, masonry, roof planes, bay-window details, and round stone tower.",
+        "The presentation derivative gives that completed exterior a clean portfolio finish while the underlying project record remains the basis for every architectural claim."
       ],
       frame: {
-        src: "/assets/projects/project-tudor-residence-exterior-1280.jpg",
+        src:
+          "/assets/projects/project-tudor-residence-exterior-polished-v7-1280.jpg",
         srcset:
-          "/assets/projects/project-tudor-residence-exterior-640.jpg 640w, /assets/projects/project-tudor-residence-exterior-1280.jpg 1280w",
+          "/assets/projects/project-tudor-residence-exterior-polished-v7-640.jpg 640w, /assets/projects/project-tudor-residence-exterior-polished-v7-1280.jpg 1280w",
         width: 1280,
         height: 720,
-        alt: "Full-scale view of the unretouched Tudor-style residence exterior archive frame",
-        chip: "Archive frame · Unretouched",
-        title: "The exterior, full scale"
+        alt: "Presentation-enhanced completed Tudor-style residence exterior with dark roof planes, black-and-white gables, copper details, a stone tower, and a clean landscaped foreground",
+        chip: "Completed project · Presentation enhanced",
+        title: "The Completed Exterior"
       },
       panel: {
         eyebrow: "Proof standard",
-        heading: "Documented. Matched. Traceable.",
+        heading: "Before. Completed. Traceable.",
         items: [
-          { label: "Published now", value: "Completed project photography" },
-          { label: "Comparison rule", value: "Matched original views" },
           {
-            label: "Presentation",
-            value: "No baked labels or artificial upscaling"
+            label: "Published now",
+            value: "Before + disclosed polished completion"
+          },
+          { label: "Property match", value: "Verified by architectural landmarks" },
+          {
+            label: "Scope standard",
+            value: "No unverified materials, dates, or work claims"
           }
         ],
-        note: "Before-and-after views should come from the same property and preserve a clear comparison."
+        note: "The photographs are from different capture positions. The completed frame has disclosed presentation finishing; landscaping is not represented as part of the restoration scope."
       }
     },
     cta: {

@@ -56,7 +56,7 @@
 - [ ] Approved monogram pattern
 - [ ] Real hero and team photography
 - [ ] Project image publication releases and structured project metadata
-- [ ] Three verified project case studies
+- [~] Project case studies: two live, register-verified (`/projects/tudor-exterior-transformation/`, `/projects/commercial-flat-roof/`); a third when new archive material is released
 - [x] Original Greater Chicago roofing Resources hub and four pillar guides
 - [x] Public resource references reviewed for freshness on July 30, 2026
 - [ ] Approved reviews with source links
@@ -103,3 +103,49 @@
 ## Launch decision
 
 **Blocked for public production launch** until the authenticated WordPress backup and DNS export are complete, mail ownership is confirmed, the supplied project imagery is cleared for publication, detailed case-study facts are verified, remaining brand/people assets are approved, form delivery works, tracking continuity is resolved, required business facts and legal text are reviewed, and a preview deployment passes the acceptance runbook. The local production build is ready for final responsive review and integration.
+
+## Sprint delta — 2026-08-01 agentic sprint
+
+Shipped on `claude/webpage-design-review-s7pxzi` (see `sprint-plan-8h.md`,
+`baseline-2026-07-31.json`):
+
+- [x] Self-hosted WOFF2 fonts + size-adjust fallbacks (Google Fonts removed;
+      fonts-blocked LCP 13.1s → 1.79s; clipped-tagline first paint eliminated)
+- [x] WebP pipeline + `<picture>` transform; homepage payload 2331 → 809 KiB,
+      900 KiB budget enforced in `npm test`
+- [x] Homepage trust band rebuilt (BBB + IL license marks, two verified quotes,
+      verified-slot system for future reviews)
+- [x] Owner-approved cohesive service illustrations restored across all service
+      cards and matched to their linked service-detail heroes; captions keep
+      editorial media separate from project proof
+- [x] Two scroll-narrative case studies from register-supported material only
+- [x] Audit harness in repo: `npm run audit` (frames / overflow / vitals gates)
+- [x] Zero horizontal overflow across 19 routes × 2 viewports; CLS 0; LCP under
+      2.0s budget on throttled slow-4G
+
+## Owner decisions required (blocking or brand-sensitive)
+
+- [ ] **Phone + tagline canon:** fleet wrap reads 224-500-4825 / "We don't follow
+      industry standards, we set them"; site reads (224) 500-6825 / "Built above
+      standard." Confirm tracking-number setup or correct one of them.
+- [x] **Tudor presentation treatment decided:** on August 1, 2026 the owner
+      explicitly requested a more polished completed-project image with
+      greener maintained grass, cleaner landscaping, a decluttered porch, and
+      higher photographic quality. The resulting OpenAI-assisted
+      `project-tudor-residence-exterior-polished-v7-*` family now replaces the
+      v6 presentation image across the Projects hero, portfolio gallery, and
+      Tudor case study. The case-study hero and completed frames are visibly
+      labeled “Presentation enhanced”; the copy does not attribute landscaping
+      to the contracted restoration scope, and the original client-archive
+      completion frame remains preserved.
+- [ ] **Homepage hero swap:** current hero is the last AI-generated image in the
+      main flow. A graded real candidate exists
+      (`editorial-v3/home-hero-dusk-candidate-1800x1013.webp`) but reads
+      storm-light rather than dusk and would triple-expose the Tudor property.
+      Recommended: golden-hour shoot of a completed project (shot list in
+      `photography-requirements.md`).
+- [ ] **Founder section activation:** component ships flagged off in
+      `src/data.mjs` (`founder.verified: false`); needs portrait + approved
+      first-person line.
+- [ ] **Review pipeline:** trust band renders only `verified: true` quotes; add
+      new quotes with permission evidence to `src/data.mjs` → `proof`.

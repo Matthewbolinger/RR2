@@ -1,3 +1,52 @@
+/* === Wave 1B: self-hosted fonts === */
+
+/* Latin subsets served from this origin; no third-party font requests. */
+@font-face {
+  font-family: "Bebas Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/bebas-neue-v16-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Variable font (wght axis): one file serves weights 400-700. */
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/assets/fonts/montserrat-v31-latin-wght.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/*
+ * Size-adjusted local fallbacks: while webfonts load (or if they fail),
+ * these keep line wrapping close to the real faces so the hero tagline
+ * never clips and swap-time reflow stays small. Measured in Chromium:
+ * "BUILT ABOVE STANDARD." in Bebas Neue is 59.2% of its Arial width
+ * (at the h1's 0.015em letter-spacing); Montserrat body copy is 114%
+ * of its Arial width at weight 400.
+ */
+@font-face {
+  font-family: "Bebas Neue Fallback";
+  font-style: normal;
+  /* Liberation Sans is the metric-compatible Arial substitute shipped on most
+     Linux systems; without it those users skip the size-adjusted face entirely
+     and fall through to a much wider generic sans. */
+  src: local("Arial Narrow"), local("Arial"), local("Liberation Sans");
+  size-adjust: 59.2%;
+}
+
+@font-face {
+  font-family: "Montserrat Fallback";
+  font-style: normal;
+  src: local("Arial"), local("Liberation Sans");
+  size-adjust: 114%;
+}
+
+/* === end Wave 1B === */
+
 :root {
   --black: #0d0d0d;
   --charcoal: #1a1a1a;
@@ -12,8 +61,8 @@
   --white: #fff;
   --line-dark: rgb(255 255 255 / 14%);
   --line-light: rgb(13 13 13 / 15%);
-  --display: "Bebas Neue", "Arial Narrow", Impact, sans-serif;
-  --body: "Montserrat", Arial, sans-serif;
+  --display: "Bebas Neue", "Bebas Neue Fallback", "Arial Narrow", Impact, sans-serif;
+  --body: "Montserrat", "Montserrat Fallback", Arial, sans-serif;
   --shell: min(1280px, calc(100% - 48px));
   --section: clamp(80px, 9vw, 136px);
   --shadow: 0 24px 70px rgb(0 0 0 / 18%);
@@ -669,12 +718,12 @@ h3 {
   height: 100%;
 }
 
+/* Wave 2 edit: the base image is untransformed so no-JS visitors see the
+   final framing; the first-run scale(1.04) ease lives in the Wave 2 block. */
 .home-hero__image {
   object-fit: cover;
   object-position: center;
   filter: brightness(1.13) saturate(1.04) contrast(1.02);
-  transform: scale(1.025);
-  transition: transform 1800ms var(--ease-premium);
 }
 
 .home-hero__scrim {
@@ -697,18 +746,13 @@ h3 {
   width: min(720px, 58%);
 }
 
-.page-ready .home-hero__image {
-  transform: scale(1);
-}
-
+/* Wave 2 edit: the h1 no longer animates as a block — its words rise
+   individually via the once-per-session hero signature (Wave 2 block). */
 .home-hero h1 {
   margin-bottom: 24px;
-  font-size: clamp(5rem, 10vw, 9rem);
+  font-size: clamp(3.4rem, 10vw, 9rem);
   line-height: 0.84;
   text-transform: uppercase;
-  transition:
-    opacity 700ms var(--ease-premium) 120ms,
-    transform 900ms var(--ease-premium) 120ms;
 }
 
 .home-hero h1 span {
@@ -719,15 +763,14 @@ h3 {
   display: none;
 }
 
+/* Wave 2 edit: hero copy is static by default; the hero-first-run and
+   hero-replay states (Wave 2 block) own the hide/reveal transitions. */
 .home-hero__lead {
   max-width: 620px;
   margin-bottom: 18px;
   font-size: clamp(1.1rem, 2vw, 1.4rem);
   font-weight: 600;
   line-height: 1.45;
-  transition:
-    opacity 650ms var(--ease-premium) 260ms,
-    transform 800ms var(--ease-premium) 260ms;
 }
 
 .home-hero__support {
@@ -735,35 +778,6 @@ h3 {
   margin-bottom: 34px;
   color: rgb(255 255 255 / 74%);
   font-size: 0.96rem;
-  transition:
-    opacity 650ms var(--ease-premium) 340ms,
-    transform 800ms var(--ease-premium) 340ms;
-}
-
-.home-hero__copy .button-row {
-  transition:
-    opacity 650ms var(--ease-premium) 420ms,
-    transform 800ms var(--ease-premium) 420ms;
-}
-
-.hero-motion-ready .home-hero h1 {
-  transform: translateY(18px);
-  opacity: 0;
-}
-
-.hero-motion-ready .home-hero__lead,
-.hero-motion-ready .home-hero__support,
-.hero-motion-ready .home-hero__copy .button-row {
-  transform: translateY(14px);
-  opacity: 0;
-}
-
-.page-ready .home-hero h1,
-.page-ready .home-hero__lead,
-.page-ready .home-hero__support,
-.page-ready .home-hero__copy .button-row {
-  transform: translateY(0);
-  opacity: 1;
 }
 
 .hero-scroll {
@@ -5455,19 +5469,34 @@ html:not(.js) .inspection-form [data-disabled-until-enhanced] {
     transition-duration: 0.01ms !important;
   }
 
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
+  /* Wave 2 edit: cover every view-transition group, not just the root. */
+  ::view-transition-group(*),
+  ::view-transition-image-pair(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
     animation: none !important;
   }
 
-  .home-hero h1,
-  .home-hero__lead,
-  .home-hero__support,
-  .home-hero__copy .button-row,
-  .motion-ready .reveal {
+  /* Wave 2 edit: the JS motion paths already bail out under reduced motion;
+     these overrides also cover a preference flip mid-session. */
+  .home-hero__image,
+  .home-hero__copy > *,
+  .home-hero h1 .hero-word,
+  .home-hero h1 .hero-word--gold,
+  .motion-ready .reveal,
+  .motion-ready .section-divider .section-heading .eyebrow,
+  .motion-ready .section-divider .intent-grid > a > span,
+  .motion-ready .section-divider .standard-grid article > span {
     transform: none !important;
     translate: none !important;
     opacity: 1 !important;
+  }
+
+  /* The gold flourishes exist only as motion; static parity means absent. */
+  .home-hero h1 .hero-word--gold::after,
+  .section-rule,
+  .nav-underline {
+    display: none !important;
   }
 }
 
@@ -5485,3 +5514,881 @@ html:not(.js) .inspection-form [data-disabled-until-enhanced] {
     background: #fff;
   }
 }
+
+/* === Wave 1A: conversion core === */
+
+/* Craft: buttons never wrap mid-label */
+.button {
+  white-space: nowrap;
+}
+
+/* Craft: identical number-to-title rhythm across all five intent cards */
+.intent-grid > a > span {
+  margin-bottom: 28px;
+}
+
+.intent-grid h3 {
+  margin-block: 0 16px;
+}
+
+.intent-grid .icon {
+  margin-top: auto;
+}
+
+/* Craft: storm eyebrow aligns to the top of the headline block */
+.storm-protocol__header {
+  align-items: start;
+}
+
+.storm-protocol__header .eyebrow {
+  margin-top: 7px;
+}
+
+/* Craft: footer monogram pattern recedes behind the link columns */
+.site-footer.pattern::before {
+  opacity: 0.85;
+}
+
+/* Trust band: verified marks + verified review quotes */
+.proof-band__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.proof-band__marks {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.proof-mark {
+  position: relative;
+  align-items: center;
+}
+
+.proof-mark h3 {
+  margin: 0;
+  font-size: 0.94rem;
+}
+
+.proof-mark--link {
+  padding-right: 68px;
+  text-decoration: none;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.proof-mark--link:hover,
+.proof-mark--link:focus-visible {
+  background: var(--cream);
+  border-color: rgb(199 162 74 / 55%);
+}
+
+.proof-mark__arrow {
+  position: absolute;
+  top: 50%;
+  right: 26px;
+  color: var(--gold);
+  translate: 0 -50%;
+  transition: transform 180ms ease;
+}
+
+.proof-mark--link:hover .proof-mark__arrow {
+  transform: translateX(5px);
+}
+
+.reputation-card__mark--icon {
+  color: var(--gold);
+  background: var(--black);
+}
+
+.reputation-card__mark--icon .icon {
+  width: 30px;
+  height: 30px;
+}
+
+.proof-quote {
+  margin: 0;
+  align-items: start;
+}
+
+.proof-quote__avatar {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  color: var(--gold);
+  background: var(--black);
+  border: 1px solid rgb(199 162 74 / 45%);
+  border-radius: 50%;
+  font-family: var(--display);
+  font-size: 1.55rem;
+}
+
+.proof-quote blockquote {
+  margin: 0 0 14px;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.proof-quote figcaption {
+  color: var(--muted);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.proof-band__footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 26px;
+}
+
+/* Selected work strip */
+.work-strip__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 46px;
+}
+
+.work-strip__header .section-heading {
+  margin-bottom: 0;
+}
+
+.work-strip__header .button {
+  flex: 0 0 auto;
+}
+
+.work-strip__row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.work-strip__item {
+  display: block;
+  min-width: 0;
+  text-decoration: none;
+}
+
+.work-strip__media {
+  display: block;
+  overflow: hidden;
+  background: var(--charcoal-2);
+}
+
+.work-strip__media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  filter: saturate(0.82) brightness(0.94) contrast(1.04);
+  transition:
+    transform 450ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    filter 450ms ease;
+}
+
+.work-strip__item:hover img,
+.work-strip__item:focus-visible img {
+  transform: scale(1.035);
+  filter: saturate(0.98) brightness(1) contrast(1.03);
+}
+
+.work-strip__caption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  color: rgb(255 255 255 / 72%);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.work-strip__caption::before {
+  width: 18px;
+  height: 1px;
+  flex: 0 0 auto;
+  content: "";
+  background: var(--gold);
+}
+
+/* Financing + warranty band */
+.assurance-band__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid var(--line-light);
+}
+
+.assurance-band__grid a {
+  position: relative;
+  display: block;
+  min-height: 200px;
+  padding: 30px 76px 30px 30px;
+  border-right: 1px solid var(--line-light);
+  text-decoration: none;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease;
+}
+
+.assurance-band__grid a:last-child {
+  border-right: 0;
+}
+
+.assurance-band__grid a > span {
+  color: #8b6b21;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.assurance-band__grid h3 {
+  margin: 42px 0 0;
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 2.6vw, 2.6rem);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.assurance-band__grid .icon {
+  position: absolute;
+  right: 28px;
+  bottom: 28px;
+  color: var(--gold);
+}
+
+.assurance-band__grid a:hover,
+.assurance-band__grid a:focus-visible {
+  color: var(--white);
+  background: var(--black);
+}
+
+.assurance-band__grid a:hover > span,
+.assurance-band__grid a:focus-visible > span {
+  color: var(--gold);
+}
+
+/* FAQ path to the full list */
+.faq-more-link {
+  margin-top: 26px;
+  color: rgb(255 255 255 / 78%);
+}
+
+.faq-more-link:hover {
+  color: var(--gold);
+}
+
+/* Founder slot: dormant until data.mjs founder.verified is true */
+.founder-section__grid {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.55fr) 1fr;
+  border: 1px solid var(--line-dark);
+}
+
+.founder-section__media {
+  margin: 0;
+  border-right: 1px solid var(--line-dark);
+}
+
+.founder-section__media img {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  object-fit: cover;
+}
+
+.founder-section__copy {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  padding: clamp(42px, 6vw, 84px);
+}
+
+.founder-section__quote {
+  margin: 0 0 26px;
+  color: var(--white);
+  font-family: var(--display);
+  font-size: clamp(2.2rem, 3.4vw, 3.6rem);
+  font-weight: 400;
+  line-height: 1.04;
+  text-transform: uppercase;
+}
+
+.founder-section__name {
+  margin: 0;
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.founder-section__name span {
+  color: rgb(255 255 255 / 62%);
+}
+
+@media (max-width: 800px) {
+  .proof-band__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-band__grid > .proof-quote:nth-of-type(n + 3) {
+    display: none;
+  }
+
+  .proof-band__footer {
+    justify-content: flex-start;
+  }
+
+  .work-strip__header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 34px;
+  }
+
+  .work-strip__row {
+    grid-auto-flow: column;
+    grid-auto-columns: min(78vw, 340px);
+    grid-template-columns: none;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(199 162 74 / 55%) transparent;
+  }
+
+  .work-strip__item {
+    scroll-snap-align: start;
+  }
+
+  .assurance-band__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .assurance-band__grid a {
+    min-height: 150px;
+    border-right: 0;
+  }
+
+  .assurance-band__grid a:first-child {
+    border-bottom: 1px solid var(--line-light);
+  }
+
+  .assurance-band__grid h3 {
+    margin-top: 26px;
+  }
+
+  .founder-section__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .founder-section__media {
+    border-right: 0;
+    border-bottom: 1px solid var(--line-dark);
+  }
+
+  .founder-section__media img {
+    min-height: 0;
+    aspect-ratio: 4 / 5;
+  }
+}
+
+@media (max-width: 560px) {
+  .site-footer.pattern::before {
+    opacity: 0.49;
+  }
+
+  .proof-band__marks {
+    gap: 10px;
+  }
+
+  .proof-mark {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 12px;
+    padding: 18px 16px;
+  }
+
+  .proof-mark--link {
+    padding-right: 16px;
+  }
+
+  .proof-mark__arrow {
+    display: none;
+  }
+
+  .proof-mark .reputation-card__mark {
+    width: 44px;
+    height: 44px;
+    font-size: 1.05rem;
+  }
+
+  .reputation-card__mark--icon .icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .proof-mark h3 {
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
+
+  .proof-quote {
+    gap: 16px;
+    padding: 22px 18px;
+  }
+
+  .proof-quote__avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 1.25rem;
+  }
+
+  .proof-quote blockquote {
+    font-size: 0.88rem;
+  }
+
+  .work-strip__header .button {
+    width: 100%;
+  }
+}
+
+/* === end Wave 1A === */
+
+/* === Wave 1 integration ===
+   Grid children default to min-width:auto, which lets one item's min-content
+   widen a 1fr track past its container (seen: variable-font metrics pushed the
+   storm evidence panel to 389px in a 362px shell on mobile). Zero it so
+   content wraps instead of blowing out the track. */
+.two-column > *,
+.proof-layout > *,
+.storm-panel > *,
+.faq-layout > *,
+.content-grid > *,
+.contact-grid > * {
+  min-width: 0;
+}
+
+/* Buttons keep single-line labels except at phone widths, where a long
+   label (e.g. "Ask About Storm Damage Restoration") must wrap rather than
+   escape the shell. */
+@media (max-width: 480px) {
+  .button {
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+/* === Wave 5 polish ===
+   1. The standard-grid numeral sat 70px above its title, reading as a gap
+      rather than a pairing. Tightened, with the card floor holding the
+      row rhythm.
+   2. The intent cards and the working-standard columns are both 01-05
+      sets on one page. Outlining the second set's numerals differentiates
+      them as rhythm rather than a repeated template.
+   3. The section-divider draw was near-subliminal on bright screens. */
+.standard-grid h3 {
+  margin-block: 42px 16px;
+}
+
+.standard-grid span {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--gold);
+  font-size: 1.45rem;
+}
+
+.standard-section .standard-grid span {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--gold-ink);
+}
+
+/* Fallback for engines without text-stroke support: keep the numerals solid. */
+@supports not (-webkit-text-stroke: 1px currentcolor) {
+  .standard-grid span {
+    color: var(--gold);
+  }
+
+  .standard-section .standard-grid span {
+    color: var(--gold-ink);
+  }
+}
+/* === end Wave 5 polish === */
+/* === end Wave 1 integration === */
+
+/* === Wave 2: motion identity === */
+/*
+ * One kinetic signature — "the gold line draws the work" — in exactly three
+ * placements: (1) once-per-session hero reveal ending with a 2px gold rule
+ * drawing under "Standard.", (2) section top rules drawing in gold on entry,
+ * (3) gold CTAs leaning toward a fine pointer. All animation is
+ * transform/translate + opacity only. Every hidden state hangs off a
+ * JS-added class (hero-first-run, hero-replay, motion-ready, is-drawn,
+ * nav-slide), so no-JS and reduced-motion visitors get the full static page.
+ */
+
+/* --- 1: hero reveal (~1.4s desktop, ~0.9s mobile) --- */
+
+/* JS-wrapped headline words stay white; <span>Standard.</span> keeps gold. */
+.home-hero h1 .hero-word {
+  color: inherit;
+}
+
+/* inline-block in the base rule: the rule's ::after needs a block containing
+   box in the replay path too, where words are not wrapped. */
+.home-hero h1 .hero-word--gold {
+  position: relative;
+  display: inline-block;
+}
+
+/* The signature stroke under "Standard." (exists only once JS runs). */
+.home-hero h1 .hero-word--gold::after {
+  position: absolute;
+  right: 0.04em;
+  bottom: -0.085em;
+  left: 0.02em;
+  height: 2px;
+  content: "";
+  background: var(--gold);
+  transform-origin: left center;
+}
+
+/* The photo holds at 1.04 and settles only once its data has painted
+   (hero-photo-go, set on image load) — the LCP frame is never mid-flight. */
+.hero-first-run .home-hero__image {
+  transform: scale(1.04);
+}
+
+.hero-first-run.hero-photo-go .home-hero__image {
+  transform: scale(1);
+  transition: transform 1400ms var(--ease-premium);
+}
+
+/* Hidden states are instant (no transition), so elements that were already
+   rendered drop out cleanly before the choreography. All transitions live on
+   the .page-ready reveal states — the after-change style decides whether a
+   transition runs, so only the reveal animates. */
+.hero-first-run .home-hero h1 .hero-word,
+.hero-first-run .home-hero h1 .hero-word--gold {
+  display: inline-block;
+  opacity: 0;
+  translate: 0 0.42em;
+}
+
+.hero-first-run .home-hero h1 .hero-word--gold::after {
+  transform: scaleX(0);
+}
+
+.hero-first-run .home-hero__lead,
+.hero-first-run .home-hero__support,
+.hero-first-run .home-hero__copy .button-row {
+  opacity: 0;
+  translate: 0 14px;
+}
+
+.hero-first-run .page-ready .home-hero h1 .hero-word,
+.hero-first-run .page-ready .home-hero h1 .hero-word--gold {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity 460ms var(--ease-premium),
+    translate 620ms var(--ease-premium);
+  transition-delay: calc(120ms + var(--word-index, 0) * 140ms);
+}
+
+.hero-first-run .page-ready .home-hero h1 .hero-word--gold::after {
+  transform: scaleX(1);
+  transition: transform 520ms var(--ease-premium) 880ms;
+}
+
+.hero-first-run .page-ready .home-hero__lead,
+.hero-first-run .page-ready .home-hero__support,
+.hero-first-run .page-ready .home-hero__copy .button-row {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity 480ms var(--ease-premium),
+    translate 600ms var(--ease-premium);
+  transition-delay: 500ms;
+}
+
+.hero-first-run .page-ready .home-hero__support {
+  transition-delay: 580ms;
+}
+
+.hero-first-run .page-ready .home-hero__copy .button-row {
+  transition-delay: 660ms;
+}
+
+/* Same-session repeat visits: one quiet 300ms fade, rule already drawn. */
+.hero-replay .home-hero__copy > * {
+  opacity: 0;
+}
+
+.hero-replay .page-ready .home-hero__copy > * {
+  opacity: 1;
+  transition: opacity 300ms ease;
+}
+
+/* Mobile compresses the same sequence to ~0.9s. */
+@media (max-width: 640px) {
+  .hero-first-run.hero-photo-go .home-hero__image {
+    transition-duration: 900ms;
+  }
+
+  .hero-first-run .page-ready .home-hero h1 .hero-word,
+  .hero-first-run .page-ready .home-hero h1 .hero-word--gold {
+    transition-duration: 360ms, 440ms;
+    transition-delay: calc(60ms + var(--word-index, 0) * 90ms);
+  }
+
+  .hero-first-run .page-ready .home-hero h1 .hero-word--gold::after {
+    transition-duration: 380ms;
+    transition-delay: 500ms;
+  }
+
+  .hero-first-run .page-ready .home-hero__lead,
+  .hero-first-run .page-ready .home-hero__support,
+  .hero-first-run .page-ready .home-hero__copy .button-row {
+    transition-duration: 360ms, 460ms;
+    transition-delay: 320ms;
+  }
+
+  .hero-first-run .page-ready .home-hero__support {
+    transition-delay: 400ms;
+  }
+
+  .hero-first-run .page-ready .home-hero__copy .button-row {
+    transition-delay: 480ms;
+  }
+}
+
+/* --- 2: section dividers --- */
+
+/* JS drops an absolute rule span at each major section's top edge. The line
+   draws left-to-right at 40% gold, then settles into the section's own
+   border color (opacity back to 0 over the real border). */
+.section-divider {
+  position: relative;
+}
+
+.section-rule {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.55;
+  pointer-events: none;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.section-divider.is-drawn .section-rule {
+  opacity: 0;
+  transform: scaleX(1);
+  transition:
+    transform 600ms var(--ease-premium),
+    opacity 500ms ease 700ms;
+}
+
+/* The section's eyebrow follows the line in (a beat behind its heading).
+   Hidden states stay transition-free; the is-drawn state carries the
+   transition so entering hiding is instant and only the reveal animates. */
+.motion-ready .section-divider .section-heading .eyebrow {
+  opacity: 0;
+  translate: 0 10px;
+}
+
+.motion-ready .section-divider.is-drawn .section-heading .eyebrow {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity 450ms var(--ease-premium) 240ms,
+    translate 540ms var(--ease-premium) 240ms;
+}
+
+/* Gold numerals on the 01–05 blocks rise staggered — they never count. */
+.motion-ready .section-divider .intent-grid > a > span,
+.motion-ready .section-divider .standard-grid article > span {
+  opacity: 0;
+  translate: 0 0.55em;
+}
+
+.section-divider .intent-grid > a:nth-child(2),
+.section-divider .standard-grid article:nth-child(2) {
+  --numeral-index: 1;
+}
+
+.section-divider .intent-grid > a:nth-child(3),
+.section-divider .standard-grid article:nth-child(3) {
+  --numeral-index: 2;
+}
+
+.section-divider .intent-grid > a:nth-child(4),
+.section-divider .standard-grid article:nth-child(4) {
+  --numeral-index: 3;
+}
+
+.section-divider .intent-grid > a:nth-child(5),
+.section-divider .standard-grid article:nth-child(5) {
+  --numeral-index: 4;
+}
+
+.motion-ready .section-divider.is-drawn .intent-grid > a > span,
+.motion-ready .section-divider.is-drawn .standard-grid article > span {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity 420ms var(--ease-premium)
+      calc(160ms + var(--numeral-index, 0) * 70ms),
+    translate 520ms var(--ease-premium)
+      calc(160ms + var(--numeral-index, 0) * 70ms);
+}
+
+/* --- 3: CTA magnetism --- */
+
+.button--primary .icon {
+  transition: transform 180ms var(--ease-premium);
+}
+
+/* While magnetized JS owns the transform; drop its transition so the
+   pointer-follow stays crisp. */
+.button.is-magnetic {
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.button--primary.is-magnetic .icon {
+  transform: translateX(4px);
+}
+
+/* Touch devices get a 120ms press settle instead of magnetism. */
+@media (hover: none), (pointer: coarse) {
+  .button:active {
+    transform: scale(0.98);
+    transition: transform 120ms ease;
+  }
+}
+
+/* --- Quiet utility motion (<= 200ms) --- */
+
+/* Shared nav underline that slides between desktop items (JS-placed). */
+.desktop-nav {
+  position: relative;
+}
+
+.nav-underline {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: left top;
+  transition:
+    transform 200ms var(--ease-premium),
+    opacity 150ms ease;
+}
+
+.nav-underline--jump {
+  transition: none;
+}
+
+/* With the shared underline live, per-link hover underlines stand down;
+   the static is-active underline stays as the resting marker. */
+.nav-slide .desktop-nav > a:not(.is-active):hover::after,
+.nav-slide .nav-dropdown > summary:not(.is-active):hover::after {
+  transform: scaleX(0);
+}
+
+/* Accordion: marker + content entry share one 200ms curve (opacity and
+   translate only — the details box never animates layout). */
+.faq-item summary > span:last-child {
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item[open] > div {
+  animation: wave2-accordion-in 200ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes wave2-accordion-in {
+  from {
+    opacity: 0;
+    translate: 0 -6px;
+  }
+}
+
+/* Card hover: the caption chip rises with the existing image zoom. */
+@media (hover: hover) and (pointer: fine) {
+  .work-strip__caption {
+    transition: translate 200ms var(--ease-premium);
+  }
+
+  .work-strip__item:hover .work-strip__caption,
+  .work-strip__item:focus-visible .work-strip__caption {
+    translate: 0 -3px;
+  }
+}
+
+/* --- Cross-document view transitions (progressive enhancement) --- */
+
+/* The @view-transition opt-in sits at the top of this sheet. Unsupported
+   browsers skip this whole block and navigate normally. 250ms fade through
+   brand black; the header logo carries its own name so it stays anchored. */
+@supports (view-transition-name: root) {
+  .site-header .brand-logo {
+    view-transition-name: brand-logo;
+  }
+
+  ::view-transition {
+    background: #0d0d0d;
+  }
+
+  ::view-transition-old(root) {
+    animation: wave2-vt-out 110ms ease-in both;
+  }
+
+  ::view-transition-new(root) {
+    animation: wave2-vt-in 140ms ease-out 110ms both;
+  }
+
+  ::view-transition-group(brand-logo) {
+    animation-duration: 250ms;
+    animation-timing-function: var(--ease-premium);
+  }
+
+  ::view-transition-old(brand-logo),
+  ::view-transition-new(brand-logo) {
+    animation-duration: 250ms;
+  }
+}
+
+@keyframes wave2-vt-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes wave2-vt-in {
+  from {
+    opacity: 0;
+  }
+}
+/* === end Wave 2 === */

@@ -1,9 +1,13 @@
 import {
   aboveStandard,
+  assurancePaths,
   business,
   faqs,
+  founder,
   navigation,
   processSteps,
+  proof,
+  selectedWork,
   services,
   trustSignals
 } from "./data.mjs";
@@ -454,9 +458,8 @@ export const layout = ({
   <meta name="robots" content="${noindex ? "noindex,nofollow" : "index,follow,max-image-preview:large"}">
   <link rel="canonical" href="${canonical}">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="/assets/fonts/bebas-neue-v16-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/montserrat-v31-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/styles.css">
   <meta property="og:type" content="${article ? "article" : "website"}">
   <meta property="og:locale" content="en_US">
@@ -532,16 +535,19 @@ export const servicesGrid = () => `
         (service, index) => `
         <article class="service-card">
           <a class="service-card__image" href="/services/${service.slug}/" data-event="service_card_click" data-service="${service.slug}">
-            <img
-              src="${service.cardImage || service.image}"
-              ${service.cardSrcset ? `srcset="${service.cardSrcset}"` : ""}
-              ${service.cardSizes ? `sizes="${service.cardSizes}"` : ""}
-              alt="${escapeHtml(service.cardImageAlt || service.imageAlt)}"
-              width="${service.cardImageWidth || service.imageWidth || 1200}"
-              height="${service.cardImageHeight || service.imageHeight || 800}"
-              loading="lazy"
-              decoding="async"
-            >
+            <picture>
+              ${service.cardImageMobile ? `<source media="(max-width: 800px)" srcset="${service.cardImageMobile}" width="${service.cardImageMobileWidth || 800}" height="${service.cardImageMobileHeight || 1000}">` : ""}
+              <img
+                src="${service.cardImage || service.image}"
+                ${service.cardSrcset ? `srcset="${service.cardSrcset}"` : ""}
+                ${service.cardSizes ? `sizes="${service.cardSizes}"` : ""}
+                alt="${escapeHtml(service.cardImageAlt || service.imageAlt)}"
+                width="${service.cardImageWidth || service.imageWidth || 1200}"
+                height="${service.cardImageHeight || service.imageHeight || 800}"
+                loading="lazy"
+                decoding="async"
+              >
+            </picture>
           </a>
           <div class="service-card__content">
             <span class="service-card__number">0${index + 1}</span>
@@ -598,7 +604,7 @@ export const faqList = (items = faqs) => `
 export const finalCta = ({
   eyebrow = "Expect more from your contractor",
   title = "Ready to build above standard?",
-  text = "Tell us what you see. We will help define the next step."
+  text = "Tell us what you see. We'll tell you what it means \u2014 and what it doesn't need."
 } = {}) => `
   <section class="final-cta pattern">
     <div class="shell final-cta__inner">
@@ -899,3 +905,124 @@ export const inspectionForm = () => {
 
 export const safeExternalLink = (href, label) =>
   `<a class="text-link" href="${href}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}${icon("arrow")}</a>`;
+
+const proofMark = (mark) => {
+  const inner = `
+      <span class="reputation-card__mark${mark.icon ? " reputation-card__mark--icon" : ""}" aria-hidden="true">${mark.icon ? icon(mark.icon) : escapeHtml(mark.mark)}</span>
+      <div class="proof-mark__body"><h3>${escapeHtml(mark.title)}</h3></div>`;
+  return mark.href
+    ? `<a class="reputation-card proof-mark proof-mark--link" href="${mark.href}" target="_blank" rel="noopener noreferrer" data-event="review_source_click" data-position="home_proof">${inner}${icon("arrow", "proof-mark__arrow")}</a>`
+    : `<div class="reputation-card proof-mark">${inner}</div>`;
+};
+
+export const proofQuote = (quote) => `
+  <figure class="reputation-card proof-quote">
+    <span class="proof-quote__avatar" aria-hidden="true">${escapeHtml(quote.initial)}</span>
+    <div class="proof-quote__body">
+      <blockquote>“${escapeHtml(quote.quote)}”</blockquote>
+      <figcaption>${escapeHtml(quote.name)} · ${escapeHtml(quote.context)}</figcaption>
+    </div>
+  </figure>`;
+
+export const verifiedQuotes = () =>
+  proof.quotes.filter((quote) => quote.verified);
+
+export const proofBand = () => {
+  const marks = proof.marks.filter((mark) => mark.verified);
+  const quotes = verifiedQuotes();
+  if (!marks.length && !quotes.length) return "";
+  return `
+  <section class="section proof-band">
+    <div class="shell">
+      ${sectionHeading({
+        eyebrow: proof.eyebrow,
+        title: proof.title,
+        intro: proof.microcopy
+      })}
+      <div class="proof-band__grid">
+        ${marks.length ? `<div class="proof-band__marks">${marks.map(proofMark).join("")}</div>` : ""}
+        ${quotes.map(proofQuote).join("")}
+      </div>
+      <div class="proof-band__footer">
+        <a class="text-link" href="${proof.link.href}" data-event="review_source_click" data-position="home_proof">${escapeHtml(proof.link.label)} ${icon("arrow")}</a>
+      </div>
+    </div>
+  </section>`;
+};
+
+export const workStrip = () => `
+  <section class="section section--dark work-strip">
+    <div class="shell">
+      <div class="work-strip__header">
+        ${sectionHeading({
+          eyebrow: "Selected work",
+          title: "See the system taking shape.",
+          invert: true
+        })}
+        ${button({
+          href: "/projects/",
+          label: "Explore Our Projects",
+          variant: "outline",
+          event: "project_gallery_click",
+          position: "home_work_strip"
+        })}
+      </div>
+      <div class="work-strip__row">
+        ${selectedWork
+          .map(
+            (item) => `
+          <a class="work-strip__item" href="/projects/" data-event="project_gallery_click" data-position="home_work_strip">
+            <span class="work-strip__media">
+              <img src="${item.image}" srcset="${item.srcset}" sizes="(max-width: 800px) 78vw, (max-width: 1400px) 31vw, 417px" alt="${escapeHtml(item.alt)}" width="${item.width}" height="${item.height}" loading="lazy" decoding="async">
+            </span>
+            <span class="work-strip__caption">${escapeHtml(item.caption)}</span>
+          </a>`
+          )
+          .join("")}
+      </div>
+    </div>
+  </section>`;
+
+export const assuranceBand = () => `
+  <section class="section section--cream assurance-band" aria-label="Financing and warranty guidance">
+    <div class="shell">
+      <div class="assurance-band__grid">
+        ${assurancePaths
+          .map(
+            (item) => `
+          <a href="${item.href}">
+            <span>${escapeHtml(item.label)}</span>
+            <h3>${escapeHtml(item.title)}</h3>
+            ${icon("arrow")}
+          </a>`
+          )
+          .join("")}
+      </div>
+    </div>
+  </section>`;
+
+export const founderSection = () => {
+  const ready =
+    founder.verified &&
+    founder.name &&
+    founder.role &&
+    founder.quote &&
+    founder.portrait &&
+    founder.portraitAlt &&
+    founder.portraitWidth > 0 &&
+    founder.portraitHeight > 0;
+  if (!ready) return "";
+  return `
+  <section class="section section--dark founder-section">
+    <div class="shell founder-section__grid">
+      <figure class="founder-section__media">
+        <img src="${founder.portrait}" alt="${escapeHtml(founder.portraitAlt)}" width="${founder.portraitWidth}" height="${founder.portraitHeight}" loading="lazy" decoding="async">
+      </figure>
+      <div class="founder-section__copy">
+        <p class="eyebrow">${escapeHtml(founder.eyebrow)}</p>
+        <blockquote class="founder-section__quote">“${escapeHtml(founder.quote)}”</blockquote>
+        <p class="founder-section__name">${escapeHtml(founder.name)}<span> · ${escapeHtml(founder.role)}</span></p>
+      </div>
+    </div>
+  </section>`;
+};

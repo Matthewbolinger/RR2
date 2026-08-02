@@ -1,6 +1,9 @@
 const dataLayer = (window.dataLayer = window.dataLayer || []);
 document.documentElement.classList.add("js");
 
+const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)");
+const FINE_POINTER = window.matchMedia("(hover: hover) and (pointer: fine)");
+
 function track(eventName, properties = {}) {
   dataLayer.push({
     event: eventName,
@@ -177,6 +180,72 @@ function setupActiveNavigation() {
   }
 }
 
+// Wave 2 signature 1/3 — once per session the hero photo settles from
+// scale(1.04), the headline words rise in a 3-step stagger, and a gold rule
+// draws under "Standard.". Repeat visits fade in over 300ms. Reduced motion
+// (or no JS) keeps the static hero: hidden states hang off classes set here.
+function setupHeroSignature() {
+  const heading = document.querySelector(".home-hero h1");
+  if (!heading || REDUCED_MOTION.matches) return;
+
+  const goldWord = heading.querySelector("span:not(.hero-mobile-break)");
+  let played = null;
+  try {
+    played = sessionStorage.getItem("rr_hero_played");
+  } catch {
+    // Without storage every visit plays the full sequence.
+  }
+
+  if (played) {
+    goldWord?.classList.add("hero-word--gold");
+    document.documentElement.classList.add("hero-replay");
+    return;
+  }
+  try {
+    sessionStorage.setItem("rr_hero_played", "1");
+  } catch {
+    // Ignore; the flag only trims repeat plays.
+  }
+
+  // The photo ease starts only once the image is loaded, so the largest
+  // paint always lands on a still layer (LCP-safe on slow connections).
+  const photo = document.querySelector(".home-hero__image");
+  if (photo) {
+    const go = () =>
+      requestAnimationFrame(() =>
+        document.documentElement.classList.add("hero-photo-go")
+      );
+    if (photo.complete) go();
+    else photo.addEventListener("load", go, { once: true });
+  }
+
+  // Wrap headline words so the lines can rise in a stagger.
+  let wordIndex = 0;
+  [...heading.childNodes].forEach((node) => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      if (!node.textContent.trim()) return;
+      const fragment = document.createDocumentFragment();
+      node.textContent.split(/(\s+)/).forEach((part) => {
+        if (!part) return;
+        if (!part.trim()) {
+          fragment.append(part);
+          return;
+        }
+        const word = document.createElement("span");
+        word.className = "hero-word";
+        word.style.setProperty("--word-index", String(wordIndex++));
+        word.textContent = part;
+        fragment.append(word);
+      });
+      node.replaceWith(fragment);
+    } else if (node === goldWord) {
+      node.classList.add("hero-word--gold");
+      node.style.setProperty("--word-index", String(wordIndex++));
+    }
+  });
+  document.documentElement.classList.add("hero-first-run");
+}
+
 function setupRevealMotion() {
   const targets = document.querySelectorAll(
     [
@@ -217,6 +286,34 @@ function setupRevealMotion() {
     target.style.setProperty("--reveal-order", String(index % 5));
   });
 
+  // Wave 2 signature 2/3 — as each major section enters, a gold line draws
+  // along its top edge; the eyebrow and gold numerals follow. Rule elements
+  // exist only on this motion path, so static renders are untouched.
+  const dividerSections = document.querySelectorAll(
+    "main > .section, main > .storm-panel, main > .final-cta"
+  );
+  dividerSections.forEach((section) => {
+    section.classList.add("section-divider");
+    section.insertAdjacentHTML(
+      "afterbegin",
+      '<span class="section-rule" aria-hidden="true"></span>'
+    );
+  });
+
+  // Edge-triggered (threshold 0): a divider draws as its section's top edge
+  // enters, independent of section height — the reveal observer's area
+  // threshold would stall on tall sections.
+  const dividerObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-drawn");
+        dividerObserver.unobserve(entry.target);
+      });
+    },
+    { rootMargin: "0px 0px -8% 0px", threshold: 0 }
+  );
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -239,6 +336,112 @@ function setupRevealMotion() {
   );
 
   targets.forEach((target) => observer.observe(target));
+  dividerSections.forEach((section) => dividerObserver.observe(section));
+}
+
+// Wave 2 signature 3/3 — primary gold CTAs lean toward a fine pointer (max
+// 6px, lerped) and spring back on leave; the arrow nudges via is-magnetic.
+// Touch gets only the CSS press state; reduced motion disables it entirely.
+function setupCtaMagnet() {
+  if (!FINE_POINTER.matches || REDUCED_MOTION.matches) return;
+  const clamp = (value) => Math.max(-6, Math.min(6, value));
+
+  document.querySelectorAll(".button--primary").forEach((button) => {
+    let frame = 0;
+    let engaged = false;
+    let rect = null;
+    let targetX = 0;
+    let targetY = 0;
+    let x = 0;
+    let y = 0;
+
+    const step = () => {
+      x += (targetX - x) * 0.16;
+      y += (targetY - y) * 0.16;
+      if (!engaged && Math.abs(x) < 0.12 && Math.abs(y) < 0.12) {
+        button.style.transform = "";
+        frame = 0;
+        return;
+      }
+      button.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0)`;
+      frame = requestAnimationFrame(step);
+    };
+    const run = () => {
+      if (!frame) frame = requestAnimationFrame(step);
+    };
+    const release = () => {
+      engaged = false;
+      targetX = 0;
+      targetY = 0;
+      button.classList.remove("is-magnetic");
+      run();
+    };
+
+    button.addEventListener("pointerenter", (event) => {
+      if (event.pointerType !== "mouse" || REDUCED_MOTION.matches) return;
+      engaged = true;
+      // Measure once while untransformed so the pull has a stable origin.
+      rect = button.getBoundingClientRect();
+      button.classList.add("is-magnetic");
+      run();
+    });
+    button.addEventListener("pointermove", (event) => {
+      if (!engaged || !rect) return;
+      targetX = clamp(((event.clientX - rect.left) / rect.width - 0.5) * 12);
+      targetY = clamp(((event.clientY - rect.top) / rect.height - 0.5) * 12);
+      run();
+    });
+    button.addEventListener("pointerleave", release);
+    button.addEventListener("pointercancel", release);
+  });
+}
+
+// Quiet utility motion: one shared gold underline slides between desktop
+// nav items under a fine pointer; the CSS per-link underline stands in
+// otherwise, and is-active stays the resting marker.
+function setupNavUnderline() {
+  const nav = document.querySelector(".desktop-nav");
+  if (!nav || !FINE_POINTER.matches || REDUCED_MOTION.matches) return;
+  const items = [
+    ...nav.querySelectorAll(":scope > a, .nav-dropdown > summary")
+  ];
+  if (!items.length) return;
+
+  const line = document.createElement("span");
+  line.className = "nav-underline";
+  line.setAttribute("aria-hidden", "true");
+  nav.append(line);
+  document.documentElement.classList.add("nav-slide");
+
+  let visible = false;
+  const place = (item, instant) => {
+    const navBox = nav.getBoundingClientRect();
+    const box = item.getBoundingClientRect();
+    if (instant) line.classList.add("nav-underline--jump");
+    line.style.transform = `translate(${(box.left - navBox.left).toFixed(1)}px, ${(
+      box.bottom - navBox.top + 12
+    ).toFixed(1)}px) scaleX(${box.width.toFixed(1)})`;
+    if (instant) {
+      void line.offsetWidth;
+      line.classList.remove("nav-underline--jump");
+    }
+  };
+
+  items.forEach((item) => {
+    item.addEventListener("pointerenter", () => {
+      place(item, !visible);
+      visible = true;
+      line.style.opacity = "1";
+    });
+  });
+  nav.addEventListener("pointerleave", () => {
+    const active = nav.querySelector(
+      ":scope > a.is-active, .nav-dropdown > summary.is-active"
+    );
+    if (active && visible) place(active, false);
+    visible = false;
+    line.style.opacity = "0";
+  });
 }
 
 function setupImageFallbacks() {
@@ -546,9 +749,17 @@ setupMenu();
 setupEventTracking();
 setupDetails();
 setupActiveNavigation();
+setupHeroSignature();
 setupRevealMotion();
+setupCtaMagnet();
+setupNavUnderline();
 setupImageFallbacks();
 setupMobileConversion();
 setupForm();
-document.documentElement.classList.add("hero-motion-ready");
-requestAnimationFrame(() => document.body.classList.add("page-ready"));
+// Double-rAF: the first frame commits the pre-reveal state (rAF callbacks
+// run before style recalc, so a single rAF would land in the same recalc as
+// the classes set above and skip every hero transition); the second starts
+// the choreography.
+requestAnimationFrame(() =>
+  requestAnimationFrame(() => document.body.classList.add("page-ready"))
+);

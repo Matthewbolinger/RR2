@@ -8,9 +8,14 @@
     "config:vercel": "node scripts/generate-vercel-config.mjs",
     "build": "npm run config:vercel && node scripts/build.mjs",
     "dev": "node scripts/serve.mjs",
+    "encode:images": "node scripts/encode-images.mjs",
     "check": "node scripts/check.mjs",
     "check:images": "node scripts/check-images.mjs",
     "screenshots": "node scripts/capture-screenshots.mjs",
+    "audit:frames": "node scripts/audit-frames.mjs",
+    "audit:overflow": "node scripts/audit-overflow.mjs",
+    "audit:vitals": "node scripts/audit-vitals.mjs",
+    "audit": "npm run audit:overflow && npm run audit:vitals && npm run audit:frames",
     "test": "npm run build && npm run check && npm run check:images"
   },
   "engines": {

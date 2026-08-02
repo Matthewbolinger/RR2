@@ -8,20 +8,28 @@ import {
 } from "./data.mjs";
 import { resourceArticles } from "./resources.mjs";
 import {
+  caseStudyCrossLinks,
+  caseStudyPages
+} from "./case-study-templates.mjs";
+import {
   aboveStandardGrid,
+  assuranceBand,
   breadcrumbs,
   button,
   faqList,
   finalCta,
+  founderSection,
   icon,
   inspectionForm,
   layout,
   pageHero,
+  proofBand,
   quoteCta,
-  safeExternalLink,
   sectionHeading,
   servicesGrid,
-  trustStrip
+  trustStrip,
+  verifiedQuotes,
+  workStrip
 } from "./templates.mjs";
 
 const resourceCards = (items = resourceArticles) => `
@@ -103,8 +111,7 @@ const home = {
         <div class="shell">
           ${sectionHeading({
             eyebrow: "Start with what you need",
-            title: "What brings you here?",
-            intro: "Start with the concern in front of you."
+            title: "What brings you here?"
           })}
           <div class="intent-grid">
             <a href="/services/roof-repair/" data-event="intent_selector_click" data-intent="active-leak"><span>01</span><h3>I have an active leak</h3><p>Protect the interior and locate the source.</p>${icon("arrow")}</a>
@@ -128,29 +135,7 @@ const home = {
         </div>
       </section>
 
-      <section class="section home-project-proof">
-        <div class="shell home-project-proof__grid">
-          <figure class="home-project-proof__media">
-            <picture>
-              <source media="(max-width: 640px)" srcset="/assets/editorial-v2/home-selected-installation-800.jpg">
-              <img src="/assets/editorial-v2/home-selected-installation-1280.jpg" alt="Roofing crew completing a residential installation on a red home surrounded by autumn landscaping" width="1280" height="720" loading="lazy" decoding="async">
-            </picture>
-            <figcaption>Residential installation · In progress</figcaption>
-          </figure>
-          <div class="home-project-proof__copy">
-            <p class="eyebrow">Selected work</p>
-            <h2>See the system taking shape.</h2>
-            <p>Real field work, documented from installation through completion.</p>
-            ${button({
-              href: "/projects/",
-              label: "Explore Our Projects",
-              variant: "outline",
-              event: "project_gallery_click",
-              position: "home_project_proof"
-            })}
-          </div>
-        </div>
-      </section>
+      ${workStrip()}
 
       <section class="section section--cream standard-section">
         <div class="shell">
@@ -197,36 +182,21 @@ const home = {
         </div>
       </section>
 
-      <section class="section reviews-preview">
-        <div class="shell split-heading">
-          ${sectionHeading({
-            eyebrow: "Local accountability",
-            title: "Barrington based. Greater Chicago focused.",
-            intro: "Verify current business details and customer feedback at the original source."
-          })}
-          <div class="reputation-card">
-            <span class="reputation-card__mark">BBB</span>
-            <div>
-              <h3>BBB Accredited · A+ rating</h3>
-              <p>Check the current rating and recent feedback directly on BBB.</p>
-              ${safeExternalLink(
-                "https://www.bbb.org/us/il/barrington/profile/roofing-consultants/raccoon-restoration-0654-90025835",
-                "View the BBB profile"
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
+      ${proofBand()}
+      ${founderSection()}
+      ${assuranceBand()}
 
       <section class="section section--dark faq-section pattern">
         <div class="shell faq-layout">
           ${sectionHeading({
             eyebrow: "Straight answers",
             title: "Answers before the inspection.",
-            intro: "Quick answers to common roofing questions.",
             invert: true
           })}
-          ${faqList(faqs.slice(0, 3))}
+          <div class="faq-column">
+            ${faqList(faqs.slice(0, 3))}
+            <a class="text-link faq-more-link" href="/faq/">All questions ${icon("arrow")}</a>
+          </div>
         </div>
       </section>
       ${finalCta()}
@@ -432,7 +402,10 @@ const projects = {
     pageType: "projects",
     body: `
       <section class="project-hero">
-        <img class="project-hero__image" src="/assets/projects/project-tudor-residence-landscape-finished-v6-1600.webp" srcset="/assets/projects/project-tudor-residence-landscape-finished-v6-640.webp 640w, /assets/projects/project-tudor-residence-landscape-finished-v6-1280.webp 1280w, /assets/projects/project-tudor-residence-landscape-finished-v6-1600.webp 1600w, /assets/projects/project-tudor-residence-landscape-finished-v6-1920.webp 1920w" sizes="100vw" alt="Exterior view of a large Tudor-inspired home with dark roof planes, a round stone tower, black-and-white trim, sculpted hedges, dark mulch beds, and a manicured front lawn" width="1600" height="900" fetchpriority="high" decoding="async">
+        <picture>
+          <source media="(max-width: 640px)" srcset="/assets/projects/project-tudor-residence-exterior-polished-v7-mobile-800x1000.jpg">
+          <img class="project-hero__image" src="/assets/projects/project-tudor-residence-exterior-polished-v7-1600.jpg" srcset="/assets/projects/project-tudor-residence-exterior-polished-v7-640.jpg 640w, /assets/projects/project-tudor-residence-exterior-polished-v7-1280.jpg 1280w, /assets/projects/project-tudor-residence-exterior-polished-v7-1600.jpg 1600w" sizes="100vw" alt="Polished completed view of a large Tudor-inspired home with dark roof planes, a round stone tower, black-and-white trim, a clean entry, defined planting beds, and a manicured lawn" width="1600" height="900" fetchpriority="high" decoding="async">
+        </picture>
         <div class="project-hero__scrim"></div>
         <div class="shell project-hero__inner">
           ${breadcrumbs([{ label: "Projects", href: "#" }])}
@@ -694,6 +667,7 @@ const projects = {
           </figure>
         </div>
       </section>
+      ${caseStudyCrossLinks()}
       ${finalCta({
         eyebrow: "Planning your next project?",
         title: "Put your property in the next chapter.",
@@ -740,14 +714,15 @@ const reviews = {
                 <span class="reviews-source-panel__mark">BBB</span>
                 <div><strong>A+ BBB rating</strong><span>BBB Accredited Business</span></div>
               </div>
+              ${verifiedQuotes()
+                .map(
+                  (quote) => `
               <figure class="reviews-source-panel__quote">
-                <blockquote>“The job was completed in a timely manner, and communication throughout the entire process was smooth.”</blockquote>
-                <figcaption>Julian K. · Commercial roofing review</figcaption>
-              </figure>
-              <figure class="reviews-source-panel__quote">
-                <blockquote>“The experience was excellent from start to finish.”</blockquote>
-                <figcaption>Matthew B. · Roof replacement review</figcaption>
-              </figure>
+                <blockquote>“${quote.quote}”</blockquote>
+                <figcaption>${quote.name} · ${quote.context}</figcaption>
+              </figure>`
+                )
+                .join("")}
               <div class="reviews-source-panel__links">
                 <a href="https://www.bbb.org/us/il/barrington/profile/roofing-consultants/raccoon-restoration-0654-90025835" target="_blank" rel="noopener noreferrer" data-event="review_source_click" data-position="reviews_hero">Read reviews on BBB ${icon("arrow")}</a>
                 <a href="https://www.gaf.com/en-us/roofing-contractors/residential/usa/il/barrington/raccoon-restoration-1151998" target="_blank" rel="noopener noreferrer" data-event="review_source_click" data-position="reviews_hero">View GAF profile ${icon("arrow")}</a>
@@ -1603,6 +1578,7 @@ export const pages = [
   serviceIndex,
   ...servicePages,
   projects,
+  ...caseStudyPages,
   reviews,
   about,
   process,

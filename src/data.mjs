@@ -42,8 +42,6 @@ export const services = [
     short: "Replace the full system with a clear plan.",
     image:
       "/assets/editorial-v2/roof-replacement-premium-service-card-1280.jpg",
-    imageMobile:
-      "/assets/editorial-v2/roof-replacement-premium-service-card-640.jpg",
     cardImage:
       "/assets/editorial-v2/roof-replacement-premium-service-card-1280.jpg",
     cardSrcset:
@@ -51,14 +49,14 @@ export const services = [
     cardSizes:
       "(max-width: 800px) calc(100vw - 32px), (max-width: 1100px) 50vw, 25vw",
     cardImageAlt:
-      "Completed upscale residence with a newly installed dark charcoal architectural-shingle roof in overcast evening light",
+      "Upscale stone residence with a dark charcoal architectural-shingle roof, warm interior lighting, and rain-darkened pavement",
     cardImageWidth: 1280,
     cardImageHeight: 720,
     imageAlt:
       "Upscale stone residence with a dark charcoal architectural-shingle roof, warm interior lighting, and rain-darkened pavement",
     imageWidth: 1280,
     imageHeight: 720,
-    mediaCaption: "Residential roof replacement",
+    mediaCaption: "Roof replacement · service illustration",
     signs: [
       "Widespread shingle wear or granule loss",
       "Repeated repairs in multiple roof areas",
@@ -91,13 +89,15 @@ export const services = [
     short: "Find the source before choosing the fix.",
     image: "/assets/images/roofer-inspection.jpg",
     cardImage: "/assets/images/roof-repair-inspection-card-640.jpg",
+    cardImageAlt:
+      "Roofing professional inspecting dark architectural shingles",
     cardImageWidth: 640,
     cardImageHeight: 426,
     imageAlt:
       "Roofing professional inspecting dark architectural shingles",
     imageWidth: 1200,
     imageHeight: 800,
-    mediaCaption: "Illustrative inspection image",
+    mediaCaption: "Roof inspection · service illustration",
     signs: [
       "Water stains or active interior dripping",
       "Missing, lifted, or damaged shingles",
@@ -128,9 +128,8 @@ export const services = [
     summary:
       "A documented wind or hail assessment, followed by a clear repair or restoration scope when work is warranted.",
     short: "Document the conditions. Plan the next step.",
-    image: "/assets/editorial-v2/storm-assessment-web-1280.jpg",
-    imageMobile:
-      "/assets/editorial-v2/storm-assessment-web-mobile-800.jpg",
+    image:
+      "/assets/editorial-v2/storm-restoration-assessment-service-card-v2-1280.jpg",
     cardImage:
       "/assets/editorial-v2/storm-restoration-assessment-service-card-v2-1280.jpg",
     cardSrcset:
@@ -138,14 +137,14 @@ export const services = [
     cardSizes:
       "(max-width: 800px) calc(100vw - 32px), (max-width: 1100px) 50vw, 25vw",
     cardImageAlt:
-      "Roofing professional documenting localized storm damage on a residential architectural-shingle roof after rainfall",
+      "Roofing professional photographing lifted shingles on a wet residential roof",
     cardImageWidth: 1280,
     cardImageHeight: 720,
     imageAlt:
-      "Professional photographing a residential roof after rainfall",
+      "Roofing professional photographing lifted shingles on a wet residential roof",
     imageWidth: 1280,
     imageHeight: 720,
-    mediaCaption: "Illustrative assessment image",
+    mediaCaption: "Storm assessment · service illustration",
     signs: [
       "Missing, creased, or displaced shingles",
       "Fresh damage to roof edges, vents, gutters, or siding",
@@ -176,9 +175,8 @@ export const services = [
     summary:
       "Gutter and exterior work coordinated as part of the home’s drainage and weather-protection system.",
     short: "Protect the roofline and drainage path.",
-    image: "/assets/editorial-v2/gutters-system-web-1280.jpg",
-    imageMobile:
-      "/assets/editorial-v2/gutters-system-web-mobile-800.jpg",
+    image:
+      "/assets/editorial-v2/gutters-exteriors-installation-service-card-v2-1280.jpg",
     cardImage:
       "/assets/editorial-v2/gutters-exteriors-installation-service-card-v2-1280.jpg",
     cardSrcset:
@@ -186,14 +184,14 @@ export const services = [
     cardSizes:
       "(max-width: 800px) calc(100vw - 32px), (max-width: 1100px) 50vw, 25vw",
     cardImageAlt:
-      "Exterior professional aligning a matte-charcoal seamless gutter on a stone residence",
+      "Exterior professional checking the alignment of a matte-charcoal gutter on a stone residence",
     cardImageWidth: 1280,
     cardImageHeight: 720,
     imageAlt:
-      "Matte charcoal gutter and soffit detail on a stone home",
+      "Exterior professional checking the alignment of a matte-charcoal gutter on a stone residence",
     imageWidth: 1280,
     imageHeight: 720,
-    mediaCaption: "Illustrative roofline image",
+    mediaCaption: "Gutter installation · service illustration",
     signs: [
       "Overflowing, sagging, or separated gutter sections",
       "Water concentrating near the foundation",
@@ -292,6 +290,106 @@ export const faqs = [
     a: "Our capabilities include roofing, siding, gutters, interior restoration, paint and wallcoverings, windows and doors, project estimating, design guidance, water and flood-damage assessments, and licensed public-adjusting services. Availability is confirmed for each property and scope."
   }
 ];
+
+export const proof = {
+  eyebrow: "Local accountability",
+  title: "Trust is easier to verify.",
+  microcopy:
+    "Don't take our word for it \u2014 check the sources yourself.",
+  marks: [
+    {
+      id: "bbb",
+      verified: true,
+      mark: "BBB",
+      title: "BBB Accredited · A+ rating",
+      href: "https://www.bbb.org/us/il/barrington/profile/roofing-consultants/raccoon-restoration-0654-90025835"
+    },
+    {
+      id: "il-roofing-license",
+      verified: true,
+      icon: "shield",
+      title: "Illinois Roofing License #104.020040"
+    }
+  ],
+  quotes: [
+    {
+      verified: true,
+      initial: "J",
+      quote:
+        "The job was completed in a timely manner, and communication throughout the entire process was smooth.",
+      name: "Julian K.",
+      context: "Commercial roofing review"
+    },
+    {
+      verified: true,
+      initial: "M",
+      quote: "The experience was excellent from start to finish.",
+      name: "Matthew B.",
+      context: "Roof replacement review"
+    }
+  ],
+  link: { href: "/reviews/", label: "View independent sources" }
+};
+
+export const selectedWork = [
+  {
+    caption: "Residential · Aerial View",
+    image: "/assets/projects/project-modern-residence-roof-aerial-640.jpg",
+    srcset: "/assets/projects/project-modern-residence-roof-aerial-640.jpg 640w",
+    alt:
+      "Top-down drone view of a large dark multi-plane roof over a modern white residence and attached garage, surrounded by lawn and trees",
+    width: 640,
+    height: 360
+  },
+  {
+    caption: "Commercial Flat Roof Installation",
+    image:
+      "/assets/projects/project-low-slope-roof-aerial-enhanced-v3-640.jpg",
+    srcset: "/assets/projects/project-low-slope-roof-aerial-enhanced-v3-640.jpg 640w",
+    alt:
+      "Aerial view of a large commercial building during flat roof installation, with a bright white low-slope roofing system, rooftop equipment, and workers",
+    width: 640,
+    height: 360
+  },
+  {
+    caption: "Tudor-Inspired Residence · Exterior",
+    image:
+      "/assets/projects/project-tudor-residence-exterior-polished-v7-640.jpg",
+    srcset:
+      "/assets/projects/project-tudor-residence-exterior-polished-v7-640.jpg 640w",
+    alt:
+      "Polished completed view of a large Tudor-inspired home with dark roof planes, a round stone tower, black-and-white trim, a clean entry, defined planting beds, and a manicured lawn",
+    width: 640,
+    height: 360
+  }
+];
+
+export const assurancePaths = [
+  {
+    label: "Financing",
+    title: "Ask what fits this project.",
+    href: "/financing/"
+  },
+  {
+    label: "Warranty",
+    title: "Clear terms before the work begins.",
+    href: "/warranty/"
+  }
+];
+
+export const founder = {
+  // Stays hidden until every field is filled with client-approved values and
+  // a real released portrait. Never activate with stock or generated people.
+  verified: false,
+  eyebrow: "Leadership",
+  name: "",
+  role: "",
+  quote: "",
+  portrait: "",
+  portraitAlt: "",
+  portraitWidth: 0,
+  portraitHeight: 0
+};
 
 export const claimRegistry = [
   {

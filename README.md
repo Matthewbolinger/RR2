@@ -41,7 +41,7 @@ docs/            Audit, content operations, launch, and QA documentation
 dist/            Generated production build; not committed
 ```
 
-The site uses no runtime framework or third-party JavaScript. Google Fonts is the only third-party front-end request and can be replaced with self-hosted font files before launch.
+The site uses no runtime framework or third-party JavaScript, and makes no third-party front-end requests: Bebas Neue and Montserrat are self-hosted WOFF2 files served same-origin with size-adjusted local fallbacks.
 
 ## Editing content
 

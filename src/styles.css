@@ -3139,26 +3139,34 @@ h3 {
 
 .process-detail article {
   display: grid;
-  grid-template-columns: 0.2fr 1fr 0.8fr;
-  gap: 40px;
-  padding-block: 54px;
+  grid-template-columns: 56px minmax(0, 1.1fr) minmax(280px, 0.72fr);
+  gap: clamp(24px, 3vw, 46px);
+  align-items: start;
+  padding-block: clamp(30px, 2.7vw, 40px);
   border-bottom: 1px solid var(--line-light);
 }
 
 .process-detail article > span {
+  padding-top: 18px;
   color: #8b6b21;
   font-family: var(--display);
-  font-size: 2rem;
+  font-size: clamp(1.55rem, 1.8vw, 1.85rem);
+  line-height: 1;
 }
 
 .process-detail h2 {
   margin: 0;
-  font-size: clamp(2.5rem, 4vw, 4rem);
+  max-width: 25ch;
+  font-size: clamp(2.05rem, 2.5vw, 2.9rem);
+  line-height: 0.98;
 }
 
 .process-detail article > div:last-child p {
-  margin: 0;
+  max-width: 39ch;
+  margin: 18px 0 0;
   color: var(--muted);
+  font-size: clamp(0.92rem, 1.05vw, 1.05rem);
+  line-height: 1.65;
 }
 
 .location-feature {
@@ -4661,11 +4669,18 @@ html:not(.js) .inspection-form [data-disabled-until-enhanced] {
   }
 
   .process-detail article {
-    grid-template-columns: 0.2fr 1fr;
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 14px 26px;
+    padding-block: 36px;
   }
 
   .process-detail article > div:last-child {
     grid-column: 2;
+  }
+
+  .process-detail article > div:last-child p {
+    max-width: 58ch;
+    margin-top: 0;
   }
 
   .review-sources {
@@ -5280,12 +5295,30 @@ html:not(.js) .inspection-form [data-disabled-until-enhanced] {
   }
 
   .process-detail article {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 10px 14px;
+    padding-block: 24px;
   }
 
   .process-detail article > div:last-child {
-    grid-column: auto;
+    grid-column: 2;
+  }
+
+  .process-detail article > span {
+    padding-top: 13px;
+    font-size: 1.3rem;
+  }
+
+  .process-detail h2 {
+    max-width: 22ch;
+    font-size: clamp(1.75rem, 7.6vw, 2.1rem);
+    line-height: 1;
+  }
+
+  .process-detail article > div:last-child p {
+    margin-top: 0;
+    font-size: 0.9rem;
+    line-height: 1.55;
   }
 
   .pull-quote {

@@ -229,6 +229,14 @@ const structuredData = ({
       telephone: business.phoneHref,
       email: business.email,
       slogan: business.slogan,
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: business.phoneHref,
+        email: business.email,
+        contactType: "customer service",
+        areaServed: "US-IL",
+        availableLanguage: ["English"]
+      },
       address: {
         "@type": "PostalAddress",
         addressLocality: business.city,
@@ -254,6 +262,19 @@ const structuredData = ({
           name: "Illinois Department of Financial and Professional Regulation",
           url: "https://idfpr.illinois.gov/profs/roof.html"
         }
+      },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Roofing and restoration services",
+        itemListElement: services.map((item) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: item.name,
+            url: `${business.siteUrl}/services/${item.slug}/`,
+            provider: { "@id": `${business.siteUrl}/#organization` }
+          }
+        }))
       },
       knowsAbout: [
         "Residential roofing",
@@ -361,6 +382,9 @@ const structuredData = ({
   }
 
   if (article) {
+    const citations = article.sections
+      .flatMap((section) => section.links || [])
+      .map((link) => link.href);
     graph.push({
       "@type": "Article",
       headline: article.title,
@@ -379,7 +403,8 @@ const structuredData = ({
         name: "Raccoon Restoration Editorial Team",
         url: `${business.siteUrl}/about/`
       },
-      publisher: { "@id": `${business.siteUrl}/#organization` }
+      publisher: { "@id": `${business.siteUrl}/#organization` },
+      ...(citations.length ? { citation: citations } : {})
     });
   }
 

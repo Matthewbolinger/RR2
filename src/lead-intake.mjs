@@ -31,7 +31,8 @@ const expectedFields = new Set([
   "submitted_at",
   "campaign_source",
   "campaign_medium",
-  "campaign_name"
+  "campaign_name",
+  "campaign_landing_path"
 ]);
 
 const propertyTypes = new Set([
@@ -182,6 +183,23 @@ function parseTimestamp(value, field) {
   return parsed;
 }
 
+function localPath(value, field, { optional = false } = {}) {
+  const normalized = text(value, 200);
+  if (optional && !normalized) return "";
+  if (
+    !normalized ||
+    !normalized.startsWith("/") ||
+    normalized.startsWith("//") ||
+    normalized.includes("\\") ||
+    /[?#\s]/.test(normalized)
+  ) {
+    throw new IntakeError(`Invalid value for ${field}`, {
+      code: "validation_failed"
+    });
+  }
+  return normalized;
+}
+
 export function validateLeadPayload(raw, { now = Date.now() } = {}) {
   if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
     throw new IntakeError("The request body must be a JSON object.", {
@@ -226,12 +244,7 @@ export function validateLeadPayload(raw, { now = Date.now() } = {}) {
     });
   }
 
-  const sourcePage = required(raw.source_page, "source_page", 200);
-  if (!sourcePage.startsWith("/") || sourcePage.startsWith("//")) {
-    throw new IntakeError("Invalid source page.", {
-      code: "validation_failed"
-    });
-  }
+  const sourcePage = localPath(raw.source_page, "source_page");
 
   if (raw.consent !== "yes") {
     throw new IntakeError("Consent is required to submit this request.", {
@@ -273,6 +286,11 @@ export function validateLeadPayload(raw, { now = Date.now() } = {}) {
     campaignSource: text(raw.campaign_source, 100),
     campaignMedium: text(raw.campaign_medium, 100),
     campaignName: text(raw.campaign_name, 150),
+    campaignLandingPath: localPath(
+      raw.campaign_landing_path,
+      "campaign_landing_path",
+      { optional: true }
+    ),
     consent: {
       accepted: true,
       acceptedAt: new Date(submittedAt).toISOString(),
@@ -406,6 +424,9 @@ export function buildJobNotes(lead) {
   if (lead.campaignSource) lines.push(`Campaign source: ${lead.campaignSource}`);
   if (lead.campaignMedium) lines.push(`Campaign medium: ${lead.campaignMedium}`);
   if (lead.campaignName) lines.push(`Campaign name: ${lead.campaignName}`);
+  if (lead.campaignLandingPath) {
+    lines.push(`Campaign landing: ${lead.campaignLandingPath}`);
+  }
   if (lead.message) lines.push(`Customer details: ${lead.message}`);
   return lines.join("\n").slice(0, 1_000);
 }

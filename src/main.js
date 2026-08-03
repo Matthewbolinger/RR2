@@ -1,41 +1,195 @@
 import { inject as injectVercelAnalytics } from "/assets/vendor/vercel-analytics.mjs";
+import { track as trackVercelAnalytics } from "/assets/vendor/vercel-analytics.mjs";
 
 const dataLayer = (window.dataLayer = window.dataLayer || []);
 document.documentElement.classList.add("js");
 
 const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)");
 const FINE_POINTER = window.matchMedia("(hover: hover) and (pointer: fine)");
+const ANALYTICS_PROPERTY_MAX_LENGTH = 120;
+const CAMPAIGN_PROPERTY_KEYS = new Set([
+  "campaign_source",
+  "campaign_medium",
+  "campaign_name",
+  "campaign_landing_path"
+]);
+const ANALYTICS_PROPERTY_KEYS = new Set([
+  "page_path",
+  "page_type",
+  "device_category",
+  "CTA_position",
+  "service_interest",
+  "intent",
+  "resource",
+  "form_type",
+  "step_number",
+  "step_name",
+  "field_name",
+  "error_type",
+  "property_type",
+  "referral_source",
+  ...CAMPAIGN_PROPERTY_KEYS
+]);
+
+function localPath(value) {
+  if (typeof value !== "string") return "";
+  const path = value.trim().slice(0, ANALYTICS_PROPERTY_MAX_LENGTH);
+  return path.startsWith("/") &&
+    !path.startsWith("//") &&
+    !path.includes("\\") &&
+    !/[?#\s]/.test(path)
+    ? path
+    : "";
+}
+
+function containsLikelyPii(value) {
+  return (
+    /[^\s@]+@[^\s@]+\.[^\s@]+/.test(value) ||
+    /(?:^|\D)(?:\+?1[\s.-]?)?(?:\(?\d{3}\)?[\s.-]?)\d{3}[\s.-]?\d{4}(?:\D|$)/.test(value)
+  );
+}
+
+function analyticsScalar(value) {
+  if (typeof value === "string") {
+    const normalized = value
+      .trim()
+      .replace(/[\u0000-\u001f\u007f]/g, "")
+      .slice(0, ANALYTICS_PROPERTY_MAX_LENGTH);
+    return normalized && !containsLikelyPii(normalized) ? normalized : undefined;
+  }
+  if (typeof value === "number") {
+    return Number.isFinite(value) ? value : undefined;
+  }
+  if (typeof value === "boolean" || value === null) return value;
+  return undefined;
+}
+
+function sanitizedAnalyticsProperties(properties = {}) {
+  const safe = {};
+  Object.entries(properties).forEach(([key, value]) => {
+    if (!ANALYTICS_PROPERTY_KEYS.has(key)) return;
+    const normalized =
+      key === "page_path" || key === "campaign_landing_path"
+        ? localPath(value)
+        : analyticsScalar(value);
+    if (normalized !== undefined && normalized !== "") safe[key] = normalized;
+  });
+  return safe;
+}
 
 function track(eventName, properties = {}) {
-  dataLayer.push({
-    event: eventName,
+  const safeEventName = analyticsScalar(eventName)?.slice(0, 80);
+  if (!safeEventName) return;
+  const safeProperties = sanitizedAnalyticsProperties({
     page_path: window.location.pathname,
     page_type: document.body.dataset.pageType || "unknown",
     device_category:
       window.matchMedia("(max-width: 560px)").matches ? "mobile" : "desktop",
     ...properties
   });
+  dataLayer.push({
+    event: safeEventName,
+    ...safeProperties
+  });
+  // Vercel Pro custom events support a plan-limited number of custom fields.
+  // The page URL/device are collected by Web Analytics already, so reserve the
+  // two portable fields for the most useful conversion/referral dimensions.
+  const vercelPropertyPriority =
+    safeEventName === "ai_referral_landing"
+      ? ["campaign_source", "campaign_landing_path"]
+      : [
+          "CTA_position",
+          "service_interest",
+          "intent",
+          "resource",
+          "form_type",
+          "step_number",
+          "step_name",
+          "error_type",
+          "property_type",
+          "campaign_source",
+          "campaign_landing_path"
+        ];
+  const vercelProperties = Object.fromEntries(
+    vercelPropertyPriority
+      .filter((key) => key in safeProperties)
+      .slice(0, 2)
+      .map((key) => [key, safeProperties[key]])
+  );
+  try {
+    trackVercelAnalytics(safeEventName, vercelProperties);
+  } catch {
+    // Analytics must never block a visitor action or form flow.
+  }
 }
 
 function persistCampaign() {
   const params = new URLSearchParams(window.location.search);
-  const campaign = {
-    campaign_source: params.get("utm_source"),
-    campaign_medium: params.get("utm_medium"),
+  let referrerHost = "";
+  try {
+    referrerHost = document.referrer
+      ? new URL(document.referrer).hostname.toLowerCase()
+      : "";
+  } catch {
+    // Ignore malformed or unavailable referrers.
+  }
+  const utmSource = analyticsScalar(params.get("utm_source"))?.toLowerCase();
+  const isChatGptReferral =
+    utmSource === "chatgpt.com" ||
+    referrerHost === "chatgpt.com" ||
+    referrerHost.endsWith(".chatgpt.com");
+
+  let existing = {};
+  try {
+    existing = JSON.parse(sessionStorage.getItem("rr_campaign") || "{}");
+  } catch {
+    // Storage may be unavailable or contain invalid data.
+  }
+
+  const incoming = {
+    campaign_source:
+      utmSource || (isChatGptReferral ? "chatgpt.com" : undefined),
+    campaign_medium:
+      params.get("utm_medium") ||
+      (isChatGptReferral ? "referral" : undefined),
     campaign_name: params.get("utm_campaign")
   };
-  if (Object.values(campaign).some(Boolean)) {
-    try {
+  const hasIncomingCampaign = Object.values(incoming).some(Boolean);
+  const campaign = sanitizedAnalyticsProperties({
+    ...existing,
+    ...(hasIncomingCampaign ? incoming : {}),
+    campaign_landing_path:
+      existing.campaign_landing_path ||
+      (hasIncomingCampaign ? window.location.pathname : undefined)
+  });
+
+  try {
+    if (Object.values(campaign).some(Boolean)) {
       sessionStorage.setItem("rr_campaign", JSON.stringify(campaign));
-    } catch {
-      // Storage may be unavailable in privacy-restricted environments.
     }
+    if (
+      isChatGptReferral &&
+      sessionStorage.getItem("rr_ai_referral_landing_sent") !== "1"
+    ) {
+      track("ai_referral_landing", {
+        referral_source: "chatgpt.com",
+        ...campaign
+      });
+      sessionStorage.setItem("rr_ai_referral_landing_sent", "1");
+    }
+  } catch {
+    // Storage may be unavailable in privacy-restricted environments.
   }
 }
 
 function campaignProperties() {
   try {
-    return JSON.parse(sessionStorage.getItem("rr_campaign") || "{}");
+    const campaign = JSON.parse(sessionStorage.getItem("rr_campaign") || "{}");
+    return Object.fromEntries(
+      Object.entries(sanitizedAnalyticsProperties(campaign)).filter(([key]) =>
+        CAMPAIGN_PROPERTY_KEYS.has(key)
+      )
+    );
   } catch {
     return {};
   }
@@ -750,10 +904,10 @@ function setupForm() {
   });
 }
 
-persistCampaign();
 if (!["localhost", "127.0.0.1"].includes(window.location.hostname)) {
   injectVercelAnalytics({ mode: "production" });
 }
+persistCampaign();
 setupMenu();
 setupEventTracking();
 setupDetails();

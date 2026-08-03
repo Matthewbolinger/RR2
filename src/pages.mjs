@@ -1143,6 +1143,7 @@ const resourcePages = resourceArticles.map((article) => {
 
   return {
     path: `/resources/${article.slug}/`,
+    lastModified: article.dateModified,
     html: layout({
       title: article.seoTitle,
       description: article.description,
@@ -1474,12 +1475,13 @@ const privacy = {
       [
         ["Information you provide", "When you use the quote form, you may provide your name, phone number, email address, property address and type, service interest, project timing, storm or claim context, response preference, and a description of the concern."],
         ["How information is used", "Inquiry information is used to respond to your request, determine service availability, route the request to the appropriate team member, schedule next steps, and improve the customer experience. Personal details entered in inquiry fields are not included in analytics events."],
-        ["Website data", "The site uses IDPixel, a third-party analytics and advertising technology, on each page. Depending on provider configuration, it may receive browser, device, page, campaign, network, identifier, and interaction information used to understand website activity and support marketing measurement. Raccoon Restoration does not intentionally include personal details entered in quote-form fields in its own analytics events."],
+        ["Website data", "The site uses Vercel Web Analytics and IDPixel, a third-party analytics and advertising technology. These services may receive browser, device, page, referral, campaign, network, identifier, and interaction information used to understand website activity and support marketing measurement. Raccoon Restoration’s custom analytics events are limited to approved page, referral, campaign, and interaction labels and do not intentionally include personal details entered in quote-form fields."],
         ["Service providers", "Hosting, form delivery, analytics and advertising, spam protection, scheduling, and customer-relationship providers may process information as needed to operate the site, measure activity, and respond to requests."],
         ["Tracking choices", "Browser privacy controls, content blockers, and applicable consent controls may limit website tracking. You may also contact Raccoon Restoration with privacy questions or requests."],
         ["Your choices", `You may request access, correction, or deletion of inquiry information by emailing ${business.email}. Legal, security, and recordkeeping obligations may limit some requests.`],
         ["Contact", `${business.name}, Barrington, Illinois · ${business.email} · ${business.phoneDisplay}`]
-      ]
+      ],
+      { updated: "August 3, 2026" }
     )
   })
 };
@@ -1528,7 +1530,12 @@ const accessibility = {
   })
 };
 
-function legalPage(title, intro, sections) {
+function legalPage(
+  title,
+  intro,
+  sections,
+  { updated = "July 30, 2026" } = {}
+) {
   return `
     <section class="legal-hero pattern">
       <div class="shell">
@@ -1540,7 +1547,7 @@ function legalPage(title, intro, sections) {
     </section>
     <section class="section section--cream">
       <article class="shell prose prose--legal">
-        <p class="legal-date">Last updated July 30, 2026</p>
+        <p class="legal-date">Last updated ${updated}</p>
         ${sections.map(([heading, text]) => `<h2>${heading}</h2><p>${text}</p>`).join("")}
       </article>
     </section>

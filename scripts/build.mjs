@@ -5,6 +5,7 @@ import { business } from "../src/data.mjs";
 import { legacyRedirects } from "../src/legacy-routes.mjs";
 import { buildManifest, pages } from "../src/pages.mjs";
 import { renderStaticHeaders } from "../src/platform-config.mjs";
+import { searchConfig } from "../src/search-config.mjs";
 import {
   ensureWebpDerivatives,
   loadWebpManifest,
@@ -293,6 +294,7 @@ ${sitemapPages
   .map(
     (page) => `  <url>
     <loc>${business.siteUrl}${page.path}</loc>
+    <lastmod>${page.lastModified || searchConfig.defaultLastModified}</lastmod>
   </url>`
   )
   .join("\n")}
@@ -302,11 +304,22 @@ ${sitemapPages
 await writeFile(join(dist, "sitemap.xml"), sitemap, "utf8");
 await writeFile(
   join(dist, "robots.txt"),
-  `User-agent: *
+  `User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: OAI-AdsBot
+Allow: /
+
+User-agent: *
 Allow: /
 
 Sitemap: ${business.siteUrl}/sitemap.xml
 `,
+  "utf8"
+);
+await writeFile(
+  join(dist, `${searchConfig.indexNowKey}.txt`),
+  searchConfig.indexNowKey,
   "utf8"
 );
 

@@ -2,6 +2,11 @@
 
 Run `npm test` after every content change.
 
+For a substantive public content change, update the affected page's
+`lastModified` value. Resource pages inherit `dateModified` from
+`src/resources.mjs`; other routes use `defaultLastModified` in
+`src/search-config.mjs`. Do not bump dates for cosmetic-only changes.
+
 ## Change business information
 
 Edit the `business` object in `src/data.mjs`. Phone changes require both the display value and E.164 `phoneHref`. Rebuild and verify header, footer, contact, thank-you, schema, and phone links.
@@ -62,6 +67,8 @@ Create a distinct page with the city’s real service availability, local projec
 8. Add the slug label to structured-data breadcrumbs in `src/templates.mjs`.
 9. Add desktop screenshot coverage and mobile coverage for any new layout pattern.
 10. Run `npm test` and inspect the rendered article.
+11. After the production deployment is live, confirm the IndexNow workflow
+    succeeded and request indexing in Search Console for major new pages.
 
 Do not publish on a calendar merely to increase volume. Update or expand the strongest existing guide when that better serves the query.
 

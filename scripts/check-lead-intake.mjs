@@ -160,6 +160,13 @@ test("creates a contact, job, and external reference in AccuLynx", async () => {
   const createContact = calls.find(
     (call) => call.path.endsWith("/contacts") && call.method === "POST"
   );
+  const searchContacts = calls.find((call) =>
+    call.path.endsWith("/contacts/search")
+  );
+  assert.equal(searchContacts.body.contactTypes, undefined);
+  assert.equal(searchContacts.body.startDate, "2000-01-01T00:00:00.000Z");
+  assert.equal(searchContacts.body.sort.sortDirection, "Descending");
+  assert.equal(searchContacts.body.sort.sortColumn, "CreatedDate");
   assert.deepEqual(createContact.body.contactTypeIds, [
     "44444444-4444-4444-8444-444444444444"
   ]);

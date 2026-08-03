@@ -10,6 +10,12 @@ The website now includes a server-only Vercel Function at `/api/quote/`. A compl
 
 The browser receives a successful response only after AccuLynx confirms a durable job record. AccuLynx credentials and optional Slack webhook values never appear in generated HTML or client JavaScript.
 
+Contact duplicate detection searches by name across the full available creation
+date range, then confirms candidates by email or phone. The search deliberately
+does not filter by contact type: AccuLynx's search contract accepts contact-type
+names, while contact creation uses contact-type IDs, and an existing customer
+may already be classified under a different type.
+
 ## Required production variables
 
 Set these in the Vercel project for Production. Apply them to Preview only when a preview environment is intentionally allowed to create AccuLynx test data.

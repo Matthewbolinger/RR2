@@ -484,15 +484,14 @@ export class AccuLynxClient {
     });
   }
 
-  async findContacts(lead, contactTypeId) {
+  async findContacts(lead) {
     const end = new Date(Date.now() + 5 * 60 * 1000);
-    const start = new Date(end.getTime() - 30 * 24 * 60 * 60 * 1000);
+    const start = new Date("2000-01-01T00:00:00.000Z");
     const payload = await this.request(
       "/contacts/search?pageSize=25&pageStartIndex=0",
       {
         method: "POST",
         body: {
-          contactTypes: [contactTypeId],
           searchTerm: `${lead.firstName} ${lead.lastName}`,
           startDate: start.toISOString(),
           endDate: end.toISOString(),
@@ -703,7 +702,7 @@ export async function deliverLeadToAccuLynx(
     return { jobId: referencedJobId, duplicate: true };
   }
 
-  const contacts = await client.findContacts(lead, config.contactTypeId);
+  const contacts = await client.findContacts(lead);
   const retryContact = contacts.find(
     (contact) => contact?.crossReference === lead.submissionId
   );

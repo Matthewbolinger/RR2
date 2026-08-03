@@ -41,15 +41,65 @@ const SCAN = `(() => {
 const stopServer = await ensureServer();
 const chrome = await launchBrowser(PORT);
 const tab = await openTab(PORT);
+await tab.cdp("Log.enable");
+await tab.cdp("Network.enable");
 
 const findings = {};
+const runtimeIssues = {};
+let currentKey = "";
+const isExpectedThirdPartyFailure = (url = "") =>
+  url.startsWith(
+    "https://cdn.idpixel.app/v1/idp-analytics-6a57c20f5c012440693ab2b9.min.js"
+  ) ||
+  url.startsWith(
+    "https://collector.idpixel.app/v1/batch?pid=6a57c20f5c012440693ab2b9"
+  );
+const recordRuntimeIssue = (message) => {
+  if (!currentKey || !message) return;
+  const issues = runtimeIssues[currentKey] || [];
+  if (!issues.includes(message)) issues.push(message);
+  runtimeIssues[currentKey] = issues.slice(0, 8);
+};
+
+tab.on("Runtime.exceptionThrown", ({ exceptionDetails }) => {
+  recordRuntimeIssue(
+    `exception: ${exceptionDetails?.exception?.description || exceptionDetails?.text || "unknown"}`
+  );
+});
+tab.on("Runtime.consoleAPICalled", ({ type, args = [] }) => {
+  if (type !== "error" && type !== "assert") return;
+  recordRuntimeIssue(
+    `console.${type}: ${args.map((arg) => arg.value ?? arg.description ?? "").join(" ")}`
+  );
+});
+tab.on("Log.entryAdded", ({ entry }) => {
+  if (isExpectedThirdPartyFailure(entry?.url)) return;
+  if (entry?.level === "error") {
+    recordRuntimeIssue(
+      `log: ${entry.text || "unknown"}${entry.url ? ` (${entry.url})` : ""}`
+    );
+  }
+});
+tab.on("Network.responseReceived", ({ response, type }) => {
+  if (!response || response.status < 400) return;
+  if (isExpectedThirdPartyFailure(response.url)) return;
+  const expected404 =
+    currentKey.endsWith(" /404.html") && type === "Document" && response.status === 404;
+  if (!expected404) {
+    recordRuntimeIssue(
+      `http ${Math.round(response.status)} (${type || "Other"}): ${response.url}`
+    );
+  }
+});
+
 try {
   for (const [label, vp] of Object.entries(VIEWPORTS)) {
     await tab.setViewport(vp.width, vp.height, vp.dpr, vp.mobile);
     for (const route of ROUTES) {
+      currentKey = `${label} ${route}`;
       await tab.navigate(`${PREVIEW}${route}`, 250);
       const bad = await tab.evaluate(SCAN, false, 10000);
-      const key = `${label} ${route}`;
+      const key = currentKey;
       if (bad && bad.length) {
         findings[key] = bad;
         console.log(`OVERFLOW ${key}: ${JSON.stringify(bad)}`);
@@ -65,5 +115,10 @@ try {
 }
 
 const count = Object.keys(findings).length;
+const runtimeCount = Object.keys(runtimeIssues).length;
 console.log(`\nOverflow audit: ${count} route/viewport combinations with findings.`);
-if (count > 0) process.exit(1);
+console.log(`Runtime audit: ${runtimeCount} route/viewport combinations with errors.`);
+for (const [key, issues] of Object.entries(runtimeIssues)) {
+  console.log(`RUNTIME ${key}: ${JSON.stringify(issues)}`);
+}
+if (count > 0 || runtimeCount > 0) process.exit(1);

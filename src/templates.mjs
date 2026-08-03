@@ -201,7 +201,7 @@ const footer = () => `
   </footer>
   <nav class="mobile-conversion" aria-label="Quick actions">
     <a href="tel:${business.phoneHref}" data-event="mobile_sticky_call_click" data-position="sticky">${icon("phone")}Call Now</a>
-    <a href="${quoteHref}" data-event="quote_cta_click" data-position="sticky" data-intent="quote">${icon("arrow")}Free Quote</a>
+    <a href="${quoteHref}" data-event="quote_cta_click" data-position="sticky" data-intent="quote">${icon("arrow")}Instant Quote</a>
   </nav>`;
 
 const structuredData = ({
@@ -748,7 +748,7 @@ export const inspectionForm = () => {
     : "/contact/";
 
   return `
-  <form class="inspection-form" id="inspection-form" action="${formAction}" method="post" data-form data-form-type="quote_request" data-endpoint-configured="${endpointConfigured}" data-success-path="/thank-you/" novalidate>
+  <form class="inspection-form" action="${formAction}" method="post" data-form data-form-type="quote_request" data-endpoint-configured="${endpointConfigured}" data-success-path="/thank-you/" novalidate>
     <input type="hidden" name="request_type" value="quote_or_inspection">
     <input type="hidden" name="form_started_at" value="" data-form-started-at>
     <input type="hidden" name="submission_id" value="" data-submission-id>

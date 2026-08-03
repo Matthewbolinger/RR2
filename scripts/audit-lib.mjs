@@ -211,13 +211,23 @@ export const ROUTES = [
   "/service-areas/",
   "/service-areas/barrington-il/",
   "/resources/",
+  "/resources/choose-roofing-contractor-greater-chicago/",
+  "/resources/ice-dams-attic-ventilation-chicago/",
+  "/resources/roof-repair-vs-replacement-chicago/",
+  "/resources/storm-damage-roof-assessment-illinois/",
   "/contact/",
   "/faq/",
   "/financing/",
   "/warranty/",
+  "/accessibility/",
+  "/privacy/",
+  "/terms/",
+  "/thank-you/",
+  "/404.html",
 ];
 
 export const VIEWPORTS = {
-  desktop: { width: 1440, height: 900, dpr: 1, mobile: false },
+  desktop: { width: 1440, height: 1000, dpr: 1, mobile: false },
+  tablet: { width: 768, height: 1024, dpr: 1, mobile: false },
   mobile: { width: 390, height: 844, dpr: 2, mobile: true },
 };

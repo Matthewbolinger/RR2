@@ -29,9 +29,18 @@ const median = (values) => {
 
 const OBSERVER_BOOT = `
   window.__lcp = [];
+  window.__lcpElements = [];
   window.__cls = 0;
   new PerformanceObserver((list) => {
-    for (const entry of list.getEntries()) window.__lcp.push(entry.startTime);
+    for (const entry of list.getEntries()) {
+      window.__lcp.push(entry.startTime);
+      window.__lcpElements.push({
+        tag: entry.element?.tagName || "",
+        id: entry.element?.id || "",
+        className: typeof entry.element?.className === "string" ? entry.element.className : "",
+        url: entry.url || ""
+      });
+    }
   }).observe({ type: "largest-contentful-paint", buffered: true });
   new PerformanceObserver((list) => {
     for (const entry of list.getEntries()) {
@@ -80,11 +89,13 @@ async function measureOnce(route) {
     await delay(3200);
 
     const lcpEntries = (await tab.evaluate("window.__lcp")) || [];
+    const lcpElements = (await tab.evaluate("window.__lcpElements")) || [];
     const cls = (await tab.evaluate("window.__cls")) ?? -1;
     const lcpMs = lcpEntries.length ? Math.round(lcpEntries.at(-1)) : -1;
 
     return {
       lcpMs,
+      lcpElement: lcpElements.at(-1) || null,
       cls: Number(cls.toFixed ? cls.toFixed(4) : cls),
       imageKB: Math.round(imageBytes / 1024),
       totalKB: Math.round(totalBytes / 1024),
@@ -105,6 +116,7 @@ for (const route of PAGES) {
     lcpMs,
     cls,
     lcpRuns: runs.map((r) => r.lcpMs),
+    lcpElement: last.lcpElement,
     imageKB: last.imageKB,
     totalKB: last.totalKB,
     throttle: `slow-4G, 4x CPU, mobile 390x844, font hosts blocked, median of ${RUNS}`,
@@ -117,7 +129,7 @@ for (const route of PAGES) {
   console.log(
     `${route}  LCP median ${lcpMs}ms of [${entry.lcpRuns.join(", ")}] (${
       lcpOk ? "ok" : "OVER"
-    })  CLS ${cls} (${clsOk ? "ok" : "OVER"})  images ${entry.imageKB}KB  total ${entry.totalKB}KB`
+    })  CLS ${cls} (${clsOk ? "ok" : "OVER"})  images ${entry.imageKB}KB  total ${entry.totalKB}KB  element ${JSON.stringify(entry.lcpElement)}`
   );
 }
 

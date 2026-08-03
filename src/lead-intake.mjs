@@ -496,7 +496,7 @@ export class AccuLynxClient {
     if (allowNotFound && response.status === 404) return null;
 
     const contentType = response.headers.get("content-type") || "";
-    const payload = contentType.includes("application/json")
+    const payload = contentType.includes("json")
       ? await response.json().catch(() => ({}))
       : await response.text().catch(() => "");
 
@@ -545,8 +545,8 @@ export class AccuLynxClient {
         method: "POST",
         body: {
           searchTerm: `${lead.firstName} ${lead.lastName}`,
-          startDate: start.toISOString(),
-          endDate: end.toISOString(),
+          startDate: start.toISOString().slice(0, 10),
+          endDate: end.toISOString().slice(0, 10),
           sort: {
             sortDirection: "Descending",
             sortColumn: "CreatedDate"

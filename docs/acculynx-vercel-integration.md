@@ -14,7 +14,9 @@ Contact duplicate detection searches by name across the full available creation
 date range, then confirms candidates by email or phone. The search deliberately
 does not filter by contact type: AccuLynx's search contract accepts contact-type
 names, while contact creation uses contact-type IDs, and an existing customer
-may already be classified under a different type.
+may already be classified under a different type. Although the reference schema
+labels the search dates as date-time values, the live endpoint currently
+requires `YYYY-MM-DD` date strings.
 
 ## Required production variables
 

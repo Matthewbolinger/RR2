@@ -289,6 +289,50 @@ function getItems(payload) {
   return [];
 }
 
+function crmDiagnosticMessage(payload, requestBody) {
+  let message =
+    typeof payload === "string"
+      ? payload
+      : typeof payload?.detail === "string"
+        ? payload.detail
+        : typeof payload?.message === "string"
+          ? payload.message
+          : "";
+  if (!message) return undefined;
+
+  const privateValues = [];
+  const collect = (value) => {
+    if (typeof value === "string") {
+      privateValues.push(
+        value,
+        ...value.split(/\r?\n/),
+        ...value.split(/\s+/)
+      );
+      return;
+    }
+    if (Array.isArray(value)) {
+      value.forEach(collect);
+      return;
+    }
+    if (value && typeof value === "object") {
+      Object.values(value).forEach(collect);
+    }
+  };
+  collect(requestBody);
+
+  for (const value of privateValues
+    .map((item) => item.trim())
+    .filter((item) => item.length >= 2)
+    .sort((a, b) => b.length - a.length)) {
+    message = message.replaceAll(value, "[redacted]");
+  }
+  message = message
+    .replace(/[^\s@]+@[^\s@]+\.[^\s@]+/g, "[redacted-email]")
+    .replace(/\b(?:\+?1[\s.-]?)?(?:\(?\d{3}\)?[\s.-]?)\d{3}[\s.-]?\d{4}\b/g, "[redacted-phone]")
+    .replace(/\b[0-9a-f]{8}-[0-9a-f-]{27,}\b/gi, "[redacted-id]");
+  return text(message, 240) || undefined;
+}
+
 function extractId(payload, keys = ["id"]) {
   for (const key of keys) {
     if (typeof payload?.[key] === "string" && payload[key]) return payload[key];
@@ -472,6 +516,7 @@ export class AccuLynxClient {
       });
       error.crmStatus = response.status;
       error.crmTitle = text(payload?.title, 120) || undefined;
+      error.crmMessage = crmDiagnosticMessage(payload, body);
       error.crmValidationFields =
         payload?.errors && typeof payload.errors === "object"
           ? Object.keys(payload.errors).slice(0, 20)
@@ -875,6 +920,7 @@ export function createQuoteHandler({
         phase: known ? error.phase : "unhandled",
         crmStatus: known ? error.crmStatus : undefined,
         crmTitle: known ? error.crmTitle : undefined,
+        crmMessage: known ? error.crmMessage : undefined,
         crmValidationFields: known ? error.crmValidationFields : undefined
       });
       return responseJson(

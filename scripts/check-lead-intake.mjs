@@ -220,9 +220,10 @@ test("logs only privacy-safe AccuLynx validation diagnostics", async () => {
       return json(
         {
           title: "Validation failed",
-          detail: "searchTerm Website Test was rejected",
+          detail:
+            "searchTerm Alex Homeowner for alex@example.com and 2245550123 was rejected",
           errors: {
-            contactTypes: ["Invalid contact type for Website Test"]
+            contactTypes: ["Invalid contact type for Alex Homeowner"]
           }
         },
         400
@@ -244,8 +245,15 @@ test("logs only privacy-safe AccuLynx validation diagnostics", async () => {
   const diagnostic = JSON.parse(errors[0]);
   assert.equal(diagnostic.crmStatus, 400);
   assert.equal(diagnostic.crmTitle, "Validation failed");
+  assert.equal(
+    diagnostic.crmMessage,
+    "searchTerm [redacted] for [redacted-email] and [redacted-phone] was rejected"
+  );
   assert.deepEqual(diagnostic.crmValidationFields, ["contactTypes"]);
-  assert.doesNotMatch(errors[0], /Website Test|searchTerm|Invalid contact type/);
+  assert.doesNotMatch(
+    errors[0],
+    /Alex Homeowner|alex@example|224555|Invalid contact type/
+  );
 });
 
 test("rejects cross-origin intake before reading customer data", async () => {

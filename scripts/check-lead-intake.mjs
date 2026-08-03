@@ -208,6 +208,46 @@ test("returns the existing AccuLynx job for a repeated submission", async () => 
   assert.equal(calls, 1);
 });
 
+test("logs only privacy-safe AccuLynx validation diagnostics", async () => {
+  const errors = [];
+  const handler = createQuoteHandler({
+    env: env(),
+    now: () => now,
+    fetchImpl: async (url) => {
+      if (url.includes("/jobs/external-references")) {
+        return json({}, 404);
+      }
+      return json(
+        {
+          title: "Validation failed",
+          detail: "searchTerm Website Test was rejected",
+          errors: {
+            contactTypes: ["Invalid contact type for Website Test"]
+          }
+        },
+        400
+      );
+    },
+    logger: {
+      info() {},
+      warn() {},
+      error(message) {
+        errors.push(message);
+      }
+    }
+  });
+  const response = await handler(
+    request(validPayload(), { ip: "1.2.3.9" })
+  );
+  assert.equal(response.status, 502);
+  assert.equal(errors.length, 1);
+  const diagnostic = JSON.parse(errors[0]);
+  assert.equal(diagnostic.crmStatus, 400);
+  assert.equal(diagnostic.crmTitle, "Validation failed");
+  assert.deepEqual(diagnostic.crmValidationFields, ["contactTypes"]);
+  assert.doesNotMatch(errors[0], /Website Test|searchTerm|Invalid contact type/);
+});
+
 test("rejects cross-origin intake before reading customer data", async () => {
   const handler = createQuoteHandler({
     env: env(),

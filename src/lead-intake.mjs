@@ -465,11 +465,18 @@ export class AccuLynxClient {
             : response.status >= 500
               ? "crm_unavailable"
               : "crm_rejected";
-      throw new IntakeError("AccuLynx rejected the lead request.", {
+      const error = new IntakeError("AccuLynx rejected the lead request.", {
         status: response.status === 429 || response.status >= 500 ? 503 : 502,
         code,
         phase: `acculynx_${method.toLowerCase()}_${path.split("?")[0]}`
       });
+      error.crmStatus = response.status;
+      error.crmTitle = text(payload?.title, 120) || undefined;
+      error.crmValidationFields =
+        payload?.errors && typeof payload.errors === "object"
+          ? Object.keys(payload.errors).slice(0, 20)
+          : undefined;
+      throw error;
     }
     return payload;
   }
@@ -865,7 +872,10 @@ export function createQuoteHandler({
         event: "lead_delivery_failed",
         submissionId: text(raw?.submission_id, 100) || undefined,
         code: known ? error.code : "internal_error",
-        phase: known ? error.phase : "unhandled"
+        phase: known ? error.phase : "unhandled",
+        crmStatus: known ? error.crmStatus : undefined,
+        crmTitle: known ? error.crmTitle : undefined,
+        crmValidationFields: known ? error.crmValidationFields : undefined
       });
       return responseJson(
         {

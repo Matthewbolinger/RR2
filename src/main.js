@@ -687,12 +687,13 @@ function setupForm() {
         `rr-${Date.now()}-${Math.random().toString(16).slice(2)}`;
     }
 
-    const payload = new FormData(form);
+    const formData = new FormData(form);
     Object.entries(campaignProperties()).forEach(([key, value]) => {
-      if (value) payload.set(key, value);
+      if (value) formData.set(key, value);
     });
-    payload.set("source_page", window.location.pathname);
-    payload.set("submitted_at", new Date().toISOString());
+    formData.set("source_page", window.location.pathname);
+    formData.set("submitted_at", new Date().toISOString());
+    const payload = Object.fromEntries(formData.entries());
 
     track("form_submit_attempt", {
       form_type: formType,
@@ -706,8 +707,11 @@ function setupForm() {
     try {
       const response = await fetch(form.action, {
         method: "POST",
-        body: payload,
-        headers: { Accept: "application/json" },
+        body: JSON.stringify(payload),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
         credentials: "same-origin",
         signal: controller.signal
       });

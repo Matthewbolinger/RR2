@@ -8,7 +8,7 @@ Every quote request should become a structured, attributable CRM lead without re
 
 ```text
 Website quote form
-  -> public HTTPS intake route
+  -> same-origin Vercel Function (/api/quote/)
   -> server validation + spam/rate controls
   -> deduplication + consent evidence
   -> CRM lead/contact/opportunity
@@ -21,7 +21,9 @@ Website quote form
 
 ## Form payload
 
-The browser sends `multipart/form-data`.
+The browser sends `application/json` to the same-origin Vercel intake route. The
+server accepts a strict allowlist of the fields below and rejects unsupported
+properties.
 
 | Field | Required | CRM use |
 | --- | --- | --- |
@@ -56,6 +58,19 @@ The endpoint should:
 7. Upsert the contact and property, create or update the opportunity, assign an owner, and create the correct response task.
 8. Return `2xx` only after durable CRM acceptance. Return a non-`2xx` safe error for rejection or downstream failure.
 9. Never return secrets, internal stack traces, or customer records to the browser.
+
+## Implemented AccuLynx adapter
+
+`api/quote.mjs` and `src/lead-intake.mjs` implement the public intake route and
+direct AccuLynx adapter. The adapter searches for retry contacts, creates the
+contact when required, creates an AccuLynx Lead (Unassigned) job, and writes a
+job external reference keyed by `submission_id`. It also supports a minimal
+post-acceptance Slack alert without customer PII.
+
+The code-level limiter is best effort because Vercel instances do not share
+memory. A production Vercel Firewall rate-limit rule for `/api/quote*` remains a
+required launch control. See
+[Vercel to AccuLynx integration](acculynx-vercel-integration.md).
 
 ## Routing baseline
 

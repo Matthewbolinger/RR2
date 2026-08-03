@@ -60,7 +60,10 @@ Full instructions for adding projects, reviews, services, locations, team member
 
 Copy `.env.example` values into the deployment environment. This repository intentionally contains no production secrets.
 
-- `FORM_ENDPOINT`: public HTTPS lead-intake route or serverless proxy that accepts multipart quote-form POSTs
+- `FORM_ENDPOINT`: same-origin Vercel lead-intake route (`/api/quote/`)
+- `ACCULYNX_API_KEY`, `ACCULYNX_CONTACT_TYPE_ID`, and `ACCULYNX_LEAD_SOURCE_ID`: server-only AccuLynx connection values
+- `FORM_ALLOWED_ORIGINS`: exact browser origins allowed to submit
+- `SLACK_LEADS_WEBHOOK_URL`: optional server-only post-acceptance notification
 - `GA_MEASUREMENT_ID`, `GTM_CONTAINER_ID`, and `META_PIXEL_ID`: reserved decision fields; the current templates do not read them, so setting them does not activate tracking
 - `SITE_URL`: production canonical origin
 
@@ -70,7 +73,14 @@ The live WordPress site currently exposes Meta Pixel `1583403939041768` with a C
 
 The full three-step form remains visible without `FORM_ENDPOINT`, but it does not pretend to deliver. A completed local submission states that the information was not sent and offers a phone handoff. With an endpoint configured, the browser waits for a successful server response before recording `form_submit_success` or opening the thank-you page.
 
-`FORM_ENDPOINT` is public in the generated HTML and must point to a hardened intake layer—not directly to a private CRM webhook. The server-side layer must validate and sanitize fields, enforce spam and rate controls, deduplicate requests, store consent evidence, route the lead into the CRM, and return a successful HTTP response only after the lead is durably accepted. See [lead automation specification](docs/lead-automation-specification.md).
+`FORM_ENDPOINT` is public in the generated HTML and must point to the hardened
+same-origin intake layer—not directly to AccuLynx or a private webhook. The
+implemented Vercel Function validates and sanitizes fields, applies origin and
+spam controls, suppresses repeated submissions, stores consent and source
+evidence, creates the AccuLynx contact/job path, and returns success only after
+AccuLynx durably accepts the job. A production Vercel Firewall rate-limit rule
+is still required. See [lead automation specification](docs/lead-automation-specification.md)
+and [Vercel to AccuLynx integration](docs/acculynx-vercel-integration.md).
 
 ## Deployment
 

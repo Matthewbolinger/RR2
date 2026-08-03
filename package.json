@@ -10,13 +10,15 @@
     "dev": "node scripts/serve.mjs",
     "encode:images": "node scripts/encode-images.mjs",
     "check": "node scripts/check.mjs",
+    "check:lead-intake": "node --test scripts/check-lead-intake.mjs",
     "check:images": "node scripts/check-images.mjs",
+    "acculynx:discover": "node scripts/discover-acculynx-config.mjs",
     "screenshots": "node scripts/capture-screenshots.mjs",
     "audit:frames": "node scripts/audit-frames.mjs",
     "audit:overflow": "node scripts/audit-overflow.mjs",
     "audit:vitals": "node scripts/audit-vitals.mjs",
     "audit": "npm run audit:overflow && npm run audit:vitals && npm run audit:frames",
-    "test": "npm run build && npm run check && npm run check:images"
+    "test": "npm run build && npm run check && npm run check:lead-intake && npm run check:images"
   },
   "engines": {
     "node": ">=20"

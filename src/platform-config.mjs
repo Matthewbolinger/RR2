@@ -37,6 +37,11 @@ export function createVercelConfig() {
     buildCommand: "npm run build",
     outputDirectory: "dist",
     framework: null,
+    functions: {
+      "api/quote.mjs": {
+        maxDuration: 30
+      }
+    },
     cleanUrls: false,
     trailingSlash: true,
     redirects: [

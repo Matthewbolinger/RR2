@@ -1,3 +1,5 @@
+import { inject as injectVercelAnalytics } from "/assets/vendor/vercel-analytics.mjs";
+
 const dataLayer = (window.dataLayer = window.dataLayer || []);
 document.documentElement.classList.add("js");
 
@@ -749,6 +751,9 @@ function setupForm() {
 }
 
 persistCampaign();
+if (!["localhost", "127.0.0.1"].includes(window.location.hostname)) {
+  injectVercelAnalytics({ mode: "production" });
+}
 setupMenu();
 setupEventTracking();
 setupDetails();

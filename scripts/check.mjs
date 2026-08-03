@@ -312,13 +312,27 @@ for (const required of [
   "_redirects",
   "404.html",
   "assets/styles.css",
-  "assets/main.js"
+  "assets/main.js",
+  "assets/vendor/vercel-analytics.mjs",
+  "assets/vendor/vercel-analytics.LICENSE.txt"
 ]) {
   try {
     await access(join(dist, required));
   } catch {
     failures.push(`Missing build artifact: ${required}`);
   }
+}
+
+const mainScript = await readFile(join(dist, "assets", "main.js"), "utf8");
+if (
+  !mainScript.includes(
+    'import { inject as injectVercelAnalytics } from "/assets/vendor/vercel-analytics.mjs";'
+  ) ||
+  !mainScript.includes('injectVercelAnalytics({ mode: "production" });')
+) {
+  failures.push(
+    "assets/main.js: Vercel Web Analytics must be injected once outside local development"
+  );
 }
 
 const generatedRoutes = new Set(routeRecords.map(({ route }) => route));

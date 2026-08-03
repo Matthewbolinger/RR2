@@ -145,6 +145,7 @@ for (const page of outputPages) {
 await mkdir(join(dist, "assets", "images"), { recursive: true });
 await mkdir(join(dist, "assets", "projects"), { recursive: true });
 await mkdir(join(dist, "assets", "editorial-v2"), { recursive: true });
+await mkdir(join(dist, "assets", "vendor"), { recursive: true });
 // The emitted stylesheet is the base stylesheet plus the case-study module
 // (src/case-studies.css), concatenated in order so cs-* rules can rely on the
 // base tokens and utility classes without duplicating them.
@@ -170,6 +171,21 @@ await writeFile(
   "utf8"
 );
 await cp(join(root, "src", "main.js"), join(dist, "assets", "main.js"));
+await cp(
+  join(
+    root,
+    "node_modules",
+    "@vercel",
+    "analytics",
+    "dist",
+    "index.mjs"
+  ),
+  join(dist, "assets", "vendor", "vercel-analytics.mjs")
+);
+await cp(
+  join(root, "node_modules", "@vercel", "analytics", "LICENSE"),
+  join(dist, "assets", "vendor", "vercel-analytics.LICENSE.txt")
+);
 await cp(join(root, "public", "assets", "fonts"), join(dist, "assets", "fonts"), {
   recursive: true
 });

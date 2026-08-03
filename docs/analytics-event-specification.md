@@ -1,6 +1,6 @@
 # Analytics Event Specification
 
-The supplied IDPixel loader is committed in the shared page layout and renders exactly once on every generated HTML page. It loads with `defer` so it does not block HTML parsing. The front end separately pushes privacy-conscious events to `window.dataLayer`; a consent-aware analytics owner can map those events later.
+The supplied IDPixel loader is committed in the shared page layout and renders exactly once on every generated HTML page. It loads with `defer` so it does not block HTML parsing. The front end pushes privacy-conscious events to `window.dataLayer` and sends the same event names to Vercel Web Analytics with no more than two approved custom properties. Vercel receives the most useful event-specific conversion dimensions; the fuller privacy-safe property set remains available in `window.dataLayer`.
 
 | Event | Trigger | Key properties |
 | --- | --- | --- |
@@ -36,8 +36,10 @@ Standard properties:
 - `campaign_source`
 - `campaign_medium`
 - `campaign_name`
+- `campaign_landing_path`
+- `referral_source`
 
-UTM values are stored in session storage only. Names, email addresses, phone numbers, street addresses, ZIP codes, message text, claim context, and other form values must never be sent to analytics.
+UTM values and the first local campaign landing path are stored in session storage only. A first visit from `chatgpt.com`, identified by `utm_source` or the referrer hostname, emits `ai_referral_landing` once per session. Names, email addresses, phone numbers, street addresses, ZIP codes, message text, claim context, and other form values must never be sent to analytics.
 
 ## Existing production tracking
 

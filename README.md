@@ -2,7 +2,7 @@
 
 Production website foundation for **Raccoon Restoration — Built Above Standard.**
 
-The repository started empty. It now contains a dependency-free static site generator, centralized business, service, and resource data, 26 generated pages, responsive brand components, Greater Chicago SEO and structured-data foundations, an accessible lead form shell, analytics event hooks, and launch documentation.
+The repository started empty. It now contains a dependency-free static site generator, centralized business, service, and resource data, 28 generated pages, responsive brand components, Greater Chicago SEO and structured-data foundations, a secure lead-intake path, privacy-safe analytics events, and launch documentation.
 
 ## Quick start
 
@@ -31,17 +31,23 @@ src/
   templates.mjs  Shared layout, navigation, schema, forms, and components
   pages.mjs      Route content and page composition
   styles.css     Design tokens and responsive visual system
-  main.js        Navigation, forms, UTM persistence, and event hooks
+  main.js        Navigation, forms, referral persistence, and event hooks
+  search-config.mjs  Search freshness and public IndexNow verification
 scripts/
   build.mjs      Generates production pages and platform assets
   check.mjs      Checks metadata, headings, links, image dimensions, and claims
+  check-ai-search.mjs  Checks crawler access, sitemap freshness, and schema
+  submit-indexnow.mjs  Previews or sends the canonical URL inventory to IndexNow
   serve.mjs      Local static preview server
 public/assets/   Brand assets, editorial imagery, and responsive project media
 docs/            Audit, content operations, launch, and QA documentation
 dist/            Generated production build; not committed
 ```
 
-The site uses no runtime framework or third-party JavaScript, and makes no third-party front-end requests: Bebas Neue and Montserrat are self-hosted WOFF2 files served same-origin with size-adjusted local fallbacks.
+The site uses no runtime framework. Bebas Neue and Montserrat are self-hosted
+WOFF2 files served same-origin with size-adjusted local fallbacks. The approved
+IDPixel loader is the only third-party script; Vercel Web Analytics loads through
+the hosting project’s same-origin analytics endpoint.
 
 ## Editing content
 
@@ -53,6 +59,7 @@ The site uses no runtime framework or third-party JavaScript, and makes no third
 - Shared components: `src/templates.mjs`
 - Design tokens and layout: `src/styles.css`
 - Analytics event behavior: `src/main.js`
+- AI-search crawler and IndexNow settings: `src/search-config.mjs`
 
 Full instructions for adding projects, reviews, services, locations, team members, claims, and media are in [content operations](docs/content-operations.md).
 
@@ -90,11 +97,30 @@ The generated `dist/` folder can be deployed to a static host. It currently emit
 - `_headers`
 - `_redirects`
 
-Platform-specific deployment adapters must reproduce those behaviors rather than silently dropping them. Run `npm test` immediately before deployment. Source is tracked in [Matthewbolinger/RR2](https://github.com/Matthewbolinger/RR2); no production hosting target has been configured.
+Platform-specific deployment adapters must reproduce those behaviors rather than silently dropping them. Run `npm test` immediately before deployment. Source is tracked in [Matthewbolinger/RR2](https://github.com/Matthewbolinger/RR2) and connected to the Raccoon Restoration Vercel project.
 
 `npm run build` also regenerates the committed `vercel.json` from the authoritative legacy-route and header configuration. The quality check fails if that adapter drifts from source.
 
-The recommended Vercel migration is intentionally still in preparation. No Vercel project, production deployment, DNS, WordPress, or email setting has been changed. Start with [hosting migration readiness](docs/hosting-migration-readiness.md), complete the [owner-input worksheet](docs/migration-owner-inputs.md), preserve the [DNS baseline](docs/dns-baseline-2026-07-31.md), execute the [WordPress backup and rollback runbook](docs/wordpress-backup-and-rollback-runbook.md), and then follow the [Vercel cutover runbook](docs/vercel-cutover-runbook.md).
+The Vercel project is configured, but domain cutover and production acceptance remain controlled launch steps. Preserve the [DNS baseline](docs/dns-baseline-2026-07-31.md) and follow the [Vercel cutover runbook](docs/vercel-cutover-runbook.md) before changing DNS.
+
+## Search discovery automation
+
+The build explicitly allows `OAI-SearchBot` and `OAI-AdsBot`, emits accurate
+canonical URLs and `lastmod` values in `sitemap.xml`, publishes the IndexNow
+verification file, and enriches business and article structured data.
+
+```bash
+# Inspect the exact IndexNow payload without making a network request
+npm run build
+npm run seo:indexnow
+
+# Send the current canonical URL inventory after a meaningful production update
+npm run seo:indexnow:submit
+```
+
+Pushes to `main` that change public content or search configuration run the
+IndexNow workflow automatically. IndexNow accelerates discovery; it does not
+guarantee crawling, ranking, inclusion in ChatGPT, or immediate indexing.
 
 ## Current launch blockers
 

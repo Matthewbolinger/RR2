@@ -43,7 +43,7 @@ properties.
 | `form_started_at` | Yes | Bot/risk signal |
 | `company_website` | Must be blank | Honeypot |
 | `source_page` | Yes | Attribution |
-| `campaign_source`, `campaign_medium`, `campaign_name` | No | Campaign attribution |
+| `campaign_source`, `campaign_medium`, `campaign_name`, `campaign_landing_path` | No | Campaign attribution and first local landing path |
 
 ## Server acceptance contract
 

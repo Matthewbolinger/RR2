@@ -35,6 +35,7 @@ function validPayload(overrides = {}) {
     campaign_source: "google",
     campaign_medium: "paid-search",
     campaign_name: "roof-replacement",
+    campaign_landing_path: "/services/roof-replacement/",
     ...overrides
   };
 }
@@ -74,8 +75,16 @@ test("validates and normalizes the website lead contract", () => {
   assert.equal(lead.phone, "2245550123");
   assert.equal(lead.email, "alex@example.com");
   assert.equal(lead.service, "roof-replacement");
+  assert.equal(
+    lead.campaignLandingPath,
+    "/services/roof-replacement/"
+  );
   assert.equal(lead.consent.accepted, true);
   assert.match(buildJobNotes(lead), /Submission: 33333333/);
+  assert.match(
+    buildJobNotes(lead),
+    /Campaign landing: \/services\/roof-replacement\//
+  );
   assert.ok(buildJobNotes(lead).length <= 1_000);
 });
 
@@ -91,6 +100,22 @@ test("rejects unknown fields and impossible form timing", () => {
         { now }
       ),
     /form session/
+  );
+  assert.throws(
+    () =>
+      validateLeadPayload(
+        validPayload({ campaign_landing_path: "https://malicious.example/" }),
+        { now }
+      ),
+    /campaign_landing_path/
+  );
+  assert.throws(
+    () =>
+      validateLeadPayload(
+        validPayload({ campaign_landing_path: "//malicious.example/" }),
+        { now }
+      ),
+    /campaign_landing_path/
   );
 });
 
@@ -183,6 +208,7 @@ test("creates a contact, job, and external reference in AccuLynx", async () => {
   });
   assert.equal(createJob.body.locationAddress.city, "Barrington");
   assert.equal(createJob.body.priority, "Normal");
+  assert.match(createJob.body.notes, /Campaign landing: \/services\/roof-replacement\//);
   assert.doesNotMatch(JSON.stringify(result), /alex@example|224555|Main Street/);
 });
 

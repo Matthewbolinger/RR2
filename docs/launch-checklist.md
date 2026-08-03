@@ -5,6 +5,8 @@
 - [x] Production build succeeds
 - [x] Internal-link, metadata, heading, schema, image-dimension, and claim checks pass
 - [x] Sitemap, robots, 404, security headers, and redirects generated
+- [x] OAI-SearchBot and OAI-AdsBot explicitly allowed
+- [x] Sitemap freshness dates and IndexNow deployment notification implemented
 - [x] Legacy redirects and retired WordPress URLs centralized and build-checked
 - [x] Source-generated Vercel adapter added and drift-checked
 - [x] Mobile conversion actions implemented
@@ -99,6 +101,7 @@
 - [x] Final social-preview test
 - [ ] Production form and phone attribution test
 - [ ] Submit sitemap and inspect indexation
+- [ ] After the Vercel domain cutover, manually run the `Notify IndexNow` GitHub workflow once. It safely skips submission until the canonical key file is live.
 
 ## Launch decision
 

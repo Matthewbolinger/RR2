@@ -229,6 +229,18 @@ await cp(
   join(dist, "assets", "favicon.svg")
 );
 await cp(
+  join(root, "public", "assets", "favicon-48.png"),
+  join(dist, "assets", "favicon-48.png")
+);
+await cp(
+  join(root, "public", "assets", "favicon-512.png"),
+  join(dist, "assets", "favicon-512.png")
+);
+await cp(
+  join(root, "public", "assets", "apple-touch-icon.png"),
+  join(dist, "assets", "apple-touch-icon.png")
+);
+await cp(
   join(
     root,
     "public",

@@ -10,8 +10,8 @@
 - [x] Legacy redirects and retired WordPress URLs centralized and build-checked
 - [x] Source-generated Vercel adapter added and drift-checked
 - [x] Mobile conversion actions implemented
-- [ ] Approved hosting target configured
-- [ ] Production domain, DNS, SSL, www/apex, and legacy redirects tested
+- [x] Approved Vercel production hosting target configured
+- [x] Production domain, DNS, SSL, www/apex, and legacy redirects tested on August 4, 2026
 
 ## Migration preservation
 
@@ -26,7 +26,11 @@
 - [ ] Full managed-hosting account or `public_html`, `wp-config.php`, and `.htaccess` captured if Name.com exposes file/SFTP access
 - [x] Complete Name.com DNS zone exported and reconciled with the public baseline
 - [ ] Active mailbox provider and Google-MX/Titan-SPF combination confirmed
-- [ ] Vercel owner/team, billing, and RR2 GitHub access confirmed
+- [x] Vercel Pro team, production RR2 GitHub deployment, sole Owner, and Owner 2FA confirmed
+- [x] Automatic paid-seat creation disabled; new repository committers require manual approval
+- [x] Conservative $25 on-demand budget configured with production pause at the threshold
+- [ ] Vercel invoice recipient and company name changed from personal-style values to approved business billing details
+- [ ] Accountable recovery administrator and budget-resume operator documented
 - [ ] Preview deployment passes the full acceptance runbook
 - [ ] Rollback operator has independent access and the prior A-record values
 - [ ] WordPress hosting retained through the post-launch stabilization window
@@ -46,7 +50,7 @@
 - [ ] Current manufacturer certifications and logo rights
 - [ ] Approved review rating/count snapshot
 - [ ] Founder, team, and company-history approval
-- [ ] Social profile URLs
+- [x] Social profile URLs verified against the managed Google Business Profile
 
 ## Brand and content
 
@@ -68,19 +72,19 @@
 
 ## Integrations and data
 
-- [x] Full quote form remains visible and fails honestly while online delivery is unconfigured
+- [x] Full quote form posts to the server-side production endpoint and only navigates to thank-you after a durable AccuLynx receipt
 - [x] Thank-you navigation and success tracking wait for endpoint confirmation
-- [ ] Secure `FORM_ENDPOINT`
-- [ ] Server validation, sanitization, rate limiting, and spam protection
+- [x] Secure server-side `FORM_ENDPOINT=/api/quote/`
+- [x] Server validation, sanitization, honeypot protection, deduplication, and Vercel Firewall rate limiting
 - [ ] CRM field mapping, deduplication, pipeline stage, and lead-owner routing
 - [ ] Consent evidence, retention, and suppression workflow approved
 - [ ] Real desktop and mobile delivery tests
-- [ ] Production endpoint success tied to durable CRM receipt
+- [x] Production endpoint success tied to a durable AccuLynx receipt; broader routing matrix remains open
 - [ ] IDPixel consent/legal review and production request validation; configure any additional analytics IDs only if approved
 - [ ] Preserve, replace, or formally retire live Meta Pixel `1583403939041768`
 - [ ] Preserve or rebuild equivalent CAPI attribution if Meta tracking remains active
-- [ ] Search Console verification
-- [ ] Google Business Profile service areas, services, hours, photos, and UTM website link
+- [x] Search Console ownership previously verified; current sitemap coverage remains a recurring check
+- [x] Google Business Profile service areas, services, hours, and photos owner-confirmed complete; monitor Google's pending UTM website publication
 - [ ] Bing Places and core citation consistency review
 - [ ] Google Ads and Meta conversions
 - [ ] Call tracking policy and number replacement behavior
@@ -100,12 +104,22 @@
 - [ ] Structured-data validator
 - [x] Final social-preview test
 - [ ] Production form and phone attribution test
-- [ ] Submit sitemap and inspect indexation
-- [ ] After the Vercel domain cutover, manually run the `Notify IndexNow` GitHub workflow once. It safely skips submission until the canonical key file is live.
+- [x] Submit the sitemap to Google and Bing; both report Success with 25 discovered URLs. Google page-indexing coverage is still processing.
+- [x] Run the production IndexNow submission after cutover; 25 canonical URLs accepted with HTTP 200 on August 4, 2026
+- [x] Verify Homepage, Contact, Roof Replacement, Projects, Service Areas, and Barrington individually as indexed in Google
+- [x] Submit the discovered-but-not-indexed `/resources/` hub to Google's priority crawl queue
+- [ ] Reconcile Bing production Site Scan `RR production launch 2026-08-04` after its current Queued status completes
 
 ## Launch decision
 
-**Blocked for public production launch** until the authenticated WordPress backup and DNS export are complete, mail ownership is confirmed, the supplied project imagery is cleared for publication, detailed case-study facts are verified, remaining brand/people assets are approved, form delivery works, tracking continuity is resolved, required business facts and legal text are reviewed, and a preview deployment passes the acceptance runbook. The local production build is ready for final responsive review and integration.
+**Public production is active.** The release build, canonical domain, HTTPS,
+redirects, sitemap, IndexNow submission, firewall, privacy-safe conversion events,
+and one durable AccuLynx receipt are verified. The open items above are production
+readiness exceptions and growth controls, not evidence that the live site is
+offline. Do not declare the revenue path fully accepted until the CRM administrator
+reconciles the controlled test record and the remaining routing/failure matrix
+passes. Do not retire the WordPress rollback assets until mail ownership, tracking
+continuity, legal text, and post-cutover stability are confirmed.
 
 ## Sprint delta — 2026-08-01 agentic sprint
 

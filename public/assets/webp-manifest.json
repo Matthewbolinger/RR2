@@ -144,32 +144,6 @@
         "height": 360
       }
     },
-    "/assets/editorial-v2/storm-restoration-assessment-service-card-v2-1280.jpg": {
-      "hash": "351a9ecf0908e6c4132edad4a02ee763fd0fa7516332f74041fbcaba498dc000",
-      "sourceBytes": 337118,
-      "quality": 0.72,
-      "capWidth": null,
-      "status": "encoded",
-      "webp": {
-        "file": "/assets/editorial-v2/storm-restoration-assessment-service-card-v2-1280.webp",
-        "bytes": 91212,
-        "width": 1280,
-        "height": 720
-      }
-    },
-    "/assets/editorial-v2/storm-restoration-assessment-service-card-v2-640.jpg": {
-      "hash": "8347b4157148d5cdcd131aceea91b0d7adfd6d35df7d2a7030b29172ddb175be",
-      "sourceBytes": 110114,
-      "quality": 0.72,
-      "capWidth": null,
-      "status": "encoded",
-      "webp": {
-        "file": "/assets/editorial-v2/storm-restoration-assessment-service-card-v2-640.webp",
-        "bytes": 36122,
-        "width": 640,
-        "height": 360
-      }
-    },
     "/assets/editorial-v2/service-areas-residential-project-aerial-optimized-1600x900.jpg": {
       "hash": "28658e173d773096b9cb202b05bd341306869f23df4b7e4c489aa0e4a0d7653c",
       "sourceBytes": 279995,
@@ -220,6 +194,32 @@
         "bytes": 69796,
         "width": 800,
         "height": 1000
+      }
+    },
+    "/assets/editorial-v2/storm-restoration-assessment-service-card-v2-1280.jpg": {
+      "hash": "351a9ecf0908e6c4132edad4a02ee763fd0fa7516332f74041fbcaba498dc000",
+      "sourceBytes": 337118,
+      "quality": 0.72,
+      "capWidth": null,
+      "status": "encoded",
+      "webp": {
+        "file": "/assets/editorial-v2/storm-restoration-assessment-service-card-v2-1280.webp",
+        "bytes": 91212,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    "/assets/editorial-v2/storm-restoration-assessment-service-card-v2-640.jpg": {
+      "hash": "8347b4157148d5cdcd131aceea91b0d7adfd6d35df7d2a7030b29172ddb175be",
+      "sourceBytes": 110114,
+      "quality": 0.72,
+      "capWidth": null,
+      "status": "encoded",
+      "webp": {
+        "file": "/assets/editorial-v2/storm-restoration-assessment-service-card-v2-640.webp",
+        "bytes": 36122,
+        "width": 640,
+        "height": 360
       }
     },
     "/assets/editorial-v2/warranty-finished-roof-web-1280.jpg": {
@@ -620,6 +620,32 @@
       "capWidth": null,
       "status": "kept-original",
       "webp": null
+    },
+    "/assets/raccoon-restoration-logo-bahnschrift-480.png": {
+      "hash": "766077b38c1fff6062cae5f23334e56239783eacf320147e4bd4ed9c9b5b3bab",
+      "sourceBytes": 43982,
+      "quality": 0.9,
+      "capWidth": null,
+      "status": "encoded",
+      "webp": {
+        "file": "/assets/raccoon-restoration-logo-bahnschrift-480.webp",
+        "bytes": 22110,
+        "width": 480,
+        "height": 160
+      }
+    },
+    "/assets/raccoon-restoration-logo-bahnschrift-960.png": {
+      "hash": "ccd2c4a6c6427a9dcf50a83991e4df69c7d86d8e6328a9f2fabe8ce624e036cb",
+      "sourceBytes": 129434,
+      "quality": 0.9,
+      "capWidth": null,
+      "status": "encoded",
+      "webp": {
+        "file": "/assets/raccoon-restoration-logo-bahnschrift-960.webp",
+        "bytes": 48596,
+        "width": 960,
+        "height": 320
+      }
     },
     "/assets/raccoon-restoration-logo-horizontal-web-480.png": {
       "hash": "2bb7b700dda372596583496726218fb0835317d512d46cb13205696b9c11d111",

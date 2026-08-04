@@ -233,17 +233,26 @@ await cp(
     root,
     "public",
     "assets",
-    "raccoon-restoration-logo-horizontal-web-480.png"
+    "raccoon-restoration-logo-bahnschrift-480.png"
   ),
   join(
     dist,
     "assets",
-    "raccoon-restoration-logo-horizontal-web-480.png"
+    "raccoon-restoration-logo-bahnschrift-480.png"
   )
 );
 await cp(
-  join(root, "public", "assets", "raccoon-restoration-logo.png"),
-  join(dist, "assets", "raccoon-restoration-logo.png")
+  join(
+    root,
+    "public",
+    "assets",
+    "raccoon-restoration-logo-bahnschrift-960.png"
+  ),
+  join(
+    dist,
+    "assets",
+    "raccoon-restoration-logo-bahnschrift-960.png"
+  )
 );
 await cp(
   join(root, "public", "assets", "footer-brand-pattern.jpg"),

@@ -4,6 +4,9 @@ Production website foundation for **Raccoon Restoration — Built Above Standard
 
 The repository started empty. It now contains a dependency-free static site generator, centralized business, service, and resource data, 28 generated pages, responsive brand components, Greater Chicago SEO and structured-data foundations, a secure lead-intake path, privacy-safe analytics events, and launch documentation.
 
+The current execution order and release gates are tracked in the
+[Production + Growth Master Plan](docs/production-growth-master-plan-2026-08-04.md).
+
 ## Quick start
 
 Requirements:

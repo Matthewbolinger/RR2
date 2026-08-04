@@ -289,7 +289,9 @@ const structuredData = ({
       ],
       sameAs: [
         "https://www.bbb.org/us/il/barrington/profile/roofing-consultants/raccoon-restoration-0654-90025835",
-        "https://www.gaf.com/en-us/roofing-contractors/residential/usa/il/barrington/raccoon-restoration-1151998"
+        "https://www.gaf.com/en-us/roofing-contractors/residential/usa/il/barrington/raccoon-restoration-1151998",
+        "https://www.instagram.com/raccoonrestoration/",
+        "https://www.facebook.com/Raccoon-Restoration"
       ]
     },
     {

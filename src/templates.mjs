@@ -86,7 +86,15 @@ export const quoteCta = ({
 const logo = ({ footer = false } = {}) => `
   <a class="brand-logo${footer ? " brand-logo--footer" : ""}" href="/" aria-label="Raccoon Restoration home">
     <picture>
-      <img src="/assets/raccoon-restoration-logo-horizontal-web-480.png" alt="Raccoon Restoration" width="480" height="156"${footer ? ' loading="lazy"' : ""} decoding="async">
+      <img
+        src="/assets/raccoon-restoration-logo-bahnschrift-480.png"
+        srcset="/assets/raccoon-restoration-logo-bahnschrift-480.png 480w, /assets/raccoon-restoration-logo-bahnschrift-960.png 960w"
+        sizes="${footer ? "320px" : "(max-width: 900px) 190px, 232px"}"
+        alt="Raccoon Restoration"
+        width="480"
+        height="160"${footer ? ' loading="lazy"' : ""}
+        decoding="async"
+      >
     </picture>
   </a>`;
 
@@ -221,9 +229,9 @@ const structuredData = ({
       url: business.siteUrl,
       logo: {
         "@type": "ImageObject",
-        url: `${business.siteUrl}/assets/raccoon-restoration-logo.png`,
-        width: 454,
-        height: 296
+        url: `${business.siteUrl}/assets/raccoon-restoration-logo-bahnschrift-960.png`,
+        width: 960,
+        height: 320
       },
       image: `${business.siteUrl}/assets/images/hero-home.jpg`,
       telephone: business.phoneHref,

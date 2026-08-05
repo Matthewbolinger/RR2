@@ -18,7 +18,7 @@ These items are not published as positive marketing claims until an approved sou
 | Team/founder names | Omitted | Approved bios and photography |
 | Exact service availability | “Confirm for your property” | Current service catalog |
 | Response time | Omitted | Operational SLA |
-| Public-adjuster licensed name and number | Licensed capability confirmed by client and presented with a separate-agreement disclosure | Exact licensed individual/business name, Illinois license number, and confirmation of the contracting entity |
+| Public-adjuster partnership or referral arrangement | Omitted from marketing | Legal review of the entities, licenses, contracting path, lead-sharing terms, and Illinois Department of Insurance Bulletin 2026-02 |
 | Social profiles | Omitted | Approved canonical URLs |
 
 ## Verified core facts

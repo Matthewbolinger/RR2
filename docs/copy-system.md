@@ -21,8 +21,9 @@ Human, direct, calm, specific, and operationally credible. Copy should help a ho
 - “Proof should be real—not manufactured.”
 - “Ask for the terms—not only the word warranty.”
 - “Coverage decisions stay with the carrier.”
-- “We take on the claim pressure. You focus on moving forward.”
-- “Licensed public-adjusting services are governed by a separate written agreement.”
+- “We document the damage and make the repair scope clear.”
+- “We stand behind the construction scope when discussing damage and repair options.”
+- “Raccoon Restoration is your contractor—not a public adjuster.”
 
 ## Prohibited or gated language
 
@@ -30,9 +31,11 @@ Human, direct, calm, specific, and operationally credible. Copy should help a ho
 - Top-rated, five-star, review count, project count
 - Insured, bonded, warranty-backed, financing available
 - Insurance-claim outcome, approval, settlement amount, or coverage promise
+- Any statement that Raccoon Restoration represents a homeowner on an insurance claim, files the claim for the homeowner, interprets policy coverage, or negotiates the settlement
+- Public-adjuster partnership, referral, or lead-sharing language without documented legal review
 - Exact response time, service radius, or years in business
 
-Gated phrases may be enabled only after the claims registry records an approved source and review date. Public-adjusting language must preserve the distinction between licensed claim representation and the carrier’s authority to make coverage decisions.
+Gated phrases may be enabled only after the claims registry records an approved source and review date. Contractor-side insurance language must stay within inspection, documentation, construction estimating, and discussion of property damage and repair options with the insurer’s representative. Claim representation belongs to a separately retained licensed public adjuster, and coverage decisions belong to the carrier.
 
 ## CTA system
 

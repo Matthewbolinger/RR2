@@ -11,8 +11,8 @@ export const resourceArticles = [
       "Use evidence, written scope, and verifiable credentials to compare roofers—not pressure, vague allowances, or price alone.",
     readTime: "6 min read",
     datePublished: "2026-07-30",
-    dateModified: "2026-07-30",
-    sourceReviewed: "2026-07-30",
+    dateModified: "2026-08-04",
+    sourceReviewed: "2026-08-04",
     sections: [
       {
         heading: "Verify the Illinois roofing license first",
@@ -51,8 +51,18 @@ export const resourceArticles = [
       {
         heading: "Understand the insurance-claim roles",
         paragraphs: [
-          "A contractor can inspect damage and prepare a construction scope. Insurance coverage decisions belong to the carrier. Licensed public adjusters, when separately engaged, can represent the policyholder in documenting, preparing, presenting, and negotiating a property claim.",
-          "Ask who is performing each role, how that service is contracted, and whether the person providing public-adjusting services is properly licensed."
+          "With the homeowner’s permission, a contractor can inspect damage, prepare a construction estimate, submit that estimate to the insurance company, confer with the insurer’s representative about property damage, and discuss repair or replacement options. The contractor cannot represent the homeowner on the insurance claim, file the claim for the homeowner, or negotiate the settlement.",
+          "A licensed public adjuster, when separately retained by the homeowner, can represent the policyholder in preparing, presenting, and negotiating a property claim. Ask who is performing each role and verify any public-adjuster license before signing a separate agreement."
+        ],
+        links: [
+          {
+            href: "https://www.ilga.gov/Legislation/ILCS/Articles?ActID=2359&ChapterID=66",
+            label: "Illinois General Assembly: contractor insurance-claim limits"
+          },
+          {
+            href: "https://idoi.illinois.gov/consumers/consumerinsurance/homeownerrenter/homeowners-and-renters-public-adjusters.html",
+            label: "Illinois Department of Insurance: Public Adjusters"
+          }
         ]
       },
       {
@@ -133,8 +143,8 @@ export const resourceArticles = [
       "After wind or hail, protect people and the interior first. Then build a factual record before deciding what work is warranted.",
     readTime: "6 min read",
     datePublished: "2026-07-30",
-    dateModified: "2026-07-30",
-    sourceReviewed: "2026-07-30",
+    dateModified: "2026-08-04",
+    sourceReviewed: "2026-08-04",
     sections: [
       {
         heading: "Make the property safe",
@@ -170,8 +180,18 @@ export const resourceArticles = [
       {
         heading: "Know who represents whom",
         paragraphs: [
-          "The insurance carrier decides coverage under the policy. A roofing contractor prepares and performs the construction scope. A licensed public adjuster, under a separate agreement, can represent the policyholder in documenting, preparing, presenting, and negotiating the property claim.",
-          "No contractor or public adjuster can guarantee coverage or a claim outcome. Ask for every role, fee, and responsibility in writing."
+          "The insurance carrier decides coverage under the policy. With the homeowner’s permission, a roofing contractor may inspect the property, prepare a repair estimate, confer with the insurer’s representative about the damage, and discuss repair or replacement options. The contractor may not represent the homeowner on the claim, file the claim for the homeowner, or negotiate the settlement.",
+          "A licensed public adjuster, under a separate agreement with the homeowner, can represent the policyholder on the claim. No contractor or public adjuster can guarantee coverage or a claim outcome. Ask for every role, fee, and responsibility in writing."
+        ],
+        links: [
+          {
+            href: "https://www.ilga.gov/Legislation/ILCS/Articles?ActID=2359&ChapterID=66",
+            label: "Illinois General Assembly: contractor insurance-claim limits"
+          },
+          {
+            href: "https://idoi.illinois.gov/consumers/consumerinsurance/homeownerrenter/homeowners-and-renters-public-adjusters.html",
+            label: "Illinois Department of Insurance: Public Adjusters"
+          }
         ]
       },
       {

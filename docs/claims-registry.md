@@ -12,8 +12,8 @@
 | Roofing, siding, gutters, interiors, wallpaper/paint, windows, doors listed publicly | Verified as public listing, not guaranteed availability | Current website | Confirm current catalog |
 | Built Above Standard. | Client-approved platform | Master prompt | No trademark symbol |
 | Free inspections | Client-directed wording | Client direction, July 28, 2026 | Confirm operational scope before launch |
-| Licensed public-adjusting services | Client-confirmed licensed capability | Client confirmation, July 30, 2026 | Add exact licensed individual/business name and Illinois license number before production launch |
-| Insurance-claim specialists | Client-confirmed team capability | Client direction and license confirmation, July 30, 2026 | Review together with the public-adjusting disclosure before launch |
+| Storm damage experts | Client-approved brand statement | Client correction, August 4, 2026 | Keep the website role limited to contractor-side inspection, documentation, estimating, and repair-option discussions |
+| Contractor-side storm documentation and repair estimating | Client-confirmed team capability | Client correction, August 4, 2026 | Do not imply public-adjusting, claim filing, policy interpretation, settlement negotiation, or claim representation |
 | Retail estimators, design specialists, flood assessments, and listed skilled trades | Client-confirmed team capability | Client direction, July 30, 2026 | Confirm current availability for each property and scope |
 | Quality craftsmanship | Client-approved brand statement | Client direction, July 28, 2026 | Recheck before launch |
 | Fast, reliable service | Client-approved brand statement | Client direction, July 28, 2026 | Confirm operational support before launch |
@@ -31,6 +31,13 @@
 | Review count | Awaiting verification | Dated approved platform data |
 | Homes protected / project count | Awaiting verification | Defined, auditable source |
 | Fast response / 24-7 | Awaiting verification | Operational capability and approved wording |
+| Public-adjuster partnership or referral arrangement | Legal review required | Confirm the entities, licenses, contracting path, lead-sharing terms, and compliance with Illinois Department of Insurance Bulletin 2026-02 before publishing |
+
+## Withdrawn
+
+| Claim | Reason | Corrected |
+| --- | --- | --- |
+| Raccoon Restoration provides licensed public-adjusting services | Client confirmed that Raccoon Restoration is not a licensed public adjuster | August 4, 2026 |
 
 ## Claim workflow
 

@@ -172,7 +172,7 @@ const home = {
         <div class="storm-panel__copy pattern">
           <p class="eyebrow">Storm guidance</p>
           <h2>Storm damage is stressful.<br><span>Your contractor should not be.</span></h2>
-          <p>Start with a safe inspection and a factual record. When engaged, our licensed public-adjusting professionals carry the claim process, communicate with the carrier, and advocate for the documented loss. The insurer makes the coverage decision.</p>
+          <p>We document visible storm damage, prepare the repair estimate, and can discuss the damage and repair options with your insurer’s representative. Raccoon Restoration is your contractor—not a public adjuster.</p>
           ${button({
             href: "/services/storm-damage-restoration/",
             label: "Get Storm Guidance",
@@ -761,7 +761,7 @@ const about = {
   html: layout({
     title: "About Raccoon Restoration",
     description:
-      "Meet the Greater Chicago roofing, restoration, estimating, design, skilled-trades, and licensed public-adjusting team at Raccoon Restoration.",
+      "Meet the Greater Chicago roofing, restoration, storm-damage, estimating, design, and skilled-trades team at Raccoon Restoration.",
     path: "/about/",
     pageType: "about",
     body: `
@@ -805,29 +805,30 @@ const about = {
         <div class="shell">
           <header class="team-expertise__header">
             <div>
-              <p class="eyebrow">Claims advocacy + construction expertise</p>
-              <h2 id="team-expertise-title">We take on the claim pressure.<br><span>You focus on moving forward.</span></h2>
+              <p class="eyebrow">Storm expertise + construction clarity</p>
+              <h2 id="team-expertise-title">We make the repair scope clear.<br><span>You focus on moving forward.</span></h2>
             </div>
             <div class="team-expertise__lede">
-              <p>Property damage can leave you managing inspections, estimates, technical questions, and repeated conversations with the insurance company. You should not have to carry that process alone.</p>
-              <strong>Our licensed public-adjusting professionals document the loss, prepare and present the claim, communicate with the carrier, and challenge incomplete or inaccurate assessments when the evidence supports it.</strong>
+              <p>Property damage can leave you managing inspections, estimates, technical questions, and repeated conversations with the insurance company. You should not have to explain the construction scope alone.</p>
+              <strong>Our storm-damage specialists document visible conditions, prepare detailed repair estimates, and stand behind the construction scope when discussing property damage and repair options with the insurance company’s representative.</strong>
             </div>
           </header>
 
           <div class="team-expertise__grid">
             <article class="team-expertise__card team-expertise__card--claims">
-              <p class="eyebrow">Claim-side expertise</p>
-              <h3>Your advocate across the table.</h3>
-              <p>We manage the technical claim work and keep you informed—without leaving you to navigate every call, estimate, and scope dispute yourself.</p>
+              <p class="eyebrow">Contractor-side expertise</p>
+              <h3>Construction facts at the table.</h3>
+              <p>We organize the documentation, estimate, and repair options so the construction scope is clear—without acting as your public adjuster or insurer.</p>
               <ul>
-                <li>${icon("check")}<span>Licensed public-adjusting services</span></li>
-                <li>${icon("check")}<span>Insurance-claim specialists</span></li>
+                <li>${icon("check")}<span>Storm-damage inspections and documentation</span></li>
+                <li>${icon("check")}<span>Detailed repair scopes and estimates</span></li>
+                <li>${icon("check")}<span>Insurance-adjuster site meetings</span></li>
                 <li>${icon("check")}<span>Retail and restoration estimators</span></li>
                 <li>${icon("check")}<span>Water and flood-damage assessments</span></li>
               </ul>
               ${button({
                 href: "/contact/#inspection-form",
-                label: "Talk to a Claims Specialist",
+                label: "Talk to a Storm Specialist",
                 event: "claim_support_click",
                 position: "about_team_expertise"
               })}
@@ -850,7 +851,7 @@ const about = {
             </article>
           </div>
 
-          <p class="team-expertise__disclosure">Public-adjusting services are provided under a separate written agreement. Coverage decisions remain with the insurance carrier, and no claim outcome is guaranteed.</p>
+          <p class="team-expertise__disclosure">Raccoon Restoration is a roofing and restoration contractor, not a public adjuster. We do not interpret policy coverage, file claims on a customer’s behalf, or negotiate claim settlements. If a customer separately retains a licensed public adjuster, we can coordinate on construction documentation while that professional handles claim representation. Coverage decisions remain with the insurer.</p>
         </div>
       </section>
       <section class="section">
@@ -1500,11 +1501,12 @@ const terms = {
       [
         ["Informational purpose", "Website content is general information and does not replace a property inspection, written proposal, contract, manufacturer document, insurance policy, legal advice, or engineering advice."],
         ["Service availability", "Services, geographic coverage, scheduling, financing, materials, certifications, and warranty options may change and should be confirmed in writing for each project."],
-        ["Insurance", "Raccoon Restoration does not promise coverage, claim approval, or a particular settlement. Licensed public-adjusting services, when engaged, are governed by a separate written agreement. Coverage decisions belong to the insurance carrier."],
+        ["Insurance", "Raccoon Restoration is a roofing and restoration contractor, not a public adjuster. The company may inspect and document visible damage, prepare a repair estimate, and confer with an insurance company’s representative about property damage and repair options. Raccoon Restoration does not interpret policy coverage, file claims on a customer’s behalf, or negotiate claim settlements. Coverage decisions belong to the insurance carrier."],
         ["Estimates and contracts", "No website statement creates a binding project scope or price. Approved work is governed by the signed written agreement and incorporated documents."],
         ["Intellectual property", "Site copy, design, and approved brand assets may not be reused in a way that implies affiliation or endorsement."],
         ["Contact", `Questions about these terms may be sent to ${business.email}.`]
-      ]
+      ],
+      { updated: "August 4, 2026" }
     )
   })
 };

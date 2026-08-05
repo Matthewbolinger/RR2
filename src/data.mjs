@@ -27,7 +27,7 @@ export const navigation = [
 
 export const trustSignals = [
   { icon: "shield", label: "Free inspections" },
-  { icon: "target", label: "Licensed public adjusters" },
+  { icon: "target", label: "Storm damage experts" },
   { icon: "wrench", label: "Quality craftsmanship" },
   { icon: "clock", label: "Fast, reliable service" }
 ];
@@ -155,7 +155,7 @@ export const services = [
       "Storm-related exterior inspection",
       "Photo documentation of observed conditions",
       "A clearly defined repair or restoration scope",
-      "Licensed public-adjusting support when separately engaged"
+      "Contractor-side documentation and repair-estimate support"
     ],
     faq: [
       {
@@ -164,7 +164,7 @@ export const services = [
       },
       {
         q: "Does Raccoon Restoration decide what insurance covers?",
-        a: "No. Coverage decisions belong to the insurance carrier. When separately engaged, Raccoon Restoration’s licensed public-adjusting professionals can document the loss, prepare and present the claim, communicate with the carrier, and advocate for accurate consideration under the policy."
+        a: "No. Coverage decisions belong to the insurance carrier. From the contractor side, we can inspect and document visible damage, prepare a repair scope and estimate, and confer with the insurance company’s representative about the property damage and repair options. Raccoon Restoration is not a public adjuster and does not interpret coverage, file a claim for the customer, or negotiate the settlement."
       }
     ]
   },
@@ -279,7 +279,7 @@ export const faqs = [
   },
   {
     q: "Do you handle insurance claims?",
-    a: "Yes. When separately engaged, our licensed public-adjusting professionals can document the loss, prepare and present the claim, communicate with the carrier, and advocate for accurate consideration under the policy. Coverage decisions remain with the insurance carrier, and no claim outcome is guaranteed."
+    a: "Yes—from the contractor side. We document visible damage, prepare the repair estimate, and can discuss the damage and repair options with the insurer’s representative. We do not act as a public adjuster, file claims, interpret coverage, or negotiate settlements."
   },
   {
     q: "Are financing and warranty options available?",
@@ -287,7 +287,7 @@ export const faqs = [
   },
   {
     q: "Which services do you provide?",
-    a: "Our capabilities include roofing, siding, gutters, interior restoration, paint and wallcoverings, windows and doors, project estimating, design guidance, water and flood-damage assessments, and licensed public-adjusting services. Availability is confirmed for each property and scope."
+    a: "Our capabilities include roofing, siding, gutters, interior restoration, paint and wallcoverings, windows and doors, project estimating, design guidance, water and flood-damage assessments, and contractor-side storm documentation. Availability is confirmed for each property and scope."
   }
 ];
 
@@ -448,9 +448,14 @@ export const claimRegistry = [
     source: "Client direction, July 28, 2026"
   },
   {
-    claim: "Licensed public adjusting services",
-    status: "client_confirmed_license_details_pending",
-    source: "Client confirmation, July 30, 2026; exact licensed name and number still required"
+    claim: "Storm damage experts",
+    status: "client_approved_brand_statement",
+    source: "Client correction and approval, August 4, 2026"
+  },
+  {
+    claim: "Contractor-side storm documentation and repair estimating",
+    status: "client_confirmed",
+    source: "Client correction, August 4, 2026; Raccoon Restoration is not a public adjuster"
   },
   {
     claim: "Quality craftsmanship",

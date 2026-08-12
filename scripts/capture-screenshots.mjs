@@ -545,6 +545,18 @@ const targets = [
     height: 1000
   },
   {
+    name: "resource-roof-replacement-process-1440.png",
+    path: "/resources/roof-replacement-process-what-to-expect/",
+    width: 1440,
+    height: 1000
+  },
+  {
+    name: "resource-roof-replacement-process-mobile-390.png",
+    path: "/resources/roof-replacement-process-what-to-expect/",
+    width: 390,
+    height: 844
+  },
+  {
     name: "resource-storm-guide-1440.png",
     path: "/resources/storm-damage-roof-assessment-illinois/",
     width: 1440,
@@ -710,6 +722,7 @@ const requiredCapturePaths = [
   "/resources/",
   "/resources/choose-roofing-contractor-greater-chicago/",
   "/resources/roof-repair-vs-replacement-chicago/",
+  "/resources/roof-replacement-process-what-to-expect/",
   "/resources/storm-damage-roof-assessment-illinois/",
   "/resources/ice-dams-attic-ventilation-chicago/",
   "/faq/",

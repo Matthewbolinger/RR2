@@ -57,8 +57,28 @@ const resourceSectionId = (heading) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 
+const resourceDate = (value) => {
+  const [year, month, day] = value.split("-").map(Number);
+  return new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC"
+  }).format(new Date(Date.UTC(year, month - 1, day)));
+};
+
+const resourceLink = (link) => {
+  const external = /^https?:\/\//.test(link.href);
+  return `<a href="${link.href}"${external ? ' target="_blank" rel="noopener noreferrer"' : ""}>${link.label}${icon("arrow")}</a>`;
+};
+
+const resourceHasExternalSources = (article) =>
+  article.sections.some((section) =>
+    (section.links || []).some((link) => /^https?:\/\//.test(link.href))
+  );
+
 const serviceGuideMap = {
-  "roof-replacement": "roof-repair-vs-replacement-chicago",
+  "roof-replacement": "roof-replacement-process-what-to-expect",
   "roof-repair": "roof-repair-vs-replacement-chicago",
   "storm-damage-restoration": "storm-damage-roof-assessment-illinois",
   "gutters-exteriors": "ice-dams-attic-ventilation-chicago"
@@ -917,6 +937,26 @@ const process = {
             .join("")}
         </div>
       </section>
+      <section class="section section--cream">
+        <div class="shell content-grid">
+          ${sectionHeading({
+            eyebrow: "Planning a full replacement?",
+            title: "Know what happens before the first shingle comes off.",
+            intro: "Review scope, preparation, tear-off, installation, cleanup, warranties, and closeout before work begins."
+          })}
+          <div class="content-card">
+            <h3>The roof replacement process, explained.</h3>
+            <p>Use the homeowner guide to prepare useful questions and understand the milestones of a well-managed roofing project.</p>
+            ${button({
+              href: "/resources/roof-replacement-process-what-to-expect/",
+              label: "Read the Roof Replacement Guide",
+              variant: "dark",
+              event: "resource_card_click",
+              position: "process"
+            })}
+          </div>
+        </div>
+      </section>
       ${finalCta({
         eyebrow: "Step one",
         title: "Start with a free inspection.",
@@ -1166,8 +1206,8 @@ const resourcePages = resourceArticles.map((article) => {
               </div>
               <aside aria-label="Article details">
                 <span>${article.readTime}</span>
-                <span>Updated <time datetime="${article.dateModified}">July 30, 2026</time></span>
-                <span>Official sources reviewed <time datetime="${article.sourceReviewed}">July 30, 2026</time></span>
+                <span>Updated <time datetime="${article.dateModified}">${resourceDate(article.dateModified)}</time></span>
+                <span>${resourceHasExternalSources(article) ? "Official sources reviewed" : "Editorially reviewed"} <time datetime="${article.sourceReviewed}">${resourceDate(article.sourceReviewed)}</time></span>
                 <span>Raccoon Restoration Editorial Team</span>
               </aside>
             </div>
@@ -1204,10 +1244,7 @@ const resourcePages = resourceArticles.map((article) => {
                         section.links
                           ? `<div class="resource-source-links">
                               ${section.links
-                                .map(
-                                  (link) =>
-                                    `<a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.label}${icon("arrow")}</a>`
-                                )
+                                .map(resourceLink)
                                 .join("")}
                             </div>`
                           : ""

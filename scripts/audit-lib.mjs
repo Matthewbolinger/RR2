@@ -214,6 +214,7 @@ export const ROUTES = [
   "/resources/choose-roofing-contractor-greater-chicago/",
   "/resources/ice-dams-attic-ventilation-chicago/",
   "/resources/roof-repair-vs-replacement-chicago/",
+  "/resources/roof-replacement-process-what-to-expect/",
   "/resources/storm-damage-roof-assessment-illinois/",
   "/contact/",
   "/faq/",

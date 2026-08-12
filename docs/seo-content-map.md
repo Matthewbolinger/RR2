@@ -32,6 +32,7 @@ Greater Chicago coverage is client-confirmed. Future city pages still require di
 - `/resources/roof-repair-vs-replacement-chicago/`
 - `/resources/storm-damage-roof-assessment-illinois/`
 - `/resources/ice-dams-attic-ventilation-chicago/`
+- `/resources/roof-replacement-process-what-to-expect/`
 
 Each guide addresses a real homeowner decision, links to the relevant service, cites an original public source when useful, and includes Article schema.
 

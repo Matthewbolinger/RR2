@@ -1,5 +1,114 @@
 export const resourceArticles = [
   {
+    slug: "roof-replacement-process-what-to-expect",
+    eyebrow: "Roofing guide",
+    title: "Roof Replacement Process: What to Expect",
+    seoTitle: "Roof Replacement Process: What to Expect",
+    shortTitle: "Understand the roof replacement process",
+    description:
+      "Understand the roof replacement process from inspection and tear-off through installation, property protection, cleanup, warranties, and final walkthrough.",
+    dek:
+      "Learn how a professional roof replacement moves from a documented scope through tear-off, installation, cleanup, and final verification.",
+    readTime: "7 min read",
+    datePublished: "2026-08-12",
+    dateModified: "2026-08-12",
+    sourceReviewed: "2026-08-12",
+    sections: [
+      {
+        heading: "Start with a written roof replacement scope",
+        paragraphs: [
+          "A roof replacement should begin with an inspection—not with shingle removal. The roofing contractor should connect the observed roof conditions to a written replacement scope and explain the proposed roofing system in plain language.",
+          "Review the roof areas included in the work, material manufacturer and product line, underlayment, flashing, ventilation, roof-edge details, disposal, warranties, exclusions, and the process for approving changes. If gutters, siding, skylights, or other exterior components affect the roof work, their role should also be clear."
+        ],
+        bullets: [
+          "Roof surfaces and related components included in the project",
+          "Selected roofing materials, product lines, and colors",
+          "Delivery, access, debris removal, and property-protection plans",
+          "The contact responsible for scheduling and project updates",
+          "The process for documenting and approving concealed conditions"
+        ],
+        links: [
+          {
+            href: "/resources/roof-repair-vs-replacement-chicago/",
+            label: "Compare roof repair and replacement"
+          }
+        ]
+      },
+      {
+        heading: "Confirm scheduling, delivery, and home preparation",
+        paragraphs: [
+          "Roofing is weather-sensitive work. Rain, wind, extreme temperatures, site conditions, material delivery, and discoveries during installation can affect the schedule. A professional plan should identify the intended start window and explain how weather-related changes will be communicated.",
+          "Before work begins, confirm whether vehicles, patio items, fragile wall decorations, attic belongings, gates, pets, or landscaping concerns need attention. Ask where materials will be placed and whether driveway, lawn, or access restrictions need to be considered."
+        ]
+      },
+      {
+        heading: "Protect the home before roof tear-off",
+        paragraphs: [
+          "Roof tear-off creates debris, vibration, noise, and active work areas. Property protection should be planned around the actual home rather than improvised after roofing work begins.",
+          "Mature landscaping, limited driveway access, steep slopes, neighboring homes, and complex roof geometry can require a more specific field plan. Raise these concerns during the scope review so the roofing crew can prepare before material removal starts."
+        ],
+        bullets: [
+          "Driveways, garage doors, windows, siding, and exterior finishes",
+          "Landscaping, patios, decks, walkways, and air-conditioning equipment",
+          "Debris-control zones and safe paths around the property",
+          "Attic, interior, and exterior items affected by vibration",
+          "Daily cleanup and safe overnight conditions"
+        ]
+      },
+      {
+        heading: "Document decking and concealed roof conditions",
+        paragraphs: [
+          "After the existing roofing materials are removed, the crew can see roof-deck and transition conditions that may not have been fully visible during the initial inspection. Deteriorated decking, concealed flashing problems, or previous installation defects can affect the approved work.",
+          "If an unanticipated condition is found, the contractor should document it, explain why it matters, describe the proposed correction, and obtain approval when the scope or price changes. Some conditions remain concealed until removal; the standard is clear communication and an agreed change process."
+        ]
+      },
+      {
+        heading: "Install the complete roofing system",
+        paragraphs: [
+          "A new roof is more than its visible shingles. The complete roofing installation may involve decking corrections, water-shedding layers, roof-edge components, valleys, flashing, ventilation, penetrations, and manufacturer-specific details.",
+          "The sequence and materials depend on the approved roof system. The field work should follow the written scope, and a reliable project contact should surface schedule changes, concealed conditions, and scope questions promptly."
+        ],
+        links: [
+          {
+            href: "/process/",
+            label: "See the Raccoon Restoration roofing process"
+          }
+        ]
+      },
+      {
+        heading: "Clean the property throughout the project",
+        paragraphs: [
+          "Roofing work produces packaging, removed materials, nails, and small debris. Cleanup should occur throughout the project and again at completion.",
+          "A closeout review may include removal of project materials, a ground-level debris check, magnetic sweeping where appropriate, review of gutters and work areas, and confirmation that access points and exterior spaces have been returned to an orderly condition."
+        ]
+      },
+      {
+        heading: "Complete a final roof walkthrough",
+        paragraphs: [
+          "Completion is more than the last shingle being installed. The final walkthrough should connect the finished work to the approved scope and identify any remaining follow-up items.",
+          "Ask for confirmation of the completed scope, an explanation of approved changes, applicable manufacturer and workmanship warranty information, relevant care or ventilation guidance, promised project documentation, and a clear contact for post-project questions."
+        ]
+      },
+      {
+        heading: "Roof replacement questions to ask before work begins",
+        paragraphs: [
+          "A clear project review helps the homeowner understand the work before the crew arrives. Use these questions to confirm the roof replacement plan and the responsibilities on both sides."
+        ],
+        bullets: [
+          "What conditions led to the roof replacement recommendation?",
+          "What is included—and excluded—from the written scope?",
+          "How will the property, landscaping, and access areas be protected?",
+          "How will weather or schedule changes be communicated?",
+          "What happens if concealed decking or flashing problems are found?",
+          "Who approves changes, and how are they documented?",
+          "What is the daily and final cleanup process?",
+          "Which warranties and closeout documents will I receive?"
+        ]
+      }
+    ],
+    relatedServices: ["roof-replacement", "roof-repair"]
+  },
+  {
     slug: "choose-roofing-contractor-greater-chicago",
     eyebrow: "Hiring guide",
     title: "How to Choose a Roofing Contractor in Greater Chicago",

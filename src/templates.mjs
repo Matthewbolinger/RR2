@@ -340,6 +340,8 @@ const structuredData = ({
       "roof-repair-vs-replacement-chicago": "Repair or Replacement",
       "storm-damage-roof-assessment-illinois": "Storm-Damage Assessment",
       "ice-dams-attic-ventilation-chicago": "Ice Dams & Ventilation",
+      "roof-replacement-process-what-to-expect":
+        "Roof Replacement Process",
       faq: "FAQ",
       warranty: "Warranty",
       financing: "Financing",
@@ -395,7 +397,8 @@ const structuredData = ({
   if (article) {
     const citations = article.sections
       .flatMap((section) => section.links || [])
-      .map((link) => link.href);
+      .map((link) => link.href)
+      .filter((href) => /^https?:\/\//.test(href));
     graph.push({
       "@type": "Article",
       headline: article.title,

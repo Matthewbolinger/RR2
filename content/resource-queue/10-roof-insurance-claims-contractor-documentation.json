@@ -1,0 +1,128 @@
+{
+  "sequence": 10,
+  "status": "scheduled",
+  "releaseDate": "2026-11-09",
+  "slug": "roof-insurance-claims-contractor-documentation",
+  "eyebrow": "Roof claim roles guide",
+  "title": "Roof Insurance Claims: What the Contractor Documents",
+  "seoTitle": "Roof Claims: Contractor Documentation",
+  "shortTitle": "Understand contractor documentation in a roof claim",
+  "description": "Understand what an Illinois roofing contractor can inspect, document, estimate, and discuss during a roof claim—and what remains with the insurer or public adjuster.",
+  "dek": "A contractor builds the construction record. The homeowner reports the claim, the carrier decides coverage, and any licensed public adjuster has a separate representation role.",
+  "readTime": "9 min read",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "sourceReviewed": "2026-08-31",
+  "sections": [
+    {
+      "heading": "Keep the four roles distinct",
+      "paragraphs": [
+        "The homeowner or policyholder owns the property and insurance relationship. The roofing contractor evaluates construction conditions and proposes construction work. The insurance carrier investigates the reported loss and decides coverage under the policy. A licensed public adjuster, if separately retained, represents the policyholder in preparing, presenting, and negotiating the claim.",
+        "Clear roles reduce confusion and protect the homeowner. Raccoon Restoration is a roofing and restoration contractor—not a public adjuster—and does not represent a homeowner in negotiating an insurance settlement."
+      ],
+      "links": [
+        {
+          "href": "https://idoi.illinois.gov/consumers/consumerinsurance/homeownerrenter/homeowners-and-renters-public-adjusters.html",
+          "label": "Illinois Department of Insurance: Public Adjuster Roles"
+        }
+      ]
+    },
+    {
+      "heading": "What an Illinois contractor can do",
+      "paragraphs": [
+        "With the owner’s express permission, a contractor can inspect the roof and exterior, document observed construction damage, prepare an estimate for repair or replacement, and provide that estimate to the homeowner. The estimate may be submitted to the insurance company.",
+        "Illinois law also allows a residential contractor to confer with an insurance company representative about damage and to discuss repair or replacement options with the representative or insured. These construction conversations are different from representing the homeowner or negotiating the claim settlement."
+      ],
+      "links": [
+        {
+          "href": "https://www.ilga.gov/Legislation/ILCS/Articles?ActID=2359&ChapterID=66&Print=True",
+          "label": "Illinois General Assembly: Home Repair and Claim Roles"
+        }
+      ]
+    },
+    {
+      "heading": "What the contractor should document",
+      "paragraphs": [
+        "A strong construction record identifies the roof and exterior areas reviewed, material types, accessible conditions, related interior symptoms, representative photographs, prior repairs where visible, temporary measures, and inspection limitations.",
+        "The estimate should connect observed conditions to a construction scope. It can identify quantities, materials, labor operations, flashings, ventilation, related exterior components, property protection, disposal, code-related work when applicable, and assumptions that need confirmation."
+      ],
+      "bullets": [
+        "Overview and close-up photographs with understandable locations",
+        "Material-specific descriptions for each affected roof slope or elevation",
+        "Repairability and compatibility considerations",
+        "Temporary protection and emergency work already performed",
+        "A line-item construction estimate or clearly defined scope",
+        "Items that remain concealed or require specialist evaluation"
+      ]
+    },
+    {
+      "heading": "What a contractor cannot do for the homeowner",
+      "paragraphs": [
+        "An Illinois home repair contractor cannot represent or advertise that it represents the homeowner on an insurance claim, file the claim on the homeowner’s behalf, or act as a public adjuster without the required license and separate role.",
+        "The contractor should not promise that damage is covered, guarantee approval, determine the policy settlement, waive the insurance deductible, or describe the construction contract as free because insurance may pay. Coverage and payment are governed by the policy and carrier decision."
+      ],
+      "links": [
+        {
+          "href": "https://www.ilga.gov/documents/legislation/ilcs/documents/022503350K5.5.htm",
+          "label": "Illinois General Assembly: Roofing Contract Requirements"
+        }
+      ]
+    },
+    {
+      "heading": "What the homeowner should preserve and provide",
+      "paragraphs": [
+        "The homeowner should report the claim directly to the insurer when choosing to make one and follow the policy’s notice and documentation requirements. Keep the policy, claim number, carrier correspondence, photographs, contractor estimates, receipts, temporary repair records, and a timeline of important conversations.",
+        "Read authorizations before signing them and ask who will receive information. Do not share portal credentials or sign blank forms. When a deadline, coverage dispute, legal question, or representation need is unclear, contact the carrier, Illinois Department of Insurance, attorney, or separately licensed public adjuster as appropriate."
+      ],
+      "links": [
+        {
+          "href": "https://idoi.illinois.gov/consumers/disasters.html",
+          "label": "Illinois Department of Insurance: Disaster and Claim Guidance"
+        }
+      ]
+    },
+    {
+      "heading": "How contractor and carrier inspections can work together",
+      "paragraphs": [
+        "The homeowner may authorize the roofing contractor to attend an inspection with the carrier representative. The contractor can point out observed construction conditions, explain access and repair methods, identify material compatibility concerns, and answer questions about the estimate.",
+        "The contractor and carrier may disagree about cause, extent, repairability, or scope. Each should document the basis for its position. The homeowner remains entitled to understand the carrier’s decision and the contractor’s construction recommendation as separate records."
+      ]
+    },
+    {
+      "heading": "When a licensed public adjuster is a separate option",
+      "paragraphs": [
+        "A public adjuster works for the policyholder under a written contract and may assist with preparing, presenting, and negotiating a property claim. Illinois requires public adjusters to be licensed, and the homeowner pays their fee according to the contract.",
+        "Hiring one is not required. If a homeowner considers it, verify the license, review the approved contract, understand fees and cancellation rights, and keep the public adjuster’s representation separate from the contractor’s construction agreement."
+      ],
+      "links": [
+        {
+          "href": "https://idoi.illinois.gov/consumers/consumerinsurance/homeownerrenter/homeowners-and-renters-public-adjusters.html",
+          "label": "Illinois Department of Insurance: Hiring a Public Adjuster"
+        }
+      ]
+    },
+    {
+      "heading": "A clean roof claim documentation workflow",
+      "paragraphs": [
+        "A disciplined workflow helps everyone evaluate the same property record without blurring professional roles. It also creates a clearer transition from emergency response to approved construction."
+      ],
+      "bullets": [
+        "Protect people and limit additional damage where safe",
+        "Photograph conditions and record the timeline",
+        "Report the claim directly to the carrier if the homeowner chooses",
+        "Authorize a licensed contractor to inspect and prepare a construction scope",
+        "Provide relevant estimates and documentation to the carrier",
+        "Ask the carrier to explain its coverage and scope decision",
+        "Resolve the construction contract, selections, changes, and warranties in writing",
+        "Retain all claim and project closeout records"
+      ],
+      "links": [
+        {
+          "href": "/services/storm-damage-restoration/",
+          "label": "See Raccoon Restoration storm-damage services"
+        }
+      ]
+    }
+  ],
+  "relatedServices": ["storm-damage-restoration", "roof-replacement"]
+}

@@ -1,0 +1,106 @@
+{
+  "sequence": 4,
+  "status": "scheduled",
+  "releaseDate": "2026-09-28",
+  "slug": "roof-hail-damage-signs",
+  "eyebrow": "Hail damage guide",
+  "title": "Roof Hail Damage: Signs on Shingles, Metal, Gutters and Siding",
+  "seoTitle": "Roof Hail Damage Signs by Material",
+  "shortTitle": "Recognize roof hail damage signs",
+  "description": "Learn what hail damage can look like on asphalt shingles, metal, tile, gutters, siding, and roof accessories—and why a documented inspection matters.",
+  "dek": "Hail evidence is material-specific. The useful question is not whether a storm passed nearby, but what the actual roof and exterior show after safe, documented inspection.",
+  "readTime": "8 min read",
+  "datePublished": "2026-09-28",
+  "dateModified": "2026-09-28",
+  "sourceReviewed": "2026-08-31",
+  "sections": [
+    {
+      "heading": "Start with the property—not a neighborhood assumption",
+      "paragraphs": [
+        "Hail size, hardness, wind, roof slope, material, age, orientation, surrounding trees, and prior condition all influence what happens at one property. Damage to a nearby home does not prove the same condition exists on yours, and the absence of an interior leak does not rule out exterior damage.",
+        "A storm assessment should record the date and reported weather, then evaluate the roof and exterior directly. Weather data can add context, but it does not replace physical evidence."
+      ]
+    },
+    {
+      "heading": "Asphalt shingle hail signs require close evaluation",
+      "paragraphs": [
+        "Possible indicators on asphalt shingles can include areas of displaced granules, exposed asphalt, mat fracture, bruising, edge damage, or loss of adhesion. Normal aging, foot traffic, manufacturing features, blisters, tree contact, and installation damage can resemble storm effects in photographs.",
+        "The inspector should consider location, pattern, roof slope, surrounding test areas, and whether the condition affects function. A single close-up image without roof context is not enough to define the scope."
+      ],
+      "links": [
+        {
+          "href": "https://ibhs.org/hail/relative-impact-resistance-of-asphalt-shingles/",
+          "label": "IBHS: Asphalt Shingle Hail Research"
+        }
+      ]
+    },
+    {
+      "heading": "Metal surfaces can preserve useful impact evidence",
+      "paragraphs": [
+        "Soft-metal roof accessories, vents, flashing, gutters, downspouts, and metal panels may show dents, spatter changes, chipped coatings, seam distortion, or functional damage. The significance depends on the component and whether water shedding, drainage, coating performance, or attachment has been affected.",
+        "Cosmetic appearance and functional damage are not automatically the same. The inspection and any insurance review should describe the actual component condition and the applicable policy or construction question separately."
+      ]
+    },
+    {
+      "heading": "Tile, slate, and specialty materials break differently",
+      "paragraphs": [
+        "Clay tile, concrete tile, natural slate, and synthetic products may show fractures, chips, displaced pieces, punctures, or attachment movement. Some breaks can be seen from safe vantage points; others require careful close access by someone who understands the material and can avoid causing additional damage.",
+        "A few broken pieces may support a targeted repair when matching material and stable surrounding conditions allow it. Distributed breakage, failed attachments, damaged flashings, or incompatible prior work may require a broader restoration plan."
+      ],
+      "links": [
+        {
+          "href": "/resources/tile-slate-roof-storm-damage-repair-restoration/",
+          "label": "Read the tile and slate storm-damage guide"
+        }
+      ]
+    },
+    {
+      "heading": "Gutters, siding, screens, and exterior finishes add context",
+      "paragraphs": [
+        "Dents or damage on gutters, downspouts, siding, window wraps, screens, fencing, painted surfaces, and outdoor equipment can help show the direction and distribution of storm effects. These components should be documented by elevation and material.",
+        "Collateral evidence provides context; it does not by itself prove that a roof covering has functional damage. Each affected component still needs its own condition-based assessment."
+      ]
+    },
+    {
+      "heading": "A professional hail assessment should be reproducible",
+      "paragraphs": [
+        "Useful documentation identifies the roof slopes and elevations reviewed, the material and approximate condition, accessible test areas, representative and overview photographs, related exterior evidence, and limitations caused by access or weather.",
+        "The written recommendation should distinguish maintenance, repairable damage, replacement considerations, and items that require specialist evaluation. It should also avoid promising an insurance outcome."
+      ],
+      "bullets": [
+        "Overview images that show where close-up conditions are located",
+        "Material-specific descriptions rather than generic hail labels",
+        "Separate observations for each roof slope and exterior elevation",
+        "Notes about pre-existing wear, repairs, and access limitations",
+        "A construction scope tied to observed conditions"
+      ]
+    },
+    {
+      "heading": "Choose roofing products using more than a Class 4 label",
+      "paragraphs": [
+        "Impact-resistant products can reduce vulnerability, but no roof covering is hail-proof. Test methods, product construction, installation, aging, and storm conditions all matter. The Insurance Institute for Business & Home Safety publishes performance research and ratings for impact-resistant asphalt shingles tested with laboratory hailstones designed to better represent real impacts.",
+        "When replacement is warranted, compare product-specific impact performance, wind ratings, system compatibility, color, availability, and warranty terms. Confirm whether any insurer program has separate documentation requirements before purchasing."
+      ],
+      "links": [
+        {
+          "href": "https://ibhs.org/hail/shingle-performance-ratings/",
+          "label": "IBHS: Impact-Resistant Shingle Ratings"
+        }
+      ]
+    },
+    {
+      "heading": "Keep insurance decisions separate from roof findings",
+      "paragraphs": [
+        "A licensed roofing contractor can inspect and document construction conditions, prepare an estimate, and discuss repair or replacement work. The insurance carrier determines whether the policy covers the reported loss and what it will pay.",
+        "Raccoon Restoration is not a public adjuster and does not negotiate claim settlements for homeowners. If a policyholder needs representation, Illinois requires public adjusters to be separately licensed and retained under their own contract."
+      ],
+      "links": [
+        {
+          "href": "https://idoi.illinois.gov/consumers/consumerinsurance/homeownerrenter/homeowners-and-renters-public-adjusters.html",
+          "label": "Illinois Department of Insurance: Adjuster Roles"
+        }
+      ]
+    }
+  ],
+  "relatedServices": ["storm-damage-restoration", "roof-repair"]
+}

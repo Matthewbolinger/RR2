@@ -1,0 +1,102 @@
+{
+  "sequence": 1,
+  "status": "scheduled",
+  "releaseDate": "2026-09-07",
+  "slug": "tile-slate-roof-storm-damage-repair-restoration",
+  "eyebrow": "Specialty roof guide",
+  "title": "Tile and Slate Roof Storm Damage: Repair or Restoration?",
+  "seoTitle": "Tile and Slate Roof Storm Damage",
+  "shortTitle": "Assess tile and slate storm damage",
+  "description": "Learn how tile and slate roof storm damage is evaluated, when a targeted repair may work, and when a documented restoration plan is more appropriate.",
+  "dek": "Tile and slate roofs need a material-specific assessment. A broken piece may be local, while failed fasteners, flashing, or widespread movement can point to a larger restoration scope.",
+  "readTime": "8 min read",
+  "datePublished": "2026-09-07",
+  "dateModified": "2026-09-07",
+  "sourceReviewed": "2026-08-31",
+  "sections": [
+    {
+      "heading": "Start with the roof material—not a generic storm checklist",
+      "paragraphs": [
+        "Natural slate, clay tile, concrete tile, and synthetic products do not age, break, or attach to a roof in the same way. A sound assessment identifies the material, profile, fastening method, flashing details, previous repairs, and roof geometry before recommending work.",
+        "A cracked tile or displaced slate can be important without proving that the entire roof needs replacement. The opposite is also true: a roof with only a few obvious surface defects can have broader attachment, underlayment, flashing, or transition problems. The recommendation should follow the documented system condition rather than a one-size-fits-all storm script."
+      ]
+    },
+    {
+      "heading": "Inspect safely and document before moving materials",
+      "paragraphs": [
+        "Tile and slate can be damaged by careless foot traffic. Homeowners should not climb onto a wet, steep, or storm-damaged roof to look for evidence. From a safe location, note displaced pieces, fragments on the ground, damaged ridges or hips, impact marks on adjacent metal, and any new interior moisture.",
+        "A qualified roofing professional can photograph accessible roof areas, transitions, penetrations, flashings, valleys, gutters, and interior symptoms. Documentation should separate direct observations from conclusions that still require testing or controlled removal."
+      ],
+      "bullets": [
+        "Record when the storm occurred and when symptoms appeared",
+        "Photograph visible debris and interior water conditions safely",
+        "Avoid walking on specialty roof surfaces without the right access plan",
+        "Keep removed or fallen pieces when it is safe to do so",
+        "Document temporary protection and related receipts"
+      ]
+    },
+    {
+      "heading": "When a targeted repair may be appropriate",
+      "paragraphs": [
+        "A targeted repair may make sense when damage is limited, compatible replacement pieces are available, surrounding material remains serviceable, and the repair can be completed without creating more breakage. Flashing or attachment work may also be localized when the adjacent roof field is in stable condition.",
+        "Matching is more than color. Size, shape, thickness, exposure, texture, coursing, and fastening all affect whether new pieces integrate with the existing roof. The National Park Service recommends documenting these characteristics when historic slate is repaired or replaced."
+      ],
+      "links": [
+        {
+          "href": "https://www.nps.gov/orgs/1739/upload/preservation-brief-29-slate-roofs.pdf",
+          "label": "National Park Service: Historic Slate Roofs"
+        }
+      ]
+    },
+    {
+      "heading": "When restoration or broader replacement deserves consideration",
+      "paragraphs": [
+        "A broader restoration scope deserves consideration when failures are distributed across multiple roof areas, fasteners or battens are deteriorated, flashings have reached the end of their serviceable condition, or previous incompatible repairs are trapping water or damaging adjacent material.",
+        "Historic clay tile can often be removed, sorted, and reinstalled after the supporting or fastening system is corrected. The National Park Service notes that the tile itself may remain serviceable even when its attachments or underlying components require work. That distinction can preserve valuable material and improve the accuracy of the scope."
+      ],
+      "links": [
+        {
+          "href": "https://www.nps.gov/orgs/1739/upload/preservation-brief-30-clay-tile-roofs.pdf",
+          "label": "National Park Service: Historic Clay Tile Roofs"
+        }
+      ]
+    },
+    {
+      "heading": "Build the scope around compatibility and water management",
+      "paragraphs": [
+        "The visible roof covering is only one part of the system. A complete plan may address underlayment, battens, fasteners, flashings, valleys, ridges, hips, penetrations, gutters, masonry transitions, and the route water takes off the roof.",
+        "Ask how salvageable pieces will be protected, how replacements will be sourced and matched, what concealed conditions could change the work, and how changes will be documented. Specialty restoration should be specific enough that the owner understands what will be retained, repaired, replaced, and excluded."
+      ]
+    },
+    {
+      "heading": "Keep contractor and insurance roles clear",
+      "paragraphs": [
+        "A roofing contractor can inspect the property, document observed construction damage, prepare a repair estimate, and discuss the proposed construction scope with the homeowner and carrier representative when authorized. The insurance company decides coverage under the policy.",
+        "Raccoon Restoration is not a public adjuster and does not represent the policyholder in negotiating a claim settlement. If the homeowner separately retains a licensed public adjuster, that professional has a distinct agreement and role. Clear boundaries protect the homeowner and keep the construction recommendation focused on the roof evidence."
+      ],
+      "links": [
+        {
+          "href": "https://idoi.illinois.gov/consumers/consumerinsurance/homeownerrenter/homeowners-and-renters-public-adjusters.html",
+          "label": "Illinois Department of Insurance: Public Adjusters"
+        }
+      ]
+    },
+    {
+      "heading": "Questions to ask before approving specialty roof work",
+      "paragraphs": [
+        "The strongest proposal makes the condition, material strategy, access plan, and limits of the work understandable before installation begins. Use these questions to compare recommendations."
+      ],
+      "bullets": [
+        "What exact material and attachment system are present?",
+        "Which damage is directly observed and which condition remains uncertain?",
+        "Can original tile or slate be retained and reused safely?",
+        "How will replacement pieces be matched for size, profile, color, and exposure?",
+        "Which flashings and supporting components are included?",
+        "How will fragile areas and landscaping be protected during access?",
+        "What could change after controlled removal begins?",
+        "How will the completed work be photographed and closed out?"
+      ]
+    }
+  ],
+  "relatedServices": ["storm-damage-restoration", "roof-repair"]
+}

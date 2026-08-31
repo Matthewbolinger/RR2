@@ -1,0 +1,102 @@
+{
+  "sequence": 7,
+  "status": "scheduled",
+  "releaseDate": "2026-10-19",
+  "slug": "choosing-asphalt-shingles",
+  "eyebrow": "Shingle selection guide",
+  "title": "Choosing Asphalt Shingles: Impact, Wind, Color and Warranty",
+  "seoTitle": "How to Choose Asphalt Roof Shingles",
+  "shortTitle": "Choose asphalt shingles with confidence",
+  "description": "Compare asphalt shingles using impact performance, wind ratings, color, ventilation, accessory compatibility, availability, installation, and warranty terms.",
+  "dek": "The best shingle choice is not a color board or warranty headline. It is a complete roof system matched to the home, exposure, installation requirements, and owner priorities.",
+  "readTime": "9 min read",
+  "datePublished": "2026-10-19",
+  "dateModified": "2026-10-19",
+  "sourceReviewed": "2026-08-31",
+  "sections": [
+    {
+      "heading": "Start with the building and roof system",
+      "paragraphs": [
+        "Before comparing shingle lines, confirm the roof pitch, deck condition, ventilation, flashing requirements, local exposure, existing layers, and any manufacturer restrictions. A product cannot compensate for unresolved moisture, drainage, or installation problems.",
+        "The proposal should identify the complete system: shingles, starter, ridge material, underlayment, ice-barrier details, roof edges, flashings, penetrations, ventilation, and compatible accessories."
+      ]
+    },
+    {
+      "heading": "Understand standard and impact-resistant shingles",
+      "paragraphs": [
+        "Impact-resistant shingles are designed and tested to perform differently under impact, but no asphalt shingle is hail-proof. Product labels and standardized classifications provide one comparison point; real storm performance also depends on hail properties, wind, roof age, temperature, slope, deck support, and installation.",
+        "The Insurance Institute for Business & Home Safety tests commercially available impact-resistant shingles using laboratory hailstones designed to better represent real hail. Its ratings show that products carrying similar market labels do not always perform the same in more realistic testing."
+      ],
+      "links": [
+        {
+          "href": "https://ibhs.org/hail/shingle-performance-ratings/",
+          "label": "IBHS: Impact-Resistant Shingle Performance Ratings"
+        }
+      ]
+    },
+    {
+      "heading": "Compare wind ratings and the installation behind them",
+      "paragraphs": [
+        "Wind ratings are tied to defined test methods and installation requirements. The selected shingle, starter, fastening pattern, seal strip, roof edge, deck attachment, and flashing details work together; a rating should not be read as a promise that any installed roof will withstand every wind event.",
+        "Ask which test classification applies to the exact product and what installation is required to support it. The FORTIFIED Roof program, for example, references high wind classifications for asphalt shingles while also addressing roof-deck attachment, sealed deck details, and roof edges."
+      ],
+      "links": [
+        {
+          "href": "https://fortifiedhome.org/roof/",
+          "label": "IBHS FORTIFIED: Roof System Requirements"
+        }
+      ]
+    },
+    {
+      "heading": "Choose color on the actual home and in changing light",
+      "paragraphs": [
+        "Small samples, renderings, and phone screens can shift color. Review a physical sample outdoors, look at installed examples when available, and consider the home’s masonry, siding, trim, metal, neighboring context, and roof visibility.",
+        "Variegated shingles can appear busier across a large roof plane than on one sample. Dark colors can emphasize mass; mid-tone blends may reveal more texture. Availability and lot consistency should be confirmed before scheduling."
+      ],
+      "bullets": [
+        "View samples in sun, shade, and overcast light",
+        "Compare the roof color with permanent masonry and metal",
+        "Consider how visible valleys, hips, and large planes affect the pattern",
+        "Confirm current product and accessory availability",
+        "Record the final manufacturer, line, and color in the contract"
+      ]
+    },
+    {
+      "heading": "Read warranty terms as separate layers",
+      "paragraphs": [
+        "A roof can involve a manufacturer product warranty, optional enhanced system coverage, and a contractor workmanship warranty. These are not interchangeable. Each has its own provider, eligibility requirements, exclusions, registration process, transfer rules, and remedy.",
+        "Ask for the actual warranty documents before making the final selection. Confirm who registers the product, whether a certified contractor or complete accessory system is required, what ventilation or deck conditions affect eligibility, and who responds if a workmanship concern appears."
+      ],
+      "links": [
+        {
+          "href": "/warranty/",
+          "label": "Review how Raccoon Restoration explains warranty coverage"
+        }
+      ]
+    },
+    {
+      "heading": "Factor in repairability and future availability",
+      "paragraphs": [
+        "Distinctive colors and profiles can improve appearance, but future repairs depend on compatible material being available. Product lines and colors change, and weathering makes a new shingle look different from an older field even when the name is the same.",
+        "Keep the contract, product label, color, lot information when available, warranty registration, and a small amount of extra material if storage and manufacturer guidance allow. These records can make a future repair easier to evaluate."
+      ]
+    },
+    {
+      "heading": "Use a decision matrix instead of one marketing claim",
+      "paragraphs": [
+        "Select two or three products that fit the roof and compare the same dimensions: installed system, impact data, wind classification, appearance, availability, warranty, repairability, and total scope. Ask the contractor to explain meaningful differences and which priorities each option serves.",
+        "A good selection is defensible in plain language. It should fit the property and the approved scope even after the brochure is put away."
+      ],
+      "bullets": [
+        "Exact product and complete accessory system",
+        "Impact and wind test information",
+        "Color, profile, and installed appearance",
+        "Ventilation and deck requirements",
+        "Manufacturer and workmanship warranty terms",
+        "Local availability and future repair considerations",
+        "Installed price for an equivalent scope"
+      ]
+    }
+  ],
+  "relatedServices": ["roof-replacement", "storm-damage-restoration"]
+}

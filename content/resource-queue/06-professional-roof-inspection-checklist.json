@@ -1,0 +1,105 @@
+{
+  "sequence": 6,
+  "status": "scheduled",
+  "releaseDate": "2026-10-12",
+  "slug": "professional-roof-inspection-checklist",
+  "eyebrow": "Roof inspection guide",
+  "title": "Roof Inspection Checklist: What a Professional Roofer Documents",
+  "seoTitle": "Professional Roof Inspection Checklist",
+  "shortTitle": "Know what a roof inspection should document",
+  "description": "Use this professional roof inspection checklist to understand the exterior, attic, drainage, flashing, documentation, and scope details a roofer reviews.",
+  "dek": "A useful roof inspection creates a record that another person can follow. It connects symptoms, accessible conditions, photographs, limitations, and practical next steps.",
+  "readTime": "8 min read",
+  "datePublished": "2026-10-12",
+  "dateModified": "2026-10-12",
+  "sourceReviewed": "2026-08-31",
+  "sections": [
+    {
+      "heading": "Begin with the homeowner’s concern and roof history",
+      "paragraphs": [
+        "The inspection should start before anyone reaches the roof. The roofer needs to understand what the owner noticed, when it began, which weather conditions affect it, and whether the area has been repaired before.",
+        "Known installation dates, warranty records, previous proposals, storm dates, attic changes, solar work, skylight work, and additions can help explain why one area performs differently from another. These details should inform the inspection without predetermining its conclusion."
+      ],
+      "bullets": [
+        "Interior symptoms and the date they first appeared",
+        "Known roof age, material, and previous repairs",
+        "Recent wind, hail, ice, or falling-debris events",
+        "Changes to insulation, ventilation, HVAC, or attic use",
+        "Access restrictions, safety concerns, and property priorities"
+      ]
+    },
+    {
+      "heading": "Review interior and attic evidence where accessible",
+      "paragraphs": [
+        "Interior staining can show where water appeared, but not necessarily where it entered. A roofer may review the shape and location of staining, active moisture, ceiling movement, wall transitions, and nearby penetrations before comparing those clues with the roof above.",
+        "Accessible attic areas can reveal water tracks, damp or compressed insulation, deck staining, visible fasteners, daylight at openings, frost, condensation, blocked vents, or air leakage. Some attics cannot be entered safely or do not expose the affected area; that limitation should be recorded."
+      ]
+    },
+    {
+      "heading": "Document roof covering condition by slope",
+      "paragraphs": [
+        "The roof covering should be identified and evaluated by slope or section. On asphalt roofs, the roofer may record granule condition, cracking, curling, lifted or missing shingles, seal performance, fastener placement where visible, and prior repairs. Metal, tile, slate, wood, and membrane systems require their own material-specific review.",
+        "Overview photographs establish location. Close-ups show detail. Both are needed when a recommendation depends on the extent and distribution of a condition."
+      ]
+    },
+    {
+      "heading": "Inspect flashings, transitions, and penetrations",
+      "paragraphs": [
+        "Many leaks begin at details rather than in the open roof field. Wall intersections, chimneys, valleys, dormers, skylights, plumbing vents, mechanical curbs, roof edges, and transitions between materials should be reviewed where accessible.",
+        "The inspection should describe whether the detail is properly integrated, visibly deteriorated, previously patched, or concealed. Sealant can be part of a designed detail, but repeated surface caulk is not a substitute for failed flashing."
+      ],
+      "bullets": [
+        "Step, counter, apron, and headwall flashing",
+        "Valleys and changes in roof pitch",
+        "Skylights, chimneys, vents, and equipment curbs",
+        "Eaves, rakes, drip edges, and gutter interfaces",
+        "Roof-to-wall and steep-to-low-slope transitions"
+      ]
+    },
+    {
+      "heading": "Trace drainage from the high point to the discharge",
+      "paragraphs": [
+        "Water management continues beyond the roof covering. The roofer should consider slope, valleys, drainage paths, low areas, gutters, downspouts, scuppers, drains, and where water discharges around the property.",
+        "Overflow staining, debris, standing water, back-pitched gutters, disconnected downspouts, or concentrated discharge can point to maintenance or design concerns. The inspection should distinguish roof work from drainage or site work that may require a separate scope."
+      ]
+    },
+    {
+      "heading": "Record safety and access limitations",
+      "paragraphs": [
+        "A professional inspection does not require unsafe access. Weather, ice, pitch, height, fragile materials, electrical hazards, deteriorated decking, or limited anchorage can restrict what can be reviewed on a given visit.",
+        "The report should state which areas were accessible, which were observed from a distance or by imaging, and what remains unverified. A limitation is not a failure when it is communicated clearly and followed by an appropriate next-step recommendation."
+      ]
+    },
+    {
+      "heading": "Connect findings to a defined next step",
+      "paragraphs": [
+        "The final explanation should separate urgent work, maintenance, repairable conditions, replacement considerations, monitoring, and items that require another trade or specialist. It should also identify what is known and what could change after controlled removal or testing.",
+        "If work is proposed, the scope should name the affected areas, materials, details, protection, cleanup, exclusions, and change process. The Federal Trade Commission advises homeowners to use written estimates and compare the work, materials, timing, and price—not simply accept the lowest total."
+      ],
+      "links": [
+        {
+          "href": "https://consumer.ftc.gov/articles/how-avoid-home-improvement-scam",
+          "label": "Federal Trade Commission: Hiring a Contractor"
+        }
+      ]
+    },
+    {
+      "heading": "Verify the roofing contractor before approving work",
+      "paragraphs": [
+        "Illinois roofing contractors must be licensed. Confirm that the license belongs to the business named in the proposal and review insurance, contract terms, references, and warranty responsibilities.",
+        "A polished inspection report does not replace credentials or a complete contract. The best decision combines verifiable qualifications with property-specific evidence and a written scope."
+      ],
+      "links": [
+        {
+          "href": "https://idfpr.illinois.gov/checklicense.html",
+          "label": "Illinois IDFPR: Verify a Professional License"
+        },
+        {
+          "href": "/process/",
+          "label": "See the Raccoon Restoration inspection process"
+        }
+      ]
+    }
+  ],
+  "relatedServices": ["roof-repair", "roof-replacement"]
+}

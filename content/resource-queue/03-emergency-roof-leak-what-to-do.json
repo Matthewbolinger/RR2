@@ -1,0 +1,101 @@
+{
+  "sequence": 3,
+  "status": "scheduled",
+  "releaseDate": "2026-09-21",
+  "slug": "emergency-roof-leak-what-to-do",
+  "eyebrow": "Emergency roof guide",
+  "title": "Emergency Roof Leak: What to Do Before the Roofer Arrives",
+  "seoTitle": "Emergency Roof Leak: What to Do Now",
+  "shortTitle": "Respond safely to an emergency roof leak",
+  "description": "Use this emergency roof leak checklist to protect people, limit interior damage, document conditions, and prepare for a professional roof assessment.",
+  "dek": "Protect people first. Then limit interior water where it is safe, document what changed, and leave wet or storm-damaged roof access to qualified professionals.",
+  "readTime": "7 min read",
+  "datePublished": "2026-09-21",
+  "dateModified": "2026-09-21",
+  "sourceReviewed": "2026-08-31",
+  "sections": [
+    {
+      "heading": "Keep people away from electrical and structural hazards",
+      "paragraphs": [
+        "Water near a light fixture, outlet, electrical panel, appliance, or energized wiring can create a shock or fire hazard. Keep people out of the affected area. If you can shut off power from a dry, safe location and know how to do so, follow the appropriate emergency procedure; otherwise contact emergency services or a qualified electrician.",
+        "A sagging ceiling, sudden cracking, visible structural movement, storm debris through the roof, or rapidly increasing water can signal a more serious condition. Do not stand beneath it. If the home may be unsafe, leave the area and call the appropriate emergency professional."
+      ],
+      "links": [
+        {
+          "href": "https://www.ready.gov/floods",
+          "label": "Ready.gov: Water and Electrical Safety"
+        }
+      ]
+    },
+    {
+      "heading": "Do not climb onto a wet or damaged roof",
+      "paragraphs": [
+        "Rain, ice, wind, steep slopes, loose materials, and concealed decking damage make emergency roof access dangerous. A homeowner should not attempt to locate the leak by walking the roof during active weather.",
+        "Water can travel along decking, framing, fasteners, and insulation before it appears inside. The stain or drip may not be directly below the exterior entry point, so an improvised patch at the visible interior location may not address the source."
+      ]
+    },
+    {
+      "heading": "Limit interior water only where it is safe",
+      "paragraphs": [
+        "Move people, pets, furniture, electronics, rugs, and valuables away from the affected area. Place a stable container under a drip if the ceiling above is not sagging and there is no electrical risk. Protect nearby finishes with plastic sheeting or towels and monitor whether the condition is spreading.",
+        "Do not disturb a bulging ceiling unless a qualified professional has assessed the hazard and directed the work. Stored water and saturated material can release suddenly."
+      ],
+      "bullets": [
+        "Keep a clear walking path around the affected room",
+        "Use separate containers for multiple drip locations",
+        "Change saturated towels before water spreads to other finishes",
+        "Avoid running fans or equipment near electrical exposure",
+        "Record any new rooms or surfaces that become wet"
+      ]
+    },
+    {
+      "heading": "Create a time-stamped record of the leak",
+      "paragraphs": [
+        "From a safe location, photograph and video the affected ceiling, wall, floor, contents, and any visible exterior condition. Note the time, weather, wind direction if known, when the leak began, and whether it changes with rainfall intensity.",
+        "Keep receipts for reasonable emergency measures. Documentation should describe what you observed without guessing at cause, policy coverage, or the final repair scope. Those conclusions require inspection and, for insurance questions, review by the appropriate carrier or licensed professional."
+      ]
+    },
+    {
+      "heading": "Use temporary protection as a bridge—not a repair",
+      "paragraphs": [
+        "A qualified emergency crew may install temporary protection when the structure and weather conditions allow safe access. Tarps and temporary coverings are intended to reduce additional exposure until permanent work can be planned; they are not a substitute for diagnosing the water path and repairing the roof system.",
+        "Ask the provider to photograph conditions before and after temporary work, identify the protected area, explain limitations, and state what follow-up inspection is still required."
+      ],
+      "links": [
+        {
+          "href": "https://idoi.illinois.gov/consumers/disasters.html",
+          "label": "Illinois Department of Insurance: Disaster Guidance"
+        }
+      ]
+    },
+    {
+      "heading": "Prepare useful information for the roofing assessment",
+      "paragraphs": [
+        "Tell the roofing contractor when the leak began, where it appears, whether it has happened before, and what temporary action has already been taken. Share safe photos and point out attic access, previous repairs, skylights, chimneys, additions, or exterior transitions near the affected area.",
+        "A useful assessment connects interior symptoms to accessible exterior and attic conditions, explains what is known, and identifies what may require further evaluation. The recommendation may be repair, temporary stabilization, controlled removal, or a broader roof-system scope depending on the evidence."
+      ],
+      "links": [
+        {
+          "href": "/services/roof-repair/",
+          "label": "Learn about roof leak and repair assessments"
+        }
+      ]
+    },
+    {
+      "heading": "Emergency roof leak checklist",
+      "paragraphs": [
+        "Use this short sequence while arranging professional help. Skip any action that would place you near electricity, unstable materials, contaminated water, or an unsafe structure."
+      ],
+      "bullets": [
+        "Move people and pets away from the affected area",
+        "Call emergency services for electrical, fire, gas, or structural danger",
+        "Do not climb onto the roof during active weather",
+        "Move contents and contain drips only where safe",
+        "Photograph conditions and note when the leak changes",
+        "Arrange qualified temporary protection if needed",
+        "Schedule a roof assessment to identify the source and durable correction"
+      ]
+    }
+  ],
+  "relatedServices": ["roof-repair", "storm-damage-restoration"]
+}

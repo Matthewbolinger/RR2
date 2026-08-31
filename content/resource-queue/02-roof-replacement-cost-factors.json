@@ -1,0 +1,95 @@
+{
+  "sequence": 2,
+  "status": "scheduled",
+  "releaseDate": "2026-09-14",
+  "slug": "roof-replacement-cost-factors",
+  "eyebrow": "Roof replacement guide",
+  "title": "What Determines the Cost of a Roof Replacement?",
+  "seoTitle": "What Determines Roof Replacement Cost?",
+  "shortTitle": "Understand roof replacement cost factors",
+  "description": "Understand the major roof replacement cost factors, from roof size and access to materials, flashing, ventilation, decking, protection, and cleanup.",
+  "dek": "A useful roof price is tied to a defined system and scope. Square footage matters, but complexity, materials, access, concealed conditions, and closeout can change the work just as much.",
+  "readTime": "8 min read",
+  "datePublished": "2026-09-14",
+  "dateModified": "2026-09-14",
+  "sourceReviewed": "2026-08-31",
+  "sections": [
+    {
+      "heading": "Roof size is only the starting point",
+      "paragraphs": [
+        "Roofing quantities are based on roof area rather than the home’s interior square footage. Pitch, overhangs, attached garages, porches, dormers, additions, and multiple roof levels can make the roof area much larger or more complex than a simple footprint suggests.",
+        "Waste allowances also vary with roof geometry and material. A straightforward gable roof and a roof with many valleys, hips, turrets, and transitions may use different labor and material quantities even when their measured areas are similar."
+      ]
+    },
+    {
+      "heading": "Complexity changes labor, staging, and detail work",
+      "paragraphs": [
+        "Steep slopes, multiple stories, limited access, closely spaced neighboring homes, delicate landscaping, and restricted driveway use can affect how crews stage materials and control debris. Complex roofs also contain more transitions that require measured flashing and water-management work.",
+        "These conditions should be identified before work begins. A proposal that ignores access and protection can look less expensive while leaving important responsibilities undefined."
+      ],
+      "bullets": [
+        "Roof pitch, height, and number of levels",
+        "Valleys, hips, dormers, turrets, and wall intersections",
+        "Skylights, chimneys, vents, and other penetrations",
+        "Material delivery and debris-container placement",
+        "Protection for paving, siding, windows, landscaping, and neighboring property"
+      ]
+    },
+    {
+      "heading": "Removal and concealed conditions affect the final scope",
+      "paragraphs": [
+        "The number and type of existing roof layers affect removal, disposal, and preparation. Once the covering is removed, the crew may discover deteriorated decking, concealed flashing failures, or previous installation details that were not visible during the initial inspection.",
+        "A responsible contract explains how concealed conditions will be documented, priced, and approved. A low allowance with no change process is not the same as a complete scope."
+      ]
+    },
+    {
+      "heading": "The complete roof system matters more than the shingle alone",
+      "paragraphs": [
+        "Shingles are the visible finish, but the replacement may also include underlayment, ice-barrier details, starter and ridge materials, roof-edge components, ventilation, flashings, pipe boots, valleys, and sealants approved for the selected system.",
+        "When comparing proposals, look for exact product lines and installation details rather than broad labels such as premium, architectural, or lifetime. The value is in the complete, compatible system and its installation—not one marketing word."
+      ]
+    },
+    {
+      "heading": "Material selection changes both price and installation requirements",
+      "paragraphs": [
+        "Asphalt shingles, metal, natural slate, clay tile, synthetic products, and low-slope membranes carry different material, structural, flashing, handling, and labor requirements. Even within one material category, product construction, impact testing, wind ratings, color, accessory requirements, and warranty options can differ.",
+        "Choose materials after the existing roof, building conditions, performance priorities, appearance, and budget have been reviewed. The most expensive option is not automatically the best fit, and the lowest initial price does not describe long-term performance."
+      ]
+    },
+    {
+      "heading": "Property protection, cleanup, and closeout are part of the cost",
+      "paragraphs": [
+        "A professional replacement includes planning for the property before tear-off, controlling debris during work, maintaining safe access, and completing a final cleanup. These activities require labor, equipment, and accountable supervision.",
+        "Closeout may also include a final walkthrough, scope confirmation, warranty documents, project photographs, and resolution of remaining items. A quote should not be judged only by what arrives on the roof; the way the project is managed around the home matters too."
+      ],
+      "links": [
+        {
+          "href": "/resources/roof-replacement-process-what-to-expect/",
+          "label": "Review the complete roof replacement process"
+        }
+      ]
+    },
+    {
+      "heading": "How to compare roof replacement estimates",
+      "paragraphs": [
+        "Normalize the scopes before comparing totals. If one contractor includes flashing replacement, ventilation work, extensive property protection, and a defined decking process while another does not, the prices are not describing the same project.",
+        "Illinois requires roofing contractors to be licensed. Verify the business and license, then compare the written responsibilities, material details, payment schedule, change process, warranties, and closeout."
+      ],
+      "bullets": [
+        "Are the measured roof areas and included surfaces the same?",
+        "Do the proposals identify exact materials and accessories?",
+        "What removal, decking, flashing, and ventilation work is included?",
+        "How are concealed conditions documented and authorized?",
+        "What property protection, cleanup, and final inspection are included?",
+        "Which manufacturer and workmanship warranties apply, and who provides them?"
+      ],
+      "links": [
+        {
+          "href": "https://idfpr.illinois.gov/profs/roof.html",
+          "label": "Illinois IDFPR: Licensed Roofing Contractors"
+        }
+      ]
+    }
+  ],
+  "relatedServices": ["roof-replacement", "roof-repair"]
+}

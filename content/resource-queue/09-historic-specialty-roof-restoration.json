@@ -1,0 +1,111 @@
+{
+  "sequence": 9,
+  "status": "scheduled",
+  "releaseDate": "2026-11-02",
+  "slug": "historic-specialty-roof-restoration",
+  "eyebrow": "Historic roof guide",
+  "title": "Historic Roof Restoration: Slate, Tile, Copper and Documentation",
+  "seoTitle": "Historic and Specialty Roof Restoration",
+  "shortTitle": "Plan a historic roof restoration",
+  "description": "Learn how historic roof restoration uses investigation, documentation, material retention, compatible repairs, skilled trades, and deliberate project closeout.",
+  "dek": "Historic roof work begins with evidence. The goal is to retain sound character-defining material, correct failures compatibly, and document what the building reveals before and during construction.",
+  "readTime": "10 min read",
+  "datePublished": "2026-11-02",
+  "dateModified": "2026-11-02",
+  "sourceReviewed": "2026-08-31",
+  "sections": [
+    {
+      "heading": "Define the treatment before defining the scope",
+      "paragraphs": [
+        "Preservation, rehabilitation, restoration, and reconstruction describe different approaches to historic properties. Most private projects use a practical rehabilitation or preservation strategy rather than returning every feature to one historical date.",
+        "The appropriate approach depends on significance, existing physical condition, available documentation, intended use, local regulation, and project goals. The National Park Service recommends involving preservation professionals early when a property or project is subject to historic standards, grants, tax incentives, or local review."
+      ],
+      "links": [
+        {
+          "href": "https://www.nps.gov/orgs/1739/secretary-standards-treatment-historic-properties.htm",
+          "label": "National Park Service: Treatment Standards"
+        }
+      ]
+    },
+    {
+      "heading": "Investigate the roof before removing historic fabric",
+      "paragraphs": [
+        "Document roof form, slopes, patterns, exposure, material dimensions, colors, textures, fasteners, flashings, gutters, cresting, snow guards, dormers, chimneys, and other character-defining details. Historic photographs, maintenance records, old invoices, attics, and concealed fragments can add evidence.",
+        "The National Park Service advises establishing the roof’s construction history and recording pertinent material before work. This baseline helps the team distinguish original material, later alterations, repairable fabric, and details that may need compatible replacement."
+      ],
+      "links": [
+        {
+          "href": "https://www.nps.gov/orgs/1739/upload/preservation-brief-04-roofing.pdf",
+          "label": "National Park Service: Roofing for Historic Buildings"
+        }
+      ]
+    },
+    {
+      "heading": "Retain serviceable slate and tile where practical",
+      "paragraphs": [
+        "A historic slate or clay tile roof may contain valuable material that remains serviceable even when flashings, fasteners, battens, or underlayment have failed. Controlled removal and sorting can allow usable pieces to be reinstalled after supporting work is completed.",
+        "Replacement pieces should match the original characteristics that affect appearance and performance. For slate, that can include type, thickness, size, shape, texture, exposure, and coursing. For tile, profile, dimensions, color variation, surface, and fastening method matter."
+      ],
+      "links": [
+        {
+          "href": "https://www.nps.gov/orgs/1739/upload/preservation-brief-29-slate-roofs.pdf",
+          "label": "National Park Service: Historic Slate Roofs"
+        },
+        {
+          "href": "https://www.nps.gov/orgs/1739/upload/preservation-brief-30-clay-tile-roofs.pdf",
+          "label": "National Park Service: Historic Clay Tile Roofs"
+        }
+      ]
+    },
+    {
+      "heading": "Treat copper and sheet-metal details as designed systems",
+      "paragraphs": [
+        "Copper roofs, valleys, gutters, conductor heads, flashings, finials, and decorative metalwork rely on proper seams, expansion, substrate, fasteners, soldering, drainage, and compatible adjacent materials. A surface patch may hide movement or corrosion without correcting it.",
+        "Record profiles and joint patterns before removal. Evaluate whether historic metal can be repaired, selectively replaced, or used as a fabrication pattern. Avoid introducing incompatible metals or assemblies that concentrate corrosion or restrict designed movement."
+      ]
+    },
+    {
+      "heading": "Use mockups and controlled investigation for uncertain details",
+      "paragraphs": [
+        "Historic buildings often contain concealed changes. A limited investigation area can reveal deck conditions, earlier roof layers, flashing sequences, fasteners, and trim details before the full scope is committed.",
+        "For visible or repeated details, a mockup can confirm material, color, exposure, seam, profile, and workmanship expectations. Photograph the accepted mockup and use it as a field reference during construction."
+      ]
+    },
+    {
+      "heading": "Coordinate roof work with masonry, carpentry, and drainage",
+      "paragraphs": [
+        "Chimneys, parapets, cornices, embedded gutters, wood trim, stone walls, and structural framing can affect roof performance. Repairing the covering while leaving failed adjacent material may shorten the life of the work.",
+        "The project should identify which trade owns each transition, how temporary protection will work, and what sequence allows compatible materials to be installed without damaging completed work. Specialty restoration succeeds through coordination as much as through individual craft."
+      ]
+    },
+    {
+      "heading": "Protect the record during construction",
+      "paragraphs": [
+        "Documentation should continue after work begins. Photograph hidden conditions, material markings, attachment patterns, and details uncovered during removal. Track salvaged quantities, replacement sources, approved changes, and locations of new work.",
+        "Closeout can include before, during, and after photographs; product and fabricator information; finish specifications; warranties; maintenance guidance; and a drawing or narrative identifying retained and replaced areas. This record helps future owners avoid repeating the investigation."
+      ]
+    },
+    {
+      "heading": "Historic roof restoration questions to ask",
+      "paragraphs": [
+        "Before approving work, ask how the recommendation protects the building’s character and how the team will respond when concealed evidence changes the plan."
+      ],
+      "bullets": [
+        "What treatment approach and review requirements apply to this property?",
+        "Which roof features and materials are character-defining?",
+        "What can be retained, repaired, salvaged, or reused?",
+        "How will replacement material be sourced and matched?",
+        "Which mockups or controlled investigations are needed?",
+        "How will masonry, carpentry, sheet metal, and roofing scopes coordinate?",
+        "What documentation will be delivered at closeout?"
+      ],
+      "links": [
+        {
+          "href": "/projects/tudor-exterior-transformation/",
+          "label": "View the documented Tudor exterior transformation"
+        }
+      ]
+    }
+  ],
+  "relatedServices": ["roof-replacement", "gutters-exteriors"]
+}

@@ -1,0 +1,97 @@
+{
+  "sequence": 8,
+  "status": "scheduled",
+  "releaseDate": "2026-10-26",
+  "slug": "replace-gutters-with-roof",
+  "eyebrow": "Roof and gutter guide",
+  "title": "Should You Replace Your Gutters When You Replace Your Roof?",
+  "seoTitle": "Replace Gutters With a New Roof?",
+  "shortTitle": "Coordinate gutters with roof replacement",
+  "description": "Learn when gutters should be replaced with a roof, when they can remain, and how roof edges, fascia, drainage, protection, and sequencing affect the decision.",
+  "dek": "Gutters do not need automatic replacement with every roof. Their condition, size, pitch, attachment, fascia, roof-edge details, and drainage path determine whether retaining them supports the new system.",
+  "readTime": "7 min read",
+  "datePublished": "2026-10-26",
+  "dateModified": "2026-10-26",
+  "sourceReviewed": "2026-08-31",
+  "sections": [
+    {
+      "heading": "Inspect the gutters before the roof scope is finalized",
+      "paragraphs": [
+        "The roofing contractor should review visible gutter condition, attachment, pitch, seams, outlets, downspouts, overflow staining, and the fascia behind the system. The goal is to understand whether the existing gutters can remain serviceable through and after roof replacement.",
+        "Age alone does not decide the question. Straight, properly pitched, securely attached gutters may be retained, while newer gutters with poor drainage or hidden fascia deterioration may need correction."
+      ]
+    },
+    {
+      "heading": "Keep serviceable gutters when they support the new roof edge",
+      "paragraphs": [
+        "Existing gutters may remain when they are in stable condition, correctly sized for the drainage area, properly pitched, free of chronic leaks, and compatible with the proposed drip edge and roof installation.",
+        "The scope should explain how the crew will protect them during tear-off and material handling. It should also state whether hangers, guards, or sections must be temporarily loosened to complete roof-edge work and who is responsible for resetting them."
+      ]
+    },
+    {
+      "heading": "Replace gutters when condition or performance is poor",
+      "paragraphs": [
+        "Replacement deserves consideration when gutters are rusted, cracked, repeatedly leaking at seams, pulling away, badly pitched, undersized, crushed, or unable to accept secure attachment. Extensive paint failure, rotted fascia, and recurring overflow can also point to a broader edge and drainage scope.",
+        "If the gutter shape or position prevents correct roof-edge detailing, coordinating replacement can reduce compromise and repeated labor. The decision should be documented rather than assumed."
+      ],
+      "bullets": [
+        "Open seams, corrosion, cracks, or widespread coating failure",
+        "Sagging or back-pitched runs that hold water",
+        "Loose attachment or deteriorated fascia",
+        "Frequent overflow despite routine cleaning",
+        "Downspout capacity or discharge that does not manage the roof area",
+        "Incompatibility with the planned roof-edge or flashing details"
+      ]
+    },
+    {
+      "heading": "Coordinate fascia and roof-edge repairs",
+      "paragraphs": [
+        "Gutters often conceal portions of the fascia and roof edge. Removal can reveal deteriorated wood, previous patching, missing edge components, or attachment damage. The contract should describe how concealed fascia conditions will be documented and approved if discovered.",
+        "Drip edge, underlayment, starter, fascia covering, gutter position, and hangers must work together. Treating the gutter as an unrelated accessory can leave the most water-sensitive roof transition undefined."
+      ]
+    },
+    {
+      "heading": "Plan the construction sequence before tear-off",
+      "paragraphs": [
+        "When both systems are replaced, roof work is generally coordinated so the correct edge details are established before final gutter installation. Site conditions, fascia work, specialty metals, and gutter type can change the exact sequence.",
+        "Confirm who removes and reinstalls guards, where downspouts will connect, how temporary drainage will be handled, and whether painting or exterior finish work must occur before the new gutters are installed."
+      ]
+    },
+    {
+      "heading": "Follow water beyond the downspout",
+      "paragraphs": [
+        "A new gutter does not solve poor discharge. Downspouts should direct water to an appropriate location without concentrating it at foundations, walks, neighboring property, or areas that feed back toward the building.",
+        "Underground drains, grading, foundation drainage, or municipal requirements may fall outside a roofer’s scope. The inspection should identify visible concerns and define when a drainage, plumbing, or site professional is needed.",
+        "U.S. Department of Energy building-science guidance treats gutters, downspouts, grading, and foundation drainage as a connected water-management strategy. The exact discharge method still needs to fit the site and local requirements."
+      ],
+      "links": [
+        {
+          "href": "https://bsesc.energy.gov/energy-basics/foundation-drain-gutters-downspouts",
+          "label": "U.S. Department of Energy: Gutters and Downspouts"
+        }
+      ]
+    },
+    {
+      "heading": "Ask these questions before combining the projects",
+      "paragraphs": [
+        "A combined roof-and-gutter proposal should still separate the systems clearly. This makes materials, responsibilities, sequencing, and warranties easier to compare."
+      ],
+      "bullets": [
+        "What condition supports keeping or replacing the current gutters?",
+        "Are fascia repairs included or handled as a documented change?",
+        "How will roof edge, drip edge, and gutter attachment integrate?",
+        "Are gutter guards, heat cable, or specialty outlets included?",
+        "Where will each downspout discharge?",
+        "Who provides the roof warranty and the gutter workmanship warranty?",
+        "How will existing gutters be protected if they remain?"
+      ],
+      "links": [
+        {
+          "href": "/services/gutters-exteriors/",
+          "label": "Explore gutter and exterior services"
+        }
+      ]
+    }
+  ],
+  "relatedServices": ["gutters-exteriors", "roof-replacement"]
+}

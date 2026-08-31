@@ -1,4 +1,7 @@
-export const resourceArticles = [
+import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+
+const evergreenResourceArticles = [
   {
     slug: "roof-replacement-process-what-to-expect",
     eyebrow: "Roofing guide",
@@ -363,4 +366,38 @@ export const resourceArticles = [
     ],
     relatedServices: ["roof-repair", "roof-replacement"]
   }
+];
+
+const publishedResourcesDirectory = fileURLToPath(
+  new URL("../content/published-resources/", import.meta.url)
+);
+const queuedResourcesDirectory = fileURLToPath(
+  new URL("../content/resource-queue/", import.meta.url)
+);
+
+function loadResourceDirectory(directory) {
+  return existsSync(directory)
+    ? readdirSync(directory)
+      .filter((filename) => filename.endsWith(".json"))
+      .sort()
+      .map((filename) =>
+        JSON.parse(
+          readFileSync(`${directory}/${filename}`, "utf8")
+        )
+      )
+    : [];
+}
+
+const scheduledResourceArticles = loadResourceDirectory(
+  publishedResourcesDirectory
+);
+const previewResourceArticles =
+  process.env.RESOURCE_QUEUE_PREVIEW === "1"
+    ? loadResourceDirectory(queuedResourcesDirectory)
+    : [];
+
+export const resourceArticles = [
+  ...evergreenResourceArticles,
+  ...scheduledResourceArticles,
+  ...previewResourceArticles
 ];
